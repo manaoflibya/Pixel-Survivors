@@ -9,7 +9,7 @@ public class PlayerMoveState : PlayerState
 
     }   
 
-    public override void OnEnter(PlayerData playerData)
+    public override void OnEnter(PlayerData _playerData)
     {
         Debug.Log("PlayerMoveState OnEnter Test");
     }
