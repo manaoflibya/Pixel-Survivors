@@ -12,16 +12,16 @@ public class PlayerMoveState : PlayerState
     public override void OnEnter(PlayerData _playerData)
     {
         Debug.Log("PlayerMoveState OnEnter Test");
+        UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playJoyStickModel);
     }
 
     public override void OnUpdate()
     {
-        Debug.Log("PlayerMoveState OnUpdate Test");
+
     }
     public override void OnExit()
     {
-        Debug.Log("PlayerMoveState OnExit Test");
-
+        UIPresenter.Instance.RemoveUIList(UIPresenter.Instance.playJoyStickModel);
     }
 
 }

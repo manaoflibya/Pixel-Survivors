@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerBeginState : PlayerState
 {
     private PlayerData playerData;
-
+    
     public PlayerBeginState() 
     {
 
@@ -14,17 +15,18 @@ public class PlayerBeginState : PlayerState
     public override void OnEnter(PlayerData _playerData)
     {
         playerData = _playerData;
-        PlayerController.Instance.SetAllowMove(true);
     }
 
     public override void OnUpdate()
     {
-
+        if(Input.GetMouseButtonDown(0))
+        {
+            PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.MOVE);
+        }
     }
 
     public override void OnExit()
     {
-        Debug.Log("BeginState Exit Test");
-
+        //PlayerController.Instance.SetAllowMove(true);
     }
 }

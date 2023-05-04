@@ -19,8 +19,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public PlayerData playerData;
 
-    private PLAYERSTATE myState = PLAYERSTATE.NONE;  
-    private PlayerState currentState;
+    private PLAYERSTATE currentPlayerState = PLAYERSTATE.NONE;  
     private Dictionary<PLAYERSTATE, PlayerState> playerClassDictionary = new Dictionary<PLAYERSTATE, PlayerState>();     
     
 
@@ -31,19 +30,14 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private void Update()
     {
-        if(currentState != null)
+        if(playerClassDictionary.ContainsKey(currentPlayerState))
         {
-            currentState.OnUpdate();
+            playerClassDictionary[currentPlayerState].OnUpdate();
         }
     }
 
     private void InitPlayerController()
     {
-        if(playerData != null)
-        {
-            SetAllowMove(false);        
-        }
-
         //처음에는 Begin으로 State를 시작
         ChangePlayerState(PLAYERSTATE.BEGIN);
         
@@ -52,68 +46,60 @@ public class PlayerController : MonoSingleton<PlayerController>
     public void ChangePlayerState(PLAYERSTATE nextState)
     {
         //중복 State 반환
-        if(myState == nextState) 
+        if(currentPlayerState == nextState) 
             return;
         
-        myState = nextState;
+        currentPlayerState = nextState;
 
-        if(currentState != null)
-            currentState.OnExit();
+        if(playerClassDictionary.ContainsKey(currentPlayerState))
+        {
+            playerClassDictionary[currentPlayerState].OnExit();
+        }
 
-        switch(myState) 
+        switch(currentPlayerState) 
         {
             case PLAYERSTATE.BEGIN:
                 {
-                    if (!playerClassDictionary.ContainsKey(myState))
+                    if (!playerClassDictionary.ContainsKey(currentPlayerState))
                     {
-                        playerClassDictionary.Add(myState, new PlayerBeginState());
+                        playerClassDictionary.Add(currentPlayerState, new PlayerBeginState());
                     }
-
-                    currentState = playerClassDictionary[myState];
                 }
                 break;
             case PLAYERSTATE.MOVE:
                 {
-                    if (!playerClassDictionary.ContainsKey(myState))
+                    if (!playerClassDictionary.ContainsKey(currentPlayerState))
                     {
-                        playerClassDictionary.Add(myState, new PlayerMoveState());
+                        playerClassDictionary.Add(currentPlayerState, new PlayerMoveState());
                     }
-
-                    currentState = playerClassDictionary[myState];
                 }
                 break;
             case PLAYERSTATE.STOP:
                 {
-                    if (!playerClassDictionary.ContainsKey(myState))
+                    if (!playerClassDictionary.ContainsKey(currentPlayerState))
                     {
-                        playerClassDictionary.Add(myState, new PlayerStopState());
+                        playerClassDictionary.Add(currentPlayerState, new PlayerStopState());
                     }
-
-                    currentState = playerClassDictionary[myState];
-
                 }
                 break;
             case PLAYERSTATE.END:
                 {
-                    if (!playerClassDictionary.ContainsKey(myState))
+                    if (!playerClassDictionary.ContainsKey(currentPlayerState))
                     {
-                        playerClassDictionary.Add(myState, new PlayerEndState());
+                        playerClassDictionary.Add(currentPlayerState, new PlayerEndState());
                     }
-
-                    currentState = playerClassDictionary[myState];
-
                 }
                 break; 
         }
 
-        if (currentState != null && currentState != null)
+        if (playerClassDictionary[currentPlayerState] != null)
         {
-            currentState.OnEnter(playerData);
+            playerClassDictionary[currentPlayerState].OnEnter(playerData);
         }
     }
 
     public void SetAllowMove(bool isAllow)
     {
-        playerData.allowMove = isAllow;
+        playerData.AllowMove = isAllow;
     }
 }

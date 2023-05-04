@@ -6,7 +6,8 @@ public class PlayerData : MonoBehaviour
 {
     public GameObject player;
 
-    public bool allowMove
+    private bool allowMove;
+    public bool AllowMove
     {
         get { return allowMove; } 
         set
