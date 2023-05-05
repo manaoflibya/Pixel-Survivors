@@ -23,7 +23,6 @@ public class PlayJoyStickModel : GameUIModel
 
     private PlayJoyStickView view = null;
     private string joyStickName = string.Empty;
-    private Vector2 moveVec = Vector2.zero;
 
     public override string Name
     {
@@ -37,6 +36,12 @@ public class PlayJoyStickModel : GameUIModel
         protected set { this.go = value; }
     }
 
+    private Vector3 moveVec = Vector3.zero;
+    public Vector3 MoveVec
+    {
+        get { return this.moveVec; }
+        private set { this.moveVec = value; }  
+    }
 
     public override void Show()
     {
@@ -71,7 +76,6 @@ public class PlayJoyStickModel : GameUIModel
 
     public override void UpdateInfo()
     {
-        this.moveVec = new Vector2(UltimateJoystick.GetHorizontalAxis(this.joyStickName), UltimateJoystick.GetVerticalAxis(this.joyStickName));
-        UnityEngine.Debug.Log("JoystickModel MoveVec -> " + this.moveVec);
+        this.MoveVec = new Vector3(UltimateJoystick.GetHorizontalAxis(this.joyStickName), UltimateJoystick.GetVerticalAxis(this.joyStickName),0);
     }
 }

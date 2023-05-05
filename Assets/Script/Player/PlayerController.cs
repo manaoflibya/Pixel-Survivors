@@ -18,9 +18,11 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
     public PlayerData playerData;
-
+    
+    [SerializeField]
     private PLAYERSTATE currentPlayerState = PLAYERSTATE.NONE;  
-    private Dictionary<PLAYERSTATE, PlayerState> playerClassDictionary = new Dictionary<PLAYERSTATE, PlayerState>();     
+
+    private Dictionary<PLAYERSTATE, PlayerState> playerClassDictionary = new Dictionary<PLAYERSTATE, PlayerState>();
     
 
     private void Start()
@@ -30,7 +32,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private void Update()
     {
-        if(playerClassDictionary.ContainsKey(currentPlayerState))
+        if(playerClassDictionary.ContainsKey(currentPlayerState) && playerData.checkClassOnExix)
         {
             playerClassDictionary[currentPlayerState].OnUpdate();
         }
@@ -40,7 +42,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         //처음에는 Begin으로 State를 시작
         ChangePlayerState(PLAYERSTATE.BEGIN);
-        
+
+        playerData.checkClassOnExix = true;
     }
 
     public void ChangePlayerState(PLAYERSTATE nextState)
@@ -48,15 +51,15 @@ public class PlayerController : MonoSingleton<PlayerController>
         //중복 State 반환
         if(currentPlayerState == nextState) 
             return;
-        
-        currentPlayerState = nextState;
 
-        if(playerClassDictionary.ContainsKey(currentPlayerState))
+        if (playerClassDictionary.ContainsKey(currentPlayerState))
         {
             playerClassDictionary[currentPlayerState].OnExit();
         }
 
-        switch(currentPlayerState) 
+        currentPlayerState = nextState;
+
+        switch (currentPlayerState) 
         {
             case PLAYERSTATE.BEGIN:
                 {
@@ -101,5 +104,24 @@ public class PlayerController : MonoSingleton<PlayerController>
     public void SetAllowMove(bool isAllow)
     {
         playerData.AllowMove = isAllow;
+    }
+
+    public void MovePlayerPosition(Vector3 moveVec)
+    {
+        playerData.playerGo.transform.Translate(moveVec * Time.deltaTime * playerData.Speed);
+
+        if (moveVec.x > 0)
+        {
+            playerData.playerGo.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (moveVec.x < 0)
+        {
+            playerData.playerGo.transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    public void PlayerAnimationMove(bool isMove)
+    {
+        playerData.playerAnimator.SetBool(playerData.playerWalkAnimationName, isMove);
     }
 }

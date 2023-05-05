@@ -45,12 +45,13 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
         if (currentGameState == state)
             return;
 
-        currentGameState = state;
         
         if(gameStateDictionary.ContainsKey(currentGameState))
         {
             gameStateDictionary[currentGameState].OnExit();
         }
+
+        currentGameState = state;
 
         switch (currentGameState)
         {
