@@ -27,6 +27,7 @@ public class PlayerData : MonoBehaviour
         set { this.speed = value; } 
     }
 
+    public float playerSize = 0.5f;
 
-
+    public Vector3 playerVec = new Vector3 (0, 0, 0);
 }

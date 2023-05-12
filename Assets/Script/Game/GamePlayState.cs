@@ -9,15 +9,22 @@ public class GamePlayState : GameState
 
     }
 
+    private int monsterBatCreateCount = 1;
+
     public override void OnEnter()
     {
+        PixelGameManager.Instance.monsterController.OnSetMonsterBat(monsterBatCreateCount);
+
     }
+
     public override void OnUpdate()
     {
+
     }
 
     public override void OnExit()
     {
-    }
 
+    }
+    
 }

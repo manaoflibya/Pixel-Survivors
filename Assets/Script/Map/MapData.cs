@@ -22,6 +22,7 @@ public class MapData : MonoBehaviour
 
     [HideInInspector]
     public string playerTagName = "Player";
+
     [HideInInspector]
     public string trigger_Right = "Trigger_Right";
     [HideInInspector]

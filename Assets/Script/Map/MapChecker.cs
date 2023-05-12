@@ -18,6 +18,5 @@ public class MapChecker : MonoBehaviour
         {
             MapController.Instance.MapOut();
         }
-
     }
 }

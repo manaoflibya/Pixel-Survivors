@@ -17,8 +17,17 @@ public class PlayerController : MonoSingleton<PlayerController>
         END,
     }
 
+    public enum PLAYERATTACK
+    {
+        NONE,
+        ATTACK_1,
+        ATTACK_2,
+        ATTACK_3,
+    }
+
     public PlayerData playerData;
-    
+    public EffectController effectController;
+
     [SerializeField]
     private PLAYERSTATE currentPlayerState = PLAYERSTATE.NONE;  
 
@@ -112,16 +121,21 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (moveVec.x > 0)
         {
-            playerData.playerGo.transform.localScale = new Vector3(-1, 1, 1);
+            playerData.playerGo.transform.localScale = new Vector3(-playerData.playerSize, playerData.playerSize, playerData.playerSize);
         }
         else if (moveVec.x < 0)
         {
-            playerData.playerGo.transform.localScale = new Vector3(1, 1, 1);
+            playerData.playerGo.transform.localScale = new Vector3(playerData.playerSize, playerData.playerSize, playerData.playerSize);
         }
     }
 
     public void PlayerAnimationMove(bool isMove)
     {
         playerData.playerAnimator.SetBool(playerData.playerWalkAnimationName, isMove);
+    }
+
+    public Vector3 GetPlayerVec()
+    {
+        return playerData.transform.position;
     }
 }

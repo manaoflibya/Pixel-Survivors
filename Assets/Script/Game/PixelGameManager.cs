@@ -22,6 +22,9 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
     private Dictionary<PIXELGAMESTATE, GameState> gameStateDictionary = new Dictionary<PIXELGAMESTATE, GameState>();
    // private GameState gameState;
 
+    public MonsterController monsterController;
+    public CameraController cameraController;
+
     private void Start()
     {
         PixelGameManagerInit();
