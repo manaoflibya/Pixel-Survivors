@@ -8,13 +8,6 @@ public class MonsterBat : Monster
     public int batUID;
 
 
-    
-
-    public void Start()
-    {
-        this.transform.position = spawnPos;
-    }
-
     private void FixedUpdate()
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, PlayerController.Instance.GetPlayerVec(), speed * Time.deltaTime);  
@@ -23,7 +16,7 @@ public class MonsterBat : Monster
 
     public override void TakeDamage(float damage)
     {
-        Debug.Log("Child TakeDamage");
+        base.TakeDamage(damage);
         health -= damage;
 
         if (health <= 0)
@@ -38,6 +31,6 @@ public class MonsterBat : Monster
     private void FinishDeath()
     {
         //recycleÇÊ¿ä
-        monsterAction?.Invoke(myType, batUID);
+        monsterAction?.Invoke(myType, batUID,this.gameObject);
     }
 }

@@ -64,7 +64,7 @@ public class MonsterController : MonoBehaviour
         
         if(activeMonster.Count == 0)
         {
-            Debug.LogError("Monster List has nothing.");
+            //Debug.LogError("Monster List has nothing.");
             return go;
         }
 
@@ -110,7 +110,7 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    private void DeleteMonsterData(OBJECT_TYPE type, int uid)
+    private void DeleteMonsterData(OBJECT_TYPE type, int uid, GameObject go)
     {
         switch (type)
         {
@@ -120,5 +120,7 @@ public class MonsterController : MonoBehaviour
                 }
                 break;
         }
+
+        monsterFactory.RecycleObject(type, go);
     }
 }

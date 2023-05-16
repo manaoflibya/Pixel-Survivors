@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
+
 public class Monster : MonoBehaviour
 {
     public Vector3 spawnPos = new Vector3();
@@ -13,7 +14,7 @@ public class Monster : MonoBehaviour
     public float speed;
     public float size;
 
-    public Action<OBJECT_TYPE,int> monsterAction;
+    public Action<OBJECT_TYPE,int, GameObject> monsterAction;
 
     [SerializeField]
     protected Animator monsterAnimator;
@@ -23,18 +24,20 @@ public class Monster : MonoBehaviour
     public void Start()
     {
         monsterAnimator = GetComponent<Animator>(); 
+
+        this.transform.position = spawnPos;
     }
 
     public virtual void TakeDamage(float damage)
     {
-        Debug.Log("Parent TakeDamage");
+        //Debug.Log("Parent TakeDamage");
 
-        health -= damage;
+        //health -= damage;
 
-        if (health <= 0)
-        {
-            Death();
-        }
+        //if (health <= 0)
+        //{
+        //    Death();
+        //}
     }
 
     protected void Death()

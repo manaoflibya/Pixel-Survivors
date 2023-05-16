@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterFactory : ObjectFactory
 {
-    public override GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos,System.Action<OBJECT_TYPE,int> monsterAction , float health, float speed, float size = 1f)
+    public override GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos,System.Action<OBJECT_TYPE,int,GameObject> monsterAction , float health, float speed, float size = 1f)
     {
         Monster go = ObjectPool.Instance.Get<Monster>(myType);
 
@@ -18,5 +18,10 @@ public class MonsterFactory : ObjectFactory
         go.spawnPos = spawnPos;
         
         return go.gameObject;
+    }
+
+    public override void RecycleObject(OBJECT_TYPE myType, GameObject go)
+    {
+        ObjectPool.Instance.Recycle<Monster>(myType, go);
     }
 }

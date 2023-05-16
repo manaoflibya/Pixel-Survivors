@@ -9,7 +9,7 @@ public class GamePlayState : GameState
 
     }
 
-    private int monsterBatCreateCount = 1;
+    private int monsterBatCreateCount = 30;
 
     public override void OnEnter()
     {

@@ -66,7 +66,6 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         T data = default(T);
         GameObject go = null;
 
-        
         switch (_type)
         {
             case OBJECT_TYPE.MONSTERBATTYPE:
@@ -125,10 +124,18 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             case OBJECT_TYPE.COINTYPE:
                 break;
             case OBJECT_TYPE.EFFECTFIREBALLTYPE:
+                {
+                    fireBallQueue.Enqueue(go);
+                }
                 break;
         }
     }
 
+    /// <summary>
+    /// ObjectPool GameObject부모 아래 생성하기 위해서 사용하는 함수.
+    /// </summary>
+    /// <param name="localName"></param>
+    /// <returns></returns>
     public GameObject CreateLocalObject(string localName)
     {
         GameObject go = new GameObject(localName);

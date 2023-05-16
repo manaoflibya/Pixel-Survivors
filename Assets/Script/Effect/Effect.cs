@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class Effect : MonoBehaviour
     public Vector3 spawnPos = new Vector3();
     public Vector3 dir;
     public GameObject target;
-
+    public Action<OBJECT_TYPE,int, GameObject> action;
     public float damage;
     public float speed;
 

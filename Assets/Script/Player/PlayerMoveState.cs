@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMoveState : PlayerState
@@ -20,6 +21,7 @@ public class PlayerMoveState : PlayerState
 
     private float effectFireBallSpeed = 15f;
     private float effectFireBallDamage = 50f;
+    private float effectFireBallSize = 1f;
     /// <summary>
     /// </summary>
 
@@ -67,7 +69,8 @@ public class PlayerMoveState : PlayerState
                 PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters().transform.position + new Vector3(3f,10f),
                 PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters(), // 가까운 몬스터 찾아서 그 위치로 바꿔야함.
                 effectFireBallSpeed,
-                effectFireBallDamage);
+                effectFireBallDamage,
+                effectFireBallSize);
             currentCoolTime = 0f;
         }
     }

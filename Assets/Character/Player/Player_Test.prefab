@@ -264,6 +264,8 @@ GameObject:
   - component: {fileID: 1751652089}
   - component: {fileID: 1751652088}
   - component: {fileID: 1751652087}
+  - component: {fileID: 708958938}
+  - component: {fileID: 708958939}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -337,6 +339,34 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751652086}
   m_Enabled: 1
+--- !u!114 &708958938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751652086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58437b036e59103459b6b8a43938bd99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playGameCamera: {fileID: 1751652088}
+  collider2d: {fileID: 7779907676414285165}
+  cameraCheckGo: []
+--- !u!114 &708958939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751652086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72db4bf3621ffd14abfe3e4507ac5ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraData: {fileID: 708958938}
 --- !u!1 &267225228648848572
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,7 +4070,7 @@ Animator:
   m_GameObject: {fileID: 9092683277515177086}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
+  m_Controller: {fileID: 9100000, guid: b2045e1342dabd146ab860cdb3ecada4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4120,4 +4150,5 @@ MonoBehaviour:
   playerWalkAnimationName: Walk
   checkClassOnExix: 0
   speed: 3
+  playerSize: 0.5
   playerVec: {x: 0, y: 0, z: 0}

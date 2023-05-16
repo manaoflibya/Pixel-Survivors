@@ -8,9 +8,24 @@ public class EffectFireBall : Effect
 {
     public int fireBallUID;
 
+    public GameObject exposionEffect;
+    public GameObject trailEffect;
+
+    private float stopExplisionTime = 0.3f;
+    private float floorExplosionTime = 0.8f;
+
+    private string playAnimMethodName = "StartExplosion";
+    private string stopAnimMethodName = "StopExplision";
+
     private void Start()
     {
         this.transform.position = spawnPos;
+    }
+
+    private void OnEnable()
+    {
+        Invoke(playAnimMethodName, floorExplosionTime);
+
     }
 
     private void Update()
@@ -23,7 +38,22 @@ public class EffectFireBall : Effect
         if (collision.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
         {
             collision.GetComponent<Monster>().TakeDamage(damage);
+            StartExplosion();
         }
+    }
+
+    private void StartExplosion()
+    {
+        exposionEffect.SetActive(true);
+        trailEffect.SetActive(false);
+        Invoke(stopAnimMethodName, stopExplisionTime);
+    }
+
+    private void StopExplision()
+    {
+        action?.Invoke(myType, fireBallUID, this.gameObject);
+        exposionEffect.SetActive(false);
+        trailEffect.SetActive(true);
     }
 }
 
