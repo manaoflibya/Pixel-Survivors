@@ -17,23 +17,32 @@ public class EffectController : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        
-    }
-
-    public void OnEffectFireBall(int createCount,Vector3 spawnPos, GameObject target, float speed, float damage,float size)
+    public void OnEffectFireBall(int createCount,Vector3 spawnPos, GameObject target, float speed, float damage,Vector3 size)
     {
         for(int i = 0; i < createCount; i++)
         {
             EffectFireBall fireBall = null;
             GameObject go = null;
 
-            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTFIREBALLTYPE,spawnPos, target, DelEffect, speed,damage);
+            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTFIREBALLTYPE,spawnPos, target, DelEffect, speed,damage,size);
 
             go.TryGetComponent<EffectFireBall>(out fireBall);
             
             effectDataManager.AddEffectFireBall(ref fireBall);
+        }
+    }
+
+    public void OnEffectMagicBolt(int createCount, Vector3 spawnPos, Vector3 dir, float speed, float damage, Vector3 size)
+    {
+        for(int i = 0;i < createCount;i++)
+        {
+            EffectMagicBolt magicBolt = null;
+            GameObject go = null;
+
+            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTMAGICBOLTTYPE,spawnPos, dir, DelEffect, speed, damage,size);
+            go.TryGetComponent<EffectMagicBolt>(out magicBolt);
+
+            effectDataManager.AddEffectMagicBolt(ref magicBolt);
         }
     }
 
@@ -46,6 +55,12 @@ public class EffectController : MonoBehaviour
                     effectDataManager.DelEffectFireBall(uid);
                 }
                 break;
+            case OBJECT_TYPE.EFFECTMAGICBOLTTYPE:
+                {
+                    effectDataManager.DelEffectMagicBolt(uid);
+                }
+                break;
+
         }
         effectFactory.RecycleObject(type, go);
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6535863255931761809}
   - component: {fileID: 6535863255931761810}
   m_Layer: 0
-  m_Name: EffectFireBallExplision_Data
+  m_Name: EffectFireBallExplision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

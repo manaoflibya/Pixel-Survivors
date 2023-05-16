@@ -7,10 +7,12 @@ public class MonsterBat : Monster
 {
     public int batUID;
 
-
     private void FixedUpdate()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, PlayerController.Instance.GetPlayerVec(), speed * Time.deltaTime);  
+        if (isDead.Equals(false))
+        {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, PlayerController.Instance.GetPlayerVec(), speed * Time.deltaTime);  
+        }
     }
 
 

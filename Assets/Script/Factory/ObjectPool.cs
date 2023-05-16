@@ -12,39 +12,49 @@ public enum OBJECT_TYPE
     COINTYPE,
     //EFFECT
     EFFECTFIREBALLTYPE,
+    EFFECTMAGICBOLTTYPE,
 }
 
 public class ObjectPool : MonoSingleton<ObjectPool>
 {
-    private GameObject monsterBat;
     private GameObject item;
     private GameObject coin;
-    private GameObject effectFireBall;
 
     private Queue<GameObject> monsterBatQueue = new Queue<GameObject>();
     private string batNameData = "Monster_Bat_Data";
     private int bat_Create_Count = 100;
     private GameObject batParent;
+    private GameObject monsterBat;
 
     private Queue<GameObject> fireBallQueue = new Queue<GameObject>();
+    private GameObject effectFireBall;
+    private GameObject fireBallParent;
     private string fireBallNameData = "EffectFireBall_Data";
     private int fireBall_Create_Count = 100;
-    private GameObject fireBallParent;
+
+    private Queue<GameObject> magicBoltQueue = new Queue<GameObject>();
+    private GameObject magicBolt;
+    private GameObject magicBoltParent;
+    private string magicBoltNameData = "EffectMagicBolt_Data";
+    private int magicBolt_Create_Count = 100;
 
     private void Awake()
     {
         monsterBat = Resources.Load(batNameData) as GameObject;
         effectFireBall = Resources.Load(fireBallNameData) as GameObject;
+        magicBolt = Resources.Load(magicBoltNameData) as GameObject;
 
         //////////////////
 
         monsterBat.SetActive(false);
         effectFireBall.SetActive(false);
+        magicBolt.SetActive(false);
 
         //////////////////
 
         batParent = CreateLocalObject(batNameData);
         fireBallParent = CreateLocalObject(fireBallNameData); 
+        magicBoltParent = CreateLocalObject(magicBoltNameData);
 
         for (int i = 0; i < bat_Create_Count; i++)
         {
@@ -58,6 +68,13 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             GameObject go = Instantiate(effectFireBall);
             go.transform.SetParent(fireBallParent.transform);
             fireBallQueue.Enqueue(go);
+        }
+
+        for(int i = 0; i < magicBolt_Create_Count; i++)
+        {
+            GameObject go = Instantiate(magicBolt);
+            go.transform.SetParent(magicBoltParent.transform);
+            magicBoltQueue.Enqueue(go);
         }
     }
 
@@ -95,6 +112,19 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     }
                 }
                 break;
+            case OBJECT_TYPE.EFFECTMAGICBOLTTYPE:
+                {
+                    if(magicBoltQueue.Count == 0)
+                    {
+                        go = Instantiate(magicBolt);
+                        go.transform.SetParent(magicBoltParent.transform); 
+                    }
+                    else
+                    {
+                        go = magicBoltQueue.Dequeue();
+                    }
+                }
+                break;
         }
 
         go.SetActive(true);
@@ -103,6 +133,13 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         return data;
     }
 
+    /// <summary>
+    /// 다 사용한 오브젝트를 해당 QueueData에 다시 넣기위해 사용하는 함수.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="type"></param>
+    /// <param name="go"></param>
+    /// <exception cref="System.Exception"></exception>
     public void Recycle<T>(OBJECT_TYPE type, GameObject go)
     {
         if(go == null)
@@ -126,6 +163,11 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             case OBJECT_TYPE.EFFECTFIREBALLTYPE:
                 {
                     fireBallQueue.Enqueue(go);
+                }
+                break;
+            case OBJECT_TYPE.EFFECTMAGICBOLTTYPE:
+                {
+                    magicBoltQueue.Enqueue(go);
                 }
                 break;
         }

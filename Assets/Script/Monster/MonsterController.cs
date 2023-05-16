@@ -102,7 +102,7 @@ public class MonsterController : MonoBehaviour
                 }
             }
 
-            go = monsterFactory.AddObject(OBJECT_TYPE.MONSTERBATTYPE, vec, DeleteMonsterData, constant.batHealth, constant.batSpeed);
+            go = monsterFactory.AddObject(OBJECT_TYPE.MONSTERBATTYPE, vec, DeleteMonsterData, constant.batHealth, constant.batSpeed, constant.batSize);
 
             go.TryGetComponent<MonsterBat>(out bat);
 

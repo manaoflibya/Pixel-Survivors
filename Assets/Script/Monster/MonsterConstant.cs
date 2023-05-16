@@ -16,7 +16,8 @@ public class MonsterConstant : MonoBehaviour
     public float batHealth = 100f;
     [HideInInspector]
     public float batSpeed = 1.5f;
-
+    [HideInInspector]
+    public Vector3 batSize = new Vector3(1f, 1f, 1f);
     //플레이어와 최소거리
     [HideInInspector]
     public float monsterMinDistance = (float)decimal.MinValue;

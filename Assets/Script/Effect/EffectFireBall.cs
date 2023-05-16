@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net.Sockets;
 using UnityEditor.U2D;
 using UnityEngine;
@@ -20,10 +21,13 @@ public class EffectFireBall : Effect
     private void Start()
     {
         this.transform.position = spawnPos;
+        this.transform.localScale = size;
     }
 
     private void OnEnable()
     {
+        this.transform.localScale = size;
+
         Invoke(playAnimMethodName, floorExplosionTime);
 
     }

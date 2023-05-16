@@ -12,7 +12,7 @@ public class Monster : MonoBehaviour
 
     public float health;
     public float speed;
-    public float size;
+    public Vector3 size;
 
     public Action<OBJECT_TYPE,int, GameObject> monsterAction;
 
@@ -21,11 +21,20 @@ public class Monster : MonoBehaviour
 
     protected string animDeathTriggerName = "Death";
 
+    protected bool isDead = false;
+
     public void Start()
     {
-        monsterAnimator = GetComponent<Animator>(); 
-
+        monsterAnimator = GetComponent<Animator>();
         this.transform.position = spawnPos;
+        this.transform.localScale = size;
+
+    }
+
+    protected void OnEnable()
+    {
+        isDead = false;
+
     }
 
     public virtual void TakeDamage(float damage)
@@ -43,6 +52,7 @@ public class Monster : MonoBehaviour
     protected void Death()
     {
         monsterAnimator.SetTrigger(animDeathTriggerName);
+        isDead = true;  
     }
 
     protected bool GetActive()

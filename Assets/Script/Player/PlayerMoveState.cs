@@ -20,8 +20,12 @@ public class PlayerMoveState : PlayerState
     private int effectCreateCount = 1;
 
     private float effectFireBallSpeed = 15f;
-    private float effectFireBallDamage = 50f;
-    private float effectFireBallSize = 1f;
+    private float effectFireBallDamage = 30f;
+    private Vector3 effectFireBallSize = new Vector3(1f, 1f, 0f);
+
+    private float effectMagicBoltSpeed = 5f;
+    private float effectMagicBoltDamage = 20f;
+    private Vector3 effectMagicBoltSize = new Vector3(2f,2f,0f);
     /// <summary>
     /// </summary>
 
@@ -51,10 +55,10 @@ public class PlayerMoveState : PlayerState
             PlayerController.Instance.MovePlayerPosition(dirVec);
         }
 
-        if(Input.GetMouseButtonUp(0)) 
-        {
-            PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.STOP);
-        }
+        //if(Input.GetMouseButtonUp(0)) 
+        //{
+        //    PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.STOP);
+        //}
 
         currentCoolTime += Time.deltaTime;
         if(currentCoolTime >= effectCoolTime)
@@ -71,7 +75,21 @@ public class PlayerMoveState : PlayerState
                 effectFireBallSpeed,
                 effectFireBallDamage,
                 effectFireBallSize);
+
             currentCoolTime = 0f;
+
+            if (PixelGameManager.Instance.monsterController.FindClosestMonster() == null)
+            {
+                return;
+            }
+
+            PlayerController.Instance.effectController.OnEffectMagicBolt(
+                effectCreateCount,
+                PlayerController.Instance.GetPlayerVec(),
+                PixelGameManager.Instance.monsterController.FindClosestMonster(),
+                effectMagicBoltSpeed,
+                effectMagicBoltDamage,
+                effectMagicBoltSize);
         }
     }
 

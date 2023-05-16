@@ -20,7 +20,7 @@ public class PlayerStopState : PlayerState
 
     private float effectFireBallSpeed = 15f;
     private float effectFireBallDamage = 50f;
-    private float effectFireBallSize = 1f;
+    private Vector3 effectFireBallSize = new Vector3(2f,2f,0f);
     /// <summary>
     /// </summary>
 

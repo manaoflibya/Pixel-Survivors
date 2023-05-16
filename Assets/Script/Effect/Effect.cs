@@ -12,6 +12,7 @@ public class Effect : MonoBehaviour
     public Action<OBJECT_TYPE,int, GameObject> action;
     public float damage;
     public float speed;
+    public Vector3 size;
 
     protected void Show()
     {

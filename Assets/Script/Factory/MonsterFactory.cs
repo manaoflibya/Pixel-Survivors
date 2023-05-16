@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterFactory : ObjectFactory
 {
-    public override GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos,System.Action<OBJECT_TYPE,int,GameObject> monsterAction , float health, float speed, float size = 1f)
+    public override GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos,System.Action<OBJECT_TYPE,int,GameObject> monsterAction , float health, float speed, Vector3 size)
     {
         Monster go = ObjectPool.Instance.Get<Monster>(myType);
 

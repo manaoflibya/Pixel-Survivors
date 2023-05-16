@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 6085501694861308598}
   - component: {fileID: 4826359677223925619}
   - component: {fileID: 6048106093821936635}
+  - component: {fileID: 8851310709827594324}
+  - component: {fileID: 8630745401758588933}
   m_Layer: 0
-  m_Name: EffectBall
+  m_Name: EffectMagicBolt_Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6085501694861308598
 Transform:
   m_ObjectHideFlags: 0
@@ -106,3 +108,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8851310709827594324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886532314450790221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cbdd8789c8b7d64a9c80dd82587e221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  spawnPos: {x: 0, y: 0, z: 0}
+  dir: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+  damage: 0
+  speed: 0
+  magicBoltUID: 0
+--- !u!70 &8630745401758588933
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886532314450790221}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.32, y: 0.32}
+  m_Direction: 0
