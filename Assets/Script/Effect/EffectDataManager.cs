@@ -13,11 +13,13 @@ public class EffectDataManager
     public Dictionary<int, EffectMagicBolt> magicBoltData = new Dictionary<int, EffectMagicBolt>();
     public Dictionary<int, EffectKunai> kunaiData = new Dictionary<int, EffectKunai>();
     public Dictionary<int, EffectPoison> poisonData = new Dictionary<int, EffectPoison>();
+    public Dictionary<int, EffectBounceBall> bounceBallData = new Dictionary<int, EffectBounceBall>();
 
     private int fireBallUID = -1;
     private int magicBoltUID = -1;
     private int kunaiUID = -1;
     private int poisonUID = -1;
+    private int bounceBallUID = -1;
 
 
     private void InitData()
@@ -42,9 +44,14 @@ public class EffectDataManager
             kunaiData.Clear();
         }
 
-        if(poisonData != null)
+        if (poisonData != null)
         {
             poisonData.Clear();
+        }        
+        
+        if (bounceBallData != null)
+        {
+            bounceBallData.Clear();
         }
     }
 
@@ -248,6 +255,58 @@ public class EffectDataManager
         if (poisonData.ContainsKey(uid))
         {
             return poisonData[uid];
+        }
+        else
+        {
+            return null;
+        }
+    }
+    #endregion
+
+    #region BounceBall
+    public bool AddEffectBounceBall(ref EffectBounceBall newData)
+    {
+        bool exist = true;
+
+        newData.bounceBallUID = ++bounceBallUID;
+
+        if (bounceBallData.ContainsKey(newData.bounceBallUID))
+        {
+            exist = false;
+        }
+        else
+        {
+            bounceBallData.Add(newData.bounceBallUID, newData);
+        }
+
+        return exist;
+    }
+
+    public bool DelEffectBounceBall(int uid)
+    {
+        bool exist = true;
+        if (FindBounceBall(uid) == null)
+        {
+            exist = false;
+        }
+        else
+        {
+            bounceBallData.Remove(uid);
+        }
+
+        return exist;
+    }
+
+    public EffectBounceBall FindBounceBall(int uid)
+    {
+        if (bounceBallData == null)
+        {
+            return null;
+        }
+
+        if (bounceBallData.ContainsKey(uid))
+        {
+            return bounceBallData[uid];
         }
         else
         {

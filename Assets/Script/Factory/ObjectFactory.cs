@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.EditorTools;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class ObjectFactory
@@ -39,6 +40,11 @@ public class ObjectFactory
     }
 
     public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, Vector3 axis, float angle, System.Action<OBJECT_TYPE, int, GameObject> action, float speed, float damage, float duration, Vector3 size)
+    {
+        return null;
+    }
+
+    public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, Vector3 dir, System.Action<OBJECT_TYPE, int, GameObject> action, float speed, float damage, float duration, Vector3 size)
     {
         return null;
     }

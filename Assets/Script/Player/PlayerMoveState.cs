@@ -93,21 +93,35 @@ public class PlayerMoveState : PlayerState
 
         //}
 
-        PlayerController.Instance.effectConstant.poisonCurrentCoolTime += Time.deltaTime;
-        if(PlayerController.Instance.effectConstant.poisonCurrentCoolTime >= PlayerController.Instance.effectConstant.poisonCoolTime)
-        {
-            Debug.Log("Poison");
-            PlayerController.Instance.effectConstant.poisonCurrentCoolTime = 0f;
+        //PlayerController.Instance.effectConstant.poisonCurrentCoolTime += Time.deltaTime;
+        //if(PlayerController.Instance.effectConstant.poisonCurrentCoolTime >= PlayerController.Instance.effectConstant.poisonCoolTime)
+        //{
+        //    Debug.Log("Poison");
+        //    PlayerController.Instance.effectConstant.poisonCurrentCoolTime = 0f;
 
-            PlayerController.Instance.effectController.OnEffectPoison(
-                PlayerController.Instance.effectConstant.poisonCreateCount,
+        //    PlayerController.Instance.effectController.OnEffectPoison(
+        //        PlayerController.Instance.effectConstant.poisonCreateCount,
+        //        PlayerController.Instance.GetPlayerVec(),
+        //        PlayerController.Instance.effectConstant.effectPoisondir,
+        //        PlayerController.Instance.effectConstant.effectPoisonAngle,
+        //        PlayerController.Instance.effectConstant.effectPoisonSpeed,
+        //        PlayerController.Instance.effectConstant.effectPoisonDamage,
+        //        PlayerController.Instance.effectConstant.effectPoisonDuration,
+        //        PlayerController.Instance.effectConstant.effectPoisonSize);
+        //}
+
+        PlayerController.Instance.effectConstant.bounceBallCurrentCoolTime += Time.deltaTime;
+        if(PlayerController.Instance.effectConstant.bounceBallCurrentCoolTime >= PlayerController.Instance.effectConstant.bounceBallCoolTime)
+        {
+            PlayerController.Instance.effectConstant.bounceBallCurrentCoolTime = 0f;
+            PlayerController.Instance.effectController.OnEffectBounceBall(
+                PlayerController.Instance.effectConstant.bounceCreateCount,
                 PlayerController.Instance.GetPlayerVec(),
-                PlayerController.Instance.effectConstant.effectPoisondir,
-                PlayerController.Instance.effectConstant.effectPoisonAngle,
-                PlayerController.Instance.effectConstant.effectPoisonSpeed,
-                PlayerController.Instance.effectConstant.effectPoisonDamage,
-                PlayerController.Instance.effectConstant.effectPoisonDuration,
-                PlayerController.Instance.effectConstant.effectPoisonSize);
+                PixelGameManager.Instance.monsterController.FindClosestMonster(),
+                PlayerController.Instance.effectConstant.effectBounceBallSpeed,
+                PlayerController.Instance.effectConstant.effectBounceBallDamage,
+                PlayerController.Instance.effectConstant.effectBounceBallDuration,
+                PlayerController.Instance.effectConstant.effectBounceBallSize);
         }
     }
 

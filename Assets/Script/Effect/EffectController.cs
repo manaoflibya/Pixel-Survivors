@@ -86,6 +86,22 @@ public class EffectController : MonoBehaviour
         }
     }
 
+    public void OnEffectBounceBall(int createCount, Vector3 spawnPos, Vector3 dir, float speed, float damage, float duration, Vector3 size)
+    {
+        for(int i = 0; i < createCount;i++)
+        {
+            EffectBounceBall effectBounceBall = null;
+            GameObject go = null;
+
+            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTBOUNCEBALLTYPE,spawnPos, dir, DelEffect, speed, damage,duration,size);
+            go.TryGetComponent(out effectBounceBall);
+
+            effectBounceBall.OnReset();
+
+            effectDataManager.AddEffectBounceBall(ref effectBounceBall);
+        }
+    }
+
     private void DelEffect(OBJECT_TYPE type, int uid, GameObject go)
     {
         switch(type)
@@ -108,6 +124,11 @@ public class EffectController : MonoBehaviour
             case OBJECT_TYPE.EFFECTPOISONTYPE:
                 {
                     effectDataManager.DelEffectPoison(uid);
+                }
+                break;         
+            case OBJECT_TYPE.EFFECTBOUNCEBALLTYPE:
+                {
+                    effectDataManager.DelEffectBounceBall(uid);
                 }
                 break;
         }

@@ -16,7 +16,7 @@ public enum OBJECT_TYPE
     EFFECTMAGICBOLTTYPE,
     EFFECTKUNAITYPE,
     EFFECTPOISONTYPE,
-
+    EFFECTBOUNCEBALLTYPE,
 }
 
 public class ObjectPool : MonoSingleton<ObjectPool>
@@ -54,6 +54,11 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private string poisonNameData = "EffectPoison_Data";
     private int poisonCreateCount = 20;
 
+    private Queue<GameObject> bounceBallQueue = new Queue<GameObject>();
+    private GameObject bounceBall;
+    private GameObject bounceBallParent;
+    private string bounceBallNameData = "EffectBounceBall_Data";
+    private int bounceBallCreateCount = 20;
 
     private void Awake()
     {
@@ -62,6 +67,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         magicBolt = Resources.Load(magicBoltNameData) as GameObject;
         kunai = Resources.Load(kuaniNameData) as GameObject;
         poison = Resources.Load(poisonNameData) as GameObject;
+        bounceBall = Resources.Load(bounceBallNameData) as GameObject;
 
         //////////////////
 
@@ -69,7 +75,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         effectFireBall.SetActive(false);
         magicBolt.SetActive(false);
         kunai.SetActive(false);
-        poison.SetActive(false);  
+        poison.SetActive(false);
+        bounceBall.SetActive(false);  
 
         //////////////////
 
@@ -78,6 +85,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         magicBoltParent = CreateLocalObject(magicBoltNameData);
         kunaiParent = CreateLocalObject(kuaniNameData);
         poisonParent = CreateLocalObject(poisonNameData);
+        bounceBallParent = CreateLocalObject(bounceBallNameData);
 
         for (int i = 0; i < bat_Create_Count; i++)
         {
@@ -112,6 +120,13 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             GameObject go = Instantiate(poison);
             go.transform.SetParent(poisonParent.transform);
             poisonQueue.Enqueue(go);
+        }
+
+        for (int i = 0; i < bounceBallCreateCount; i++)
+        {
+            GameObject go = Instantiate(bounceBall);
+            go.transform.SetParent(bounceBallParent.transform);
+            bounceBallQueue.Enqueue(go);
         }
     }
 
@@ -187,6 +202,19 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                         go = poisonQueue.Dequeue();
                     }
                 }
+                break; 
+            case OBJECT_TYPE.EFFECTBOUNCEBALLTYPE:
+                {
+                    if (bounceBallQueue.Count == 0)
+                    {
+                        go = Instantiate(bounceBall);
+                        go.transform.SetParent(bounceBallParent.transform);
+                    }
+                    else
+                    {
+                        go = bounceBallQueue.Dequeue();
+                    }
+                }
                 break;
 
         }
@@ -244,6 +272,11 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             case OBJECT_TYPE.EFFECTPOISONTYPE:
                 {
                     poisonQueue.Enqueue(go);
+                }
+                break;        
+            case OBJECT_TYPE.EFFECTBOUNCEBALLTYPE:
+                {
+                    bounceBallQueue.Enqueue(go);
                 }
                 break;
         }

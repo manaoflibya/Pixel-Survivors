@@ -41,4 +41,15 @@ public class EffectConstant
     public float effectPoisonDamage = 10f;
     public float effectPoisonDuration = 3f;
     public Vector3 effectPoisonSize = new Vector3(1.5f, 1.5f, 1.5f);
+
+    // BounceBall
+    public float bounceBallCoolTime = 2f;
+    public float bounceBallCurrentCoolTime = 0f;
+    public int bounceCreateCount = 1;
+
+    public float effectBounceBallSpeed = 5f;
+    public float effectBounceBallDamage = 50f;
+    public float effectBounceBallDuration = 2f;
+    public Vector3 effectBounceBallSize = new Vector3(2f,2f,2f);
+
 }
