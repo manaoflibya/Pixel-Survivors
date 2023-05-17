@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 
 public class Monster : MonoBehaviour
 {
@@ -23,6 +23,10 @@ public class Monster : MonoBehaviour
 
     protected bool isDead = false;
 
+    protected bool startTickDamage = false;
+    protected float tickDamageTime = 0f;
+    protected float tickDamage = 0f;
+
     public void Start()
     {
         monsterAnimator = GetComponent<Animator>();
@@ -34,29 +38,51 @@ public class Monster : MonoBehaviour
     protected void OnEnable()
     {
         isDead = false;
-
+        startTickDamage = false;
+        tickDamageTime = 0f;
+        tickDamage = 0f;
     }
 
     public virtual void TakeDamage(float damage)
     {
-        //Debug.Log("Parent TakeDamage");
 
-        //health -= damage;
+    }
 
-        //if (health <= 0)
-        //{
-        //    Death();
-        //}
+
+    public virtual void TakeTickDamageStart(float damage,float tickTime)
+    {
+        startTickDamage = true;
+        tickDamage = damage;
+        tickDamageTime = tickTime;
+
+        StartCoroutine(TickDamageStart());
+    }    
+
+    public virtual void TakeTickDamageFinish()
+    {
+        startTickDamage = false;
+        StopCoroutine(TickDamageStart());
+
     }
 
     protected void Death()
     {
         monsterAnimator.SetTrigger(animDeathTriggerName);
-        isDead = true;  
+        isDead = true;
+        StopCoroutine(TickDamageStart());
     }
 
     protected bool GetActive()
     {
         return this.gameObject.activeSelf;
+    }
+
+    IEnumerator TickDamageStart()
+    {
+        while(startTickDamage)
+        {
+            TakeDamage(tickDamage);
+            yield return new WaitForSeconds(tickDamageTime);
+        }
     }
 }

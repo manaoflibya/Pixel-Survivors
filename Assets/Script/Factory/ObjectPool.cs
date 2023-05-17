@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public enum OBJECT_TYPE
@@ -14,6 +15,7 @@ public enum OBJECT_TYPE
     EFFECTFIREBALLTYPE,
     EFFECTMAGICBOLTTYPE,
     EFFECTKUNAITYPE,
+    EFFECTPOISONTYPE,
 
 }
 
@@ -46,6 +48,12 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private string kuaniNameData = "EffectKunai_Data";
     private int kunaiCreateCount = 20;
 
+    private Queue<GameObject> poisonQueue = new Queue<GameObject>();
+    private GameObject poison;
+    private GameObject poisonParent;
+    private string poisonNameData = "EffectPoison_Data";
+    private int poisonCreateCount = 20;
+
 
     private void Awake()
     {
@@ -53,13 +61,15 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         effectFireBall = Resources.Load(fireBallNameData) as GameObject;
         magicBolt = Resources.Load(magicBoltNameData) as GameObject;
         kunai = Resources.Load(kuaniNameData) as GameObject;
+        poison = Resources.Load(poisonNameData) as GameObject;
 
         //////////////////
 
         monsterBat.SetActive(false);
         effectFireBall.SetActive(false);
         magicBolt.SetActive(false);
-        kunai.SetActive(false);  
+        kunai.SetActive(false);
+        poison.SetActive(false);  
 
         //////////////////
 
@@ -67,6 +77,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         fireBallParent = CreateLocalObject(fireBallNameData); 
         magicBoltParent = CreateLocalObject(magicBoltNameData);
         kunaiParent = CreateLocalObject(kuaniNameData);
+        poisonParent = CreateLocalObject(poisonNameData);
 
         for (int i = 0; i < bat_Create_Count; i++)
         {
@@ -94,6 +105,13 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             GameObject go = Instantiate(kunai);
             go.transform.SetParent(kunaiParent.transform);
             kunaiQueue.Enqueue(go);
+        }
+
+        for (int i = 0; i < poisonCreateCount; i++)
+        {
+            GameObject go = Instantiate(poison);
+            go.transform.SetParent(poisonParent.transform);
+            poisonQueue.Enqueue(go);
         }
     }
 
@@ -157,6 +175,20 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     }
                 }
                 break;
+            case OBJECT_TYPE.EFFECTPOISONTYPE:
+                {
+                    if (poisonQueue.Count == 0)
+                    {
+                        go = Instantiate(poison);
+                        go.transform.SetParent(poisonParent.transform);
+                    }
+                    else
+                    {
+                        go = poisonQueue.Dequeue();
+                    }
+                }
+                break;
+
         }
 
         go.SetActive(true);
@@ -207,6 +239,11 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                 {
                     go.transform.SetParent(kunaiParent.transform);
                     kunaiQueue.Enqueue(go);
+                }
+                break;
+            case OBJECT_TYPE.EFFECTPOISONTYPE:
+                {
+                    poisonQueue.Enqueue(go);
                 }
                 break;
         }

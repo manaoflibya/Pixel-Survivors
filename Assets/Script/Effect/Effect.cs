@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ public class Effect : MonoBehaviour
 
     public virtual void OnReset()
     {
-
+        this.transform.localScale = size;   
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

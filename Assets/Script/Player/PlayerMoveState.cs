@@ -74,23 +74,40 @@ public class PlayerMoveState : PlayerState
         //    PlayerController.Instance.effectConstant.currentCoolTime = 0f;
         //}
 
-        PlayerController.Instance.effectConstant.kunaiCurrentCoolTime += Time.deltaTime;
-        if(PlayerController.Instance.effectConstant.kunaiCurrentCoolTime >= PlayerController.Instance.effectConstant.kunaiCoolTime)
+        //PlayerController.Instance.effectConstant.kunaiCurrentCoolTime += Time.deltaTime;
+        //if(PlayerController.Instance.effectConstant.kunaiCurrentCoolTime >= PlayerController.Instance.effectConstant.kunaiCoolTime)
+        //{
+        //    PlayerController.Instance.effectConstant.kunaiCurrentCoolTime = 0f;
+
+        //    PlayerController.Instance.effectController.OnEffectKunai(
+        //        PlayerController.Instance.effectConstant.kunaiCreateCount,
+        //        PlayerController.Instance.GetPlayerVec(),
+        //        PlayerController.Instance.playerData.playerGo.transform,
+        //        PlayerController.Instance.effectConstant.effectKunaiAsix,
+        //        PlayerController.Instance.effectConstant.effectKunaiAngle,
+        //        PlayerController.Instance.effectConstant.effectKunaiSpeed,
+        //        PlayerController.Instance.effectConstant.effectKunaiDamage,
+        //        PlayerController.Instance.effectConstant.effectKunaiDuration,
+        //        PlayerController.Instance.effectConstant.effectKunaiSize);
+
+
+        //}
+
+        PlayerController.Instance.effectConstant.poisonCurrentCoolTime += Time.deltaTime;
+        if(PlayerController.Instance.effectConstant.poisonCurrentCoolTime >= PlayerController.Instance.effectConstant.poisonCoolTime)
         {
-            PlayerController.Instance.effectConstant.kunaiCurrentCoolTime = 0f;
+            Debug.Log("Poison");
+            PlayerController.Instance.effectConstant.poisonCurrentCoolTime = 0f;
 
-            PlayerController.Instance.effectController.OnEffectKunai(
-                PlayerController.Instance.effectConstant.kunaiCreateCount,
+            PlayerController.Instance.effectController.OnEffectPoison(
+                PlayerController.Instance.effectConstant.poisonCreateCount,
                 PlayerController.Instance.GetPlayerVec(),
-                PlayerController.Instance.playerData.playerGo.transform,
-                PlayerController.Instance.effectConstant.effectKunaiAsix,
-                PlayerController.Instance.effectConstant.effectKunaiAngle,
-                PlayerController.Instance.effectConstant.effectKunaiSpeed,
-                PlayerController.Instance.effectConstant.effectKunaiDamage,
-                PlayerController.Instance.effectConstant.effectKunaiDuration,
-                PlayerController.Instance.effectConstant.effectKunaiSize);
-
-
+                PlayerController.Instance.effectConstant.effectPoisondir,
+                PlayerController.Instance.effectConstant.effectPoisonAngle,
+                PlayerController.Instance.effectConstant.effectPoisonSpeed,
+                PlayerController.Instance.effectConstant.effectPoisonDamage,
+                PlayerController.Instance.effectConstant.effectPoisonDuration,
+                PlayerController.Instance.effectConstant.effectPoisonSize);
         }
     }
 

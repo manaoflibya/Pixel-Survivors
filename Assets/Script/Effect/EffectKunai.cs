@@ -26,7 +26,7 @@ public class EffectKunai : Effect
         this.transform.RotateAround(parent.position, axis, angle);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         this.transform.RotateAround(parent.position, axis,  Time.deltaTime * speed);
     }

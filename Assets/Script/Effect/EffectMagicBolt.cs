@@ -18,7 +18,7 @@ public class EffectMagicBolt : Effect
         Invoke(stopMethodName, stopMethodTime);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         this.transform.Translate(dir * Time.deltaTime * speed);
     }

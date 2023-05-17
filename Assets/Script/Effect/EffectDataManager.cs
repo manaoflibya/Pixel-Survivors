@@ -12,10 +12,12 @@ public class EffectDataManager
     public Dictionary<int, EffectFireBall> fireBallData = new Dictionary<int, EffectFireBall>();
     public Dictionary<int, EffectMagicBolt> magicBoltData = new Dictionary<int, EffectMagicBolt>();
     public Dictionary<int, EffectKunai> kunaiData = new Dictionary<int, EffectKunai>();
+    public Dictionary<int, EffectPoison> poisonData = new Dictionary<int, EffectPoison>();
 
     private int fireBallUID = -1;
     private int magicBoltUID = -1;
     private int kunaiUID = -1;
+    private int poisonUID = -1;
 
 
     private void InitData()
@@ -39,6 +41,11 @@ public class EffectDataManager
         {
             kunaiData.Clear();
         }
+
+        if(poisonData != null)
+        {
+            poisonData.Clear();
+        }
     }
 
     #region FireBall
@@ -60,31 +67,31 @@ public class EffectDataManager
         return exist;
     }
 
-    public bool DelEffectFireBall(int fireBallUID)
+    public bool DelEffectFireBall(int uid)
     {
         bool exist = true;
-        if(FindFireBall(fireBallUID) == null)
+        if(FindFireBall(uid) == null)
         {
             exist = false;
         }
         else
         {
-            fireBallData.Remove(fireBallUID);
+            fireBallData.Remove(uid);
         }
 
         return exist;
     }
 
-    public EffectFireBall FindFireBall(int fireBallUID)
+    public EffectFireBall FindFireBall(int uid)
     {
         if(fireBallData == null)
         {
             return null;
         }
 
-        if(fireBallData.ContainsKey(fireBallUID))
+        if(fireBallData.ContainsKey(uid))
         {
-            return fireBallData[fireBallUID];
+            return fireBallData[uid];
         }
         else
         {
@@ -112,31 +119,31 @@ public class EffectDataManager
         return exist;
     }
 
-    public bool DelEffectMagicBolt(int magicBoltUID)
+    public bool DelEffectMagicBolt(int uid)
     {
         bool exist = true;
-        if (FindMagicBolt(magicBoltUID) == null)
+        if (FindMagicBolt(uid) == null)
         {
             exist = false;
         }
         else
         { 
-            magicBoltData.Remove(magicBoltUID);
+            magicBoltData.Remove(uid);
         }
 
         return exist;
     }
 
-    public EffectMagicBolt FindMagicBolt(int magicBoltUID)
+    public EffectMagicBolt FindMagicBolt(int uid)
     {
         if (magicBoltData == null)
         {
             return null;
         }
 
-        if (magicBoltData.ContainsKey(magicBoltUID))
+        if (magicBoltData.ContainsKey(uid))
         {
-            return magicBoltData[magicBoltUID];
+            return magicBoltData[uid];
         }
         else
         {
@@ -164,31 +171,31 @@ public class EffectDataManager
         return exist;
     }
 
-    public bool DelEffectKuani(int kunaiUID)
+    public bool DelEffectKuani(int uid)
     {
         bool exist = true;
-        if (FindKunai(kunaiUID) == null)
+        if (FindKunai(uid) == null)
         {
             exist = false;
         }
         else
         {
-            kunaiData.Remove(kunaiUID);
+            kunaiData.Remove(uid);
         }
 
         return exist;
     }
 
-    public EffectKunai FindKunai(int kunaiUID)
+    public EffectKunai FindKunai(int uid)
     {
         if (kunaiData == null)
         {
             return null;
         }
 
-        if (kunaiData.ContainsKey(kunaiUID))
+        if (kunaiData.ContainsKey(uid))
         {
-            return kunaiData[kunaiUID];
+            return kunaiData[uid];
         }
         else
         {
@@ -197,4 +204,55 @@ public class EffectDataManager
     }
     #endregion
 
+    #region Poison
+    public bool AddEffectPoison(ref EffectPoison newData)
+    {
+        bool exist = true;
+
+        newData.posionUID = ++poisonUID;
+
+        if (poisonData.ContainsKey(newData.posionUID))
+        {
+            exist = false;
+        }
+        else
+        {
+            poisonData.Add(newData.posionUID, newData);
+        }
+
+        return exist;
+    }
+
+    public bool DelEffectPoison(int uid)
+    {
+        bool exist = true;
+        if (FindPosion(uid) == null)
+        {
+            exist = false;
+        }
+        else
+        {
+            poisonData.Remove(uid);
+        }
+
+        return exist;
+    }
+
+    public EffectPoison FindPosion(int uid)
+    {
+        if (poisonData == null)
+        {
+            return null;
+        }
+
+        if (poisonData.ContainsKey(uid))
+        {
+            return poisonData[uid];
+        }
+        else
+        {
+            return null;
+        }
+    }
+    #endregion
 }

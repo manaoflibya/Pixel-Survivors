@@ -59,13 +59,30 @@ public class EffectController : MonoBehaviour
             EffectKunai effectKunai = null;
             GameObject go = null;
 
-            //go = effectFactory.AddObject(OBJECT_TYPE.EFFECTKUNAITYPE, spawnPos , parent, axis, angle * angleStep * i, DelEffect, damage, duration, size);
             go = effectFactory.AddObject(OBJECT_TYPE.EFFECTKUNAITYPE, spawnPos , parent, axis, angleStep * i, DelEffect,speed, damage, duration, size);
             go.TryGetComponent<EffectKunai>(out effectKunai);
 
             effectKunai.OnReset();
 
             effectDataManager.AddEffectKuani(ref effectKunai);
+        }
+    }
+
+    public void OnEffectPoison(int createCount, Vector3 spawnPos, Vector3 axis, float angle, float speed, float damage, float duration, Vector3 size)
+    {
+        float angleStep = 360 / createCount;
+
+        for(int i = 0;i < createCount;i++)
+        {
+            EffectPoison effectPoison = null;
+            GameObject go = null;
+
+            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTPOISONTYPE, spawnPos, axis, angleStep * i, DelEffect, speed, damage,duration, size);
+            go.TryGetComponent(out effectPoison);
+
+            effectPoison.OnReset();
+
+            effectDataManager.AddEffectPoison(ref effectPoison);
         }
     }
 
@@ -88,7 +105,11 @@ public class EffectController : MonoBehaviour
                     effectDataManager.DelEffectKuani(uid);
                 }
                 break;
-
+            case OBJECT_TYPE.EFFECTPOISONTYPE:
+                {
+                    effectDataManager.DelEffectPoison(uid);
+                }
+                break;
         }
 
         effectFactory.RecycleObject(type, go);

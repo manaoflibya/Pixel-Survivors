@@ -32,7 +32,13 @@ public class ObjectFactory
         return null;
     }
 
+    // EffectKunai »ç¿ë
     public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos,Transform parent, Vector3 axis, float angle, System.Action<OBJECT_TYPE, int, GameObject> action, float speed, float damage, float duration, Vector3 size)
+    {
+        return null;
+    }
+
+    public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, Vector3 axis, float angle, System.Action<OBJECT_TYPE, int, GameObject> action, float speed, float damage, float duration, Vector3 size)
     {
         return null;
     }

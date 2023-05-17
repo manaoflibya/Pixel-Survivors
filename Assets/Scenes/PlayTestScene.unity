@@ -556,10 +556,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 379854606, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: effectConstant
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 379854606, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
       propertyPath: effectController
       value: 
       objectReference: {fileID: 245942942}

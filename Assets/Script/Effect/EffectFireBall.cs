@@ -30,7 +30,7 @@ public class EffectFireBall : Effect
         Invoke(playAnimMethodName, floorExplosionTime);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position , Time.deltaTime * speed);
     }
