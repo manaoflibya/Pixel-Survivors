@@ -11,8 +11,12 @@ public class EffectDataManager
 
     public Dictionary<int, EffectFireBall> fireBallData = new Dictionary<int, EffectFireBall>();
     public Dictionary<int, EffectMagicBolt> magicBoltData = new Dictionary<int, EffectMagicBolt>();
+    public Dictionary<int, EffectKunai> kunaiData = new Dictionary<int, EffectKunai>();
+
     private int fireBallUID = -1;
     private int magicBoltUID = -1;
+    private int kunaiUID = -1;
+
 
     private void InitData()
     {
@@ -29,6 +33,11 @@ public class EffectDataManager
         if(magicBoltData != null)
         {
             magicBoltData.Clear();
+        }
+
+        if (kunaiData != null)
+        {
+            kunaiData.Clear();
         }
     }
 
@@ -134,6 +143,58 @@ public class EffectDataManager
             return null;
         }
     }
-    #endregion 
+    #endregion
+
+    #region Kunai
+    public bool AddEffectKuani(ref EffectKunai newData)
+    {
+        bool exist = true;
+
+        newData.kunaiUID = ++kunaiUID;
+
+        if (kunaiData.ContainsKey(newData.kunaiUID))
+        {
+            exist = false;
+        }
+        else
+        {
+            kunaiData.Add(newData.kunaiUID, newData);
+        }
+
+        return exist;
+    }
+
+    public bool DelEffectKuani(int kunaiUID)
+    {
+        bool exist = true;
+        if (FindKunai(kunaiUID) == null)
+        {
+            exist = false;
+        }
+        else
+        {
+            kunaiData.Remove(kunaiUID);
+        }
+
+        return exist;
+    }
+
+    public EffectKunai FindKunai(int kunaiUID)
+    {
+        if (kunaiData == null)
+        {
+            return null;
+        }
+
+        if (kunaiData.ContainsKey(kunaiUID))
+        {
+            return kunaiData[kunaiUID];
+        }
+        else
+        {
+            return null;
+        }
+    }
+    #endregion
 
 }

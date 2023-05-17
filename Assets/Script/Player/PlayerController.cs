@@ -27,6 +27,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public PlayerData playerData;
     public EffectController effectController;
+    public EffectConstant effectConstant;
 
     [SerializeField]
     private PLAYERSTATE currentPlayerState = PLAYERSTATE.NONE;  
@@ -51,7 +52,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         //처음에는 Begin으로 State를 시작
         ChangePlayerState(PLAYERSTATE.BEGIN);
-
+        effectConstant = new EffectConstant();  
         playerData.checkClassOnExix = true;
     }
 
@@ -121,11 +122,11 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (moveVec.x > 0)
         {
-            playerData.playerGo.transform.localScale = new Vector3(-playerData.playerSize, playerData.playerSize, playerData.playerSize);
+            playerData.scaleGo.transform.localScale = new Vector3(-playerData.playerSize, playerData.playerSize, playerData.playerSize);
         }
         else if (moveVec.x < 0)
         {
-            playerData.playerGo.transform.localScale = new Vector3(playerData.playerSize, playerData.playerSize, playerData.playerSize);
+            playerData.scaleGo.transform.localScale = new Vector3(playerData.playerSize, playerData.playerSize, playerData.playerSize);
         }
     }
 

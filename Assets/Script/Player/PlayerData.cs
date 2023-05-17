@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public GameObject playerGo;
+    public GameObject scaleGo;
     public Animator playerAnimator;
 
     //Player Animation

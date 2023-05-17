@@ -12,28 +12,13 @@ public class PlayerMoveState : PlayerState
 
     private PlayerData playerData;
 
-    /// <summary>
-    /// 지워야함.
-    /// </summary>
-    private float effectCoolTime = 0.5f;
-    private float currentCoolTime = 0f;
-    private int effectCreateCount = 1;
-
-    private float effectFireBallSpeed = 15f;
-    private float effectFireBallDamage = 30f;
-    private Vector3 effectFireBallSize = new Vector3(1f, 1f, 0f);
-
-    private float effectMagicBoltSpeed = 5f;
-    private float effectMagicBoltDamage = 20f;
-    private Vector3 effectMagicBoltSize = new Vector3(2f,2f,0f);
-    /// <summary>
-    /// </summary>
 
     public override void OnEnter(PlayerData _playerData)
     {
         playerData = _playerData;   
         GameUIModel gameUIModel = UIPresenter.Instance.playJoyStickModel;
         UIPresenter.Instance.UseModelClassList(gameUIModel);
+
     }
 
     public override void OnUpdate()
@@ -60,36 +45,52 @@ public class PlayerMoveState : PlayerState
         //    PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.STOP);
         //}
 
-        currentCoolTime += Time.deltaTime;
-        if(currentCoolTime >= effectCoolTime)
+
+        //PlayerController.Instance.effectConstant.currentCoolTime += Time.deltaTime;
+        //if(PlayerController.Instance.effectConstant.currentCoolTime >= PlayerController.Instance.effectConstant.effectCoolTime)
+        //{
+        //    if (PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters() != null)
+        //    {
+        //        PlayerController.Instance.effectController.OnEffectFireBall(
+        //            PlayerController.Instance.effectConstant.effectCreateCount,
+        //            PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters().transform.position + new Vector3(3f, 10f),
+        //            PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters(), // 가까운 몬스터 찾아서 그 위치로 바꿔야함.
+        //            PlayerController.Instance.effectConstant.effectFireBallSpeed,
+        //            PlayerController.Instance.effectConstant.effectFireBallDamage,
+        //            PlayerController.Instance.effectConstant.effectFireBallSize);
+        //    }
+
+        //    if (PixelGameManager.Instance.monsterController.FindClosestMonster() != null)
+        //    {
+        //        PlayerController.Instance.effectController.OnEffectMagicBolt(
+        //            PlayerController.Instance.effectConstant.effectCreateCount,
+        //            PlayerController.Instance.GetPlayerVec(),
+        //            PixelGameManager.Instance.monsterController.FindClosestMonster(),
+        //            PlayerController.Instance.effectConstant.effectMagicBoltSpeed,
+        //            PlayerController.Instance.effectConstant.effectMagicBoltDamage,
+        //            PlayerController.Instance.effectConstant.effectMagicBoltSize);
+        //    }
+
+        //    PlayerController.Instance.effectConstant.currentCoolTime = 0f;
+        //}
+
+        PlayerController.Instance.effectConstant.kunaiCurrentCoolTime += Time.deltaTime;
+        if(PlayerController.Instance.effectConstant.kunaiCurrentCoolTime >= PlayerController.Instance.effectConstant.kunaiCoolTime)
         {
-            if (PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters() == null)
-            {
-                return;
-            }
+            PlayerController.Instance.effectConstant.kunaiCurrentCoolTime = 0f;
 
-            PlayerController.Instance.effectController.OnEffectFireBall(
-                effectCreateCount,
-                PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters().transform.position + new Vector3(3f,10f),
-                PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters(), // 가까운 몬스터 찾아서 그 위치로 바꿔야함.
-                effectFireBallSpeed,
-                effectFireBallDamage,
-                effectFireBallSize);
-
-            currentCoolTime = 0f;
-
-            if (PixelGameManager.Instance.monsterController.FindClosestMonster() == null)
-            {
-                return;
-            }
-
-            PlayerController.Instance.effectController.OnEffectMagicBolt(
-                effectCreateCount,
+            PlayerController.Instance.effectController.OnEffectKunai(
+                PlayerController.Instance.effectConstant.kunaiCreateCount,
                 PlayerController.Instance.GetPlayerVec(),
-                PixelGameManager.Instance.monsterController.FindClosestMonster(),
-                effectMagicBoltSpeed,
-                effectMagicBoltDamage,
-                effectMagicBoltSize);
+                PlayerController.Instance.playerData.playerGo.transform,
+                PlayerController.Instance.effectConstant.effectKunaiAsix,
+                PlayerController.Instance.effectConstant.effectKunaiAngle,
+                PlayerController.Instance.effectConstant.effectKunaiSpeed,
+                PlayerController.Instance.effectConstant.effectKunaiDamage,
+                PlayerController.Instance.effectConstant.effectKunaiDuration,
+                PlayerController.Instance.effectConstant.effectKunaiSize);
+
+
         }
     }
 

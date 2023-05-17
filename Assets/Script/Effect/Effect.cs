@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Effect : MonoBehaviour
@@ -12,7 +13,11 @@ public class Effect : MonoBehaviour
     public Action<OBJECT_TYPE,int, GameObject> action;
     public float damage;
     public float speed;
+    public float duration;
+    public float angle;
     public Vector3 size;
+    public Vector3 axis;
+    public Transform parent;
 
     protected void Show()
     {
@@ -20,6 +25,11 @@ public class Effect : MonoBehaviour
     }
 
     protected void Hide()
+    {
+
+    }
+
+    public virtual void OnReset()
     {
 
     }

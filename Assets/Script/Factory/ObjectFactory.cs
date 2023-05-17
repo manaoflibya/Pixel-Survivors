@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.EditorTools;
 using UnityEngine;
 
@@ -31,7 +32,12 @@ public class ObjectFactory
         return null;
     }
 
-    public virtual void RecycleObject(OBJECT_TYPE myType, GameObject go)  // 작업 더 해야함.
+    public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos,Transform parent, Vector3 axis, float angle, System.Action<OBJECT_TYPE, int, GameObject> action, float speed, float damage, float duration, Vector3 size)
+    {
+        return null;
+    }
+
+    public virtual void RecycleObject(OBJECT_TYPE myType, GameObject go) 
     {
     }
 

@@ -13,6 +13,8 @@ public enum OBJECT_TYPE
     //EFFECT
     EFFECTFIREBALLTYPE,
     EFFECTMAGICBOLTTYPE,
+    EFFECTKUNAITYPE,
+
 }
 
 public class ObjectPool : MonoSingleton<ObjectPool>
@@ -30,31 +32,41 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private GameObject effectFireBall;
     private GameObject fireBallParent;
     private string fireBallNameData = "EffectFireBall_Data";
-    private int fireBall_Create_Count = 100;
+    private int fireBallCreateCount = 100;
 
     private Queue<GameObject> magicBoltQueue = new Queue<GameObject>();
     private GameObject magicBolt;
     private GameObject magicBoltParent;
     private string magicBoltNameData = "EffectMagicBolt_Data";
-    private int magicBolt_Create_Count = 100;
+    private int magicBoltCreateCount = 100;
+
+    private Queue<GameObject> kunaiQueue = new Queue<GameObject>();
+    private GameObject kunai;
+    private GameObject kunaiParent;
+    private string kuaniNameData = "EffectKunai_Data";
+    private int kunaiCreateCount = 20;
+
 
     private void Awake()
     {
         monsterBat = Resources.Load(batNameData) as GameObject;
         effectFireBall = Resources.Load(fireBallNameData) as GameObject;
         magicBolt = Resources.Load(magicBoltNameData) as GameObject;
+        kunai = Resources.Load(kuaniNameData) as GameObject;
 
         //////////////////
 
         monsterBat.SetActive(false);
         effectFireBall.SetActive(false);
         magicBolt.SetActive(false);
+        kunai.SetActive(false);  
 
         //////////////////
 
         batParent = CreateLocalObject(batNameData);
         fireBallParent = CreateLocalObject(fireBallNameData); 
         magicBoltParent = CreateLocalObject(magicBoltNameData);
+        kunaiParent = CreateLocalObject(kuaniNameData);
 
         for (int i = 0; i < bat_Create_Count; i++)
         {
@@ -63,18 +75,25 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             monsterBatQueue.Enqueue(go);
         }
 
-        for (int i = 0;i < fireBall_Create_Count; i++)
+        for (int i = 0;i < fireBallCreateCount; i++)
         {
             GameObject go = Instantiate(effectFireBall);
             go.transform.SetParent(fireBallParent.transform);
             fireBallQueue.Enqueue(go);
         }
 
-        for(int i = 0; i < magicBolt_Create_Count; i++)
+        for(int i = 0; i < magicBoltCreateCount; i++)
         {
             GameObject go = Instantiate(magicBolt);
             go.transform.SetParent(magicBoltParent.transform);
             magicBoltQueue.Enqueue(go);
+        }
+
+        for (int i = 0; i < kunaiCreateCount; i++)
+        {
+            GameObject go = Instantiate(kunai);
+            go.transform.SetParent(kunaiParent.transform);
+            kunaiQueue.Enqueue(go);
         }
     }
 
@@ -125,6 +144,19 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     }
                 }
                 break;
+            case OBJECT_TYPE.EFFECTKUNAITYPE:
+                {
+                    if(kunaiQueue.Count == 0)
+                    {
+                        go = Instantiate(kunai);
+                        go.transform.SetParent(kunaiParent.transform);
+                    }
+                    else
+                    {
+                        go = kunaiQueue.Dequeue();
+                    }
+                }
+                break;
         }
 
         go.SetActive(true);
@@ -144,7 +176,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     {
         if(go == null)
         {
-            throw new System.Exception("go data is null");
+            Debug.LogError("go is null");
         }
 
         go.SetActive(false);
@@ -167,7 +199,14 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                 break;
             case OBJECT_TYPE.EFFECTMAGICBOLTTYPE:
                 {
+
                     magicBoltQueue.Enqueue(go);
+                }
+                break;
+            case OBJECT_TYPE.EFFECTKUNAITYPE:
+                {
+                    go.transform.SetParent(kunaiParent.transform);
+                    kunaiQueue.Enqueue(go);
                 }
                 break;
         }

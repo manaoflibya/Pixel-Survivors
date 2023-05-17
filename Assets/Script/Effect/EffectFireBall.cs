@@ -20,16 +20,14 @@ public class EffectFireBall : Effect
 
     private void Start()
     {
-        this.transform.position = spawnPos;
-        this.transform.localScale = size;
     }
 
     private void OnEnable()
     {
         this.transform.localScale = size;
+        this.transform.position = spawnPos;
 
         Invoke(playAnimMethodName, floorExplosionTime);
-
     }
 
     private void Update()
