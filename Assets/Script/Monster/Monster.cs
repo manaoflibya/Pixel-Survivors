@@ -7,7 +7,10 @@ using UnityEngine.UIElements;
 
 public class Monster : MonoBehaviour
 {
+    public int monsterUID;
     public Vector3 spawnPos = new Vector3();
+    public GameObject target;
+
     public OBJECT_TYPE myType;
 
     public float health;
@@ -20,6 +23,7 @@ public class Monster : MonoBehaviour
     protected Animator monsterAnimator;
 
     protected string animDeathTriggerName = "Death";
+    protected string animHitTriggerName = "Hit";
 
     protected bool isDead = false;
 
@@ -30,13 +34,13 @@ public class Monster : MonoBehaviour
     public void Start()
     {
         monsterAnimator = GetComponent<Animator>();
+    }
+
+    public virtual void OnReset()
+    {
         this.transform.position = spawnPos;
         this.transform.localScale = size;
 
-    }
-
-    protected void OnEnable()
-    {
         isDead = false;
         startTickDamage = false;
         tickDamageTime = 0f;

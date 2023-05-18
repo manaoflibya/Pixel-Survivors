@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class MonsterDataManager
 {
-    //public Dictionary<int, Monster> acitveMonsterData = new Dictionary<int, Monster>();
-    //private int monsterUID = -1;
-    public Dictionary<int, Monster> batData = new Dictionary<int, Monster>();
-    private int batUID = -1;
+    public Dictionary<int, Monster> monsterData = new Dictionary<int, Monster>();
+    private int monsterUID = -1;
 
     public MonsterDataManager() 
     {
@@ -23,56 +21,58 @@ public class MonsterDataManager
 
     private void ClearBatData()
     {
-        if(batData != null)
+        if(monsterData != null)
         {
-            batData.Clear();   
+            monsterData.Clear();   
         }
     }
 
-    public bool AddMonsterBat(ref MonsterBat newData)
-    {
-        bool exist = true; 
-
-        newData.batUID = ++batUID;
-
-        if (batData.ContainsKey(newData.batUID))
-        {
-            exist = false;
-        }
-        else
-        {
-            batData.Add(newData.batUID, newData);
-        }
-
-        return exist;
-    }
-
-    public bool DelMonsterBat(int batUID)
+    public bool AddMonster(ref Monster newData)
     {
         bool exist = true;
 
-        if(FindBat(batUID) == null)
+        newData.monsterUID = ++monsterUID;
+
+        if (monsterData.ContainsKey(newData.monsterUID))
         {
             exist = false;
         }
         else
         {
-            batData.Remove(batUID);
+
+            monsterData.Add(newData.monsterUID, newData);
+            Debug.Log(monsterData.Count);
         }
-        
+
         return exist;
     }
 
-    private MonsterBat FindBat(int batUID)
+    public bool DelMonster(int uid)
     {
-        if(batData == null)
+        bool exist = true;
+
+        if(FindMonster(uid) == null)
+        {
+            exist = false;
+        }
+        else
+        {
+            monsterData.Remove(uid);
+        }
+
+        return exist;
+    }
+
+    private Monster FindMonster(int uid)
+    {
+        if(monsterData == null)
         {
             return null;
         }
 
-        if(batData.ContainsKey(batUID))
+        if(monsterData.ContainsKey(uid))
         {
-            return (MonsterBat)batData[batUID];
+            return monsterData[uid];
         }
         else
         {
@@ -87,7 +87,7 @@ public class MonsterDataManager
     /// <returns></returns>
     public List<Monster> FindAllActiveMonsters(ref List<Monster> activeMonsters)
     {
-        foreach (var monster in batData)
+        foreach (var monster in monsterData)
         {
             activeMonsters.Add(monster.Value);
         }

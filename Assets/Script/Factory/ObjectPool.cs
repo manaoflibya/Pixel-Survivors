@@ -9,6 +9,9 @@ public enum OBJECT_TYPE
     NONE,
     //MONSTER
     MONSTERBATTYPE,
+    MONSTERGOBLINTYPE,
+    MONSTERSKELETONTYPE,
+    MONSTERBOOMBTYPE,
     ITEMTYPE,
     COINTYPE,
     //EFFECT
@@ -25,12 +28,31 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private GameObject item;
     private GameObject coin;
 
-    private Queue<GameObject> monsterBatQueue = new Queue<GameObject>();
+    private Queue<GameObject> batQueue = new Queue<GameObject>();
     private string batNameData = "Monster_Bat_Data";
-    private int bat_Create_Count = 100;
+    private int batCreateCount = 100;
     private GameObject batParent;
     private GameObject monsterBat;
 
+    private Queue<GameObject> goblinQueue = new Queue<GameObject>();
+    private string goblinNameData = "Monster_Goblin_Data";
+    private int goblinCreateCount = 100;
+    private GameObject goblinParent;
+    private GameObject monsterGoblin;
+
+    private Queue<GameObject> skeletonQueue = new Queue<GameObject>();
+    private string skeletonNameData = "Monster_Skeleton_Data";
+    private int skeletonCreateCount = 100;
+    private GameObject skeletonParent;
+    private GameObject monsterSkeleton;
+
+    private Queue<GameObject> boombQueue = new Queue<GameObject>();
+    private string boombNameData = "Monster_Boomb_Data";
+    private int boombCreateCount = 100;
+    private GameObject boombParent;
+    private GameObject monsterBoomb;
+
+    #region Effect
     private Queue<GameObject> fireBallQueue = new Queue<GameObject>();
     private GameObject effectFireBall;
     private GameObject fireBallParent;
@@ -66,10 +88,15 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private GameObject batManParent;
     private string batManNameData = "EffectBatMan_Data";
     private int batManCreateCount = 10;
+#endregion
 
     private void Awake()
     {
         monsterBat = Resources.Load(batNameData) as GameObject;
+        monsterGoblin = Resources.Load(goblinNameData) as GameObject;
+        monsterSkeleton = Resources.Load(skeletonNameData) as GameObject;
+        monsterBoomb = Resources.Load(boombNameData) as GameObject;
+
         effectFireBall = Resources.Load(fireBallNameData) as GameObject;
         magicBolt = Resources.Load(magicBoltNameData) as GameObject;
         kunai = Resources.Load(kuaniNameData) as GameObject;
@@ -80,6 +107,10 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         //////////////////
 
         monsterBat.SetActive(false);
+        monsterGoblin.SetActive(false);
+        monsterSkeleton.SetActive(false);
+        monsterBoomb.SetActive(false);
+
         effectFireBall.SetActive(false);
         magicBolt.SetActive(false);
         kunai.SetActive(false);
@@ -90,6 +121,10 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         //////////////////
 
         batParent = CreateLocalObject(batNameData);
+        goblinParent = CreateLocalObject(goblinNameData);
+        skeletonParent = CreateLocalObject(skeletonNameData);
+        boombParent = CreateLocalObject(boombNameData);
+
         fireBallParent = CreateLocalObject(fireBallNameData); 
         magicBoltParent = CreateLocalObject(magicBoltNameData);
         kunaiParent = CreateLocalObject(kuaniNameData);
@@ -97,11 +132,32 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         bounceBallParent = CreateLocalObject(bounceBallNameData);
         batManParent = CreateLocalObject(batManNameData);
 
-        for (int i = 0; i < bat_Create_Count; i++)
+        for (int i = 0; i < batCreateCount; i++)
         {
             GameObject go = Instantiate(monsterBat);
             go.transform.SetParent(batParent.transform);
-            monsterBatQueue.Enqueue(go);
+            batQueue.Enqueue(go);
+        }       
+        
+        for (int i = 0; i < goblinCreateCount; i++)
+        {
+            GameObject go = Instantiate(monsterGoblin);
+            go.transform.SetParent(goblinParent.transform);
+            goblinQueue.Enqueue(go);
+        }
+
+        for (int i = 0; i < skeletonCreateCount; i++)
+        {
+            GameObject go = Instantiate(monsterSkeleton);
+            go.transform.SetParent(skeletonParent.transform);
+            skeletonQueue.Enqueue(go);
+        }
+
+        for (int i = 0; i < boombCreateCount; i++)
+        {
+            GameObject go = Instantiate(monsterGoblin);
+            go.transform.SetParent(boombParent.transform);
+            boombQueue.Enqueue(go);
         }
 
         for (int i = 0;i < fireBallCreateCount; i++)
@@ -154,20 +210,65 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
         switch (_type)
         {
+            #region Monster
             case OBJECT_TYPE.MONSTERBATTYPE:
                 {
-                    if(monsterBatQueue.Count == 0) 
+                    if(batQueue.Count == 0) 
                     {
                         go = Instantiate(monsterBat);
                         go.transform.SetParent(batParent.transform);
                     }
                     else
                     {
-                        go = monsterBatQueue.Dequeue();
+                        go = batQueue.Dequeue();
                     }
                 }
                 break;
 
+            case OBJECT_TYPE.MONSTERGOBLINTYPE:
+                {
+                    if (goblinQueue.Count == 0)
+                    {
+                        go = Instantiate(monsterGoblin);
+                        go.transform.SetParent(goblinParent.transform);
+                    }
+                    else
+                    {
+                        go = goblinQueue.Dequeue();
+                    }
+                }
+                break;
+
+            case OBJECT_TYPE.MONSTERSKELETONTYPE:
+                {
+                    if (skeletonQueue.Count == 0)
+                    {
+                        go = Instantiate(monsterGoblin);
+                        go.transform.SetParent(skeletonParent.transform);
+                    }
+                    else
+                    {
+                        go = skeletonQueue.Dequeue();
+                    }
+                }
+                break;
+
+            case OBJECT_TYPE.MONSTERBOOMBTYPE:
+                {
+                    if (boombQueue.Count == 0)
+                    {
+                        go = Instantiate(monsterGoblin);
+                        go.transform.SetParent(boombParent.transform);
+                    }
+                    else
+                    {
+                        go = boombQueue.Dequeue();
+                    }
+                }
+                break;
+            #endregion
+
+            #region Effect
             case OBJECT_TYPE.EFFECTFIREBALLTYPE:
                 {
                     if(fireBallQueue.Count == 0)
@@ -246,7 +347,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     }
                 }
                 break;
-
+                #endregion
         }
 
         go.SetActive(true);
@@ -275,7 +376,22 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         {
             case OBJECT_TYPE.MONSTERBATTYPE:
                 {
-                    monsterBatQueue.Enqueue(go);
+                    batQueue.Enqueue(go);
+                }
+                break;
+            case OBJECT_TYPE.MONSTERGOBLINTYPE:
+                {
+                    goblinQueue.Enqueue(go);
+                }
+                break;
+            case OBJECT_TYPE.MONSTERSKELETONTYPE:
+                {
+                    skeletonQueue.Enqueue(go);
+                }
+                break;
+            case OBJECT_TYPE.MONSTERBOOMBTYPE:
+                {
+                    boombQueue.Enqueue(go);
                 }
                 break;
             case OBJECT_TYPE.ITEMTYPE:

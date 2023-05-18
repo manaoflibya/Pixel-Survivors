@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms.GameCenter;
@@ -14,10 +16,15 @@ public class MonsterController : MonoBehaviour
     private ObjectFactory monsterFactory;
     private MonsterDataManager monsterDataManager;
 
+
     private void Awake()
     {
         monsterFactory = new MonsterFactory();
         monsterDataManager = new MonsterDataManager();
+    }
+
+    private void Update()
+    {
     }
 
     public Vector3 FindClosestMonster()
@@ -81,11 +88,11 @@ public class MonsterController : MonoBehaviour
         return go;
     }
 
-    public void OnSetMonsterBat(int createBatCount)
+    public void OnMonsterBat(int createBatCount)
     {
         for (int i = 0; i < createBatCount; i++)
         {
-            MonsterBat bat = null;
+            Monster monster = null;
             GameObject go = null;
             Vector3 vec = Vector3.zero;
 
@@ -102,25 +109,59 @@ public class MonsterController : MonoBehaviour
                 }
             }
 
-            go = monsterFactory.AddObject(OBJECT_TYPE.MONSTERBATTYPE, vec, DeleteMonsterData, constant.batHealth, constant.batSpeed, constant.batSize);
+            go = monsterFactory.AddObject(OBJECT_TYPE.MONSTERBATTYPE, vec,PlayerController.Instance.playerData.playerGo , DeleteMonsterData, constant.batHealth, constant.batSpeed, constant.batSize);
 
-            go.TryGetComponent<MonsterBat>(out bat);
+            go.TryGetComponent<Monster>(out monster);
 
-            monsterDataManager.AddMonsterBat(ref bat);
+            monster.OnReset();
+
+            monsterDataManager.AddMonster(ref monster);
+        }
+    }
+
+    public void OnMonsterGoblin(int createCount)
+    {
+        for(int i = 0; i < createCount; i++)
+        {
+            Monster monster = null;
+            GameObject go = null;
+            Vector3 vec = Vector3.zero;
+
+            foreach(var data in MapController.Instance.mapData.currentSpawnPoints)
+            {
+                Vector3 spawnVec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].transform.position;
+                Vector3 playerVec = PlayerController.Instance.GetPlayerVec();
+
+                if (Vector3.Distance(spawnVec, playerVec) < constant.MaxDistance && Vector3.Distance(spawnVec, playerVec) > constant.minDistance)
+                {
+                    vec = spawnVec;
+                    break;
+                }
+            }
+
+           
+            go = monsterFactory.AddObject(OBJECT_TYPE.MONSTERGOBLINTYPE, vec, PlayerController.Instance.playerData.playerGo, DeleteMonsterData, constant.batHealth, constant.batSpeed, constant.batSize);
+
+            go.TryGetComponent<Monster>(out monster);
+
+            monster.OnReset();
+
+            monsterDataManager.AddMonster(ref monster);
+
         }
     }
 
     private void DeleteMonsterData(OBJECT_TYPE type, int uid, GameObject go)
     {
-        switch (type)
-        {
-            case OBJECT_TYPE.MONSTERBATTYPE:
-                {
-                    monsterDataManager.DelMonsterBat(uid);
-                }
-                break;
-        }
+        bool complete = monsterDataManager.DelMonster(uid);
 
-        monsterFactory.RecycleObject(type, go);
+        if(complete.Equals(true))
+        {
+            monsterFactory.RecycleObject(type, go);
+        }
+        else
+        {
+            Debug.Log($" Monster object delete failed -> ObjectType:{type}, uid:{uid}, go:{go}");
+        }
     }
 }

@@ -10,10 +10,12 @@ public class GamePlayState : GameState
     }
 
     private int monsterBatCreateCount = 30;
+    private int monsterGoblinCreateCount = 100;
 
     public override void OnEnter()
     {
-        PixelGameManager.Instance.monsterController.OnSetMonsterBat(monsterBatCreateCount);
+        PixelGameManager.Instance.monsterController.OnMonsterBat(monsterBatCreateCount);
+        PixelGameManager.Instance.monsterController.OnMonsterGoblin(monsterBatCreateCount);
 
     }
 

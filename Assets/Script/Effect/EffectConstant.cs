@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EffectConstant
 {
+    public EffectConstant()
+    {
+
+    }
+
     public float effectCoolTime = 0.5f;
     public float currentCoolTime = 0f;
     public int effectCreateCount = 1;

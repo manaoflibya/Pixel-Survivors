@@ -11,7 +11,7 @@ public class MonsterBat : Monster
     {
         if (isDead.Equals(false))
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, PlayerController.Instance.GetPlayerVec(), speed * Time.deltaTime);  
+            this.transform.position = Vector3.MoveTowards(this.transform.position ,target.transform.position , speed * Time.deltaTime);  
         }
     }
 
@@ -33,6 +33,7 @@ public class MonsterBat : Monster
     private void FinishDeath()
     {
         //recycle« ø‰
-        monsterAction?.Invoke(myType, batUID,this.gameObject);
+        //monsterAction?.Invoke(myType, batUID,this.gameObject);
+        monsterAction?.Invoke(myType, monsterUID,this.gameObject);
     }
 }
