@@ -19,6 +19,7 @@ public class Effect : MonoBehaviour
     public Vector3 size;
     public Vector3 axis;
     public Transform parent;
+    public int hitCount;
 
     protected void Show()
     {

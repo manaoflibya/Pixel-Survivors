@@ -123,7 +123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5470169704100779047
 Transform:
   m_ObjectHideFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: 0, z: 0}
   parent: {fileID: 0}
+  hitCount: 0
   bounceBallUID: 0
 --- !u!70 &3773146045167277602
 CapsuleCollider2D:

@@ -102,6 +102,22 @@ public class EffectController : MonoBehaviour
         }
     }
 
+    public void OnEffectBatMan(int createCount, Vector3 spawnPos, Vector3 dir, int hitCount, float speed, float damage, Vector3 size)
+    {
+        for (int i = 0; i < createCount; i++)
+        {
+            EffectBatMan effectBatMan= null;
+            GameObject go = null;
+
+            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTBATMANTYPE, spawnPos, dir, hitCount, DelEffect, speed, damage, size);
+            go.TryGetComponent(out effectBatMan);
+
+            effectBatMan.OnReset();
+
+            effectDataManager.AddEffectBatMan(ref effectBatMan);
+        }
+    }
+
     private void DelEffect(OBJECT_TYPE type, int uid, GameObject go)
     {
         switch(type)
@@ -129,6 +145,11 @@ public class EffectController : MonoBehaviour
             case OBJECT_TYPE.EFFECTBOUNCEBALLTYPE:
                 {
                     effectDataManager.DelEffectBounceBall(uid);
+                }
+                break;            
+            case OBJECT_TYPE.EFFECTBATMANTYPE:
+                {
+                    effectDataManager.DelEffectBatMan(uid);
                 }
                 break;
         }

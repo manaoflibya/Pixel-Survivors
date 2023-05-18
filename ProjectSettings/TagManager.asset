@@ -7,6 +7,7 @@ TagManager:
   - Monster
   - Attack_1
   - Effect_FireBall
+  - EffectBatMan
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Player
   - Monster
   - Effect
-  - 
-  - 
+  - Camera
+  - EffectBatMan
   - 
   - 
   - 

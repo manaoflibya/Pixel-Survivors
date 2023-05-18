@@ -14,12 +14,14 @@ public class EffectDataManager
     public Dictionary<int, EffectKunai> kunaiData = new Dictionary<int, EffectKunai>();
     public Dictionary<int, EffectPoison> poisonData = new Dictionary<int, EffectPoison>();
     public Dictionary<int, EffectBounceBall> bounceBallData = new Dictionary<int, EffectBounceBall>();
+    public Dictionary<int, EffectBatMan> batManData  = new Dictionary<int, EffectBatMan>();
 
     private int fireBallUID = -1;
     private int magicBoltUID = -1;
     private int kunaiUID = -1;
     private int poisonUID = -1;
     private int bounceBallUID = -1;
+    private int batManUID = -1;
 
 
     private void InitData()
@@ -52,6 +54,11 @@ public class EffectDataManager
         if (bounceBallData != null)
         {
             bounceBallData.Clear();
+        }
+
+        if (batManData != null)
+        {
+            batManData.Clear();
         }
     }
 
@@ -307,6 +314,58 @@ public class EffectDataManager
         if (bounceBallData.ContainsKey(uid))
         {
             return bounceBallData[uid];
+        }
+        else
+        {
+            return null;
+        }
+    }
+    #endregion
+
+    #region BatMan
+    public bool AddEffectBatMan(ref EffectBatMan newData)
+    {
+        bool exist = true;
+
+        newData.batManUID = ++batManUID;
+
+        if (batManData.ContainsKey(newData.batManUID))
+        {
+            exist = false;
+        }
+        else
+        {
+            batManData.Add(newData.batManUID, newData);
+        }
+
+        return exist;
+    }
+
+    public bool DelEffectBatMan(int uid)
+    {
+        bool exist = true;
+        if (FindBatMan(uid) == null)
+        {
+            exist = false;
+        }
+        else
+        {
+            batManData.Remove(uid);
+        }
+
+        return exist;
+    }
+
+    public EffectBatMan FindBatMan(int uid)
+    {
+        if (batManData == null)
+        {
+            return null;
+        }
+
+        if (batManData.ContainsKey(uid))
+        {
+            return batManData[uid];
         }
         else
         {
