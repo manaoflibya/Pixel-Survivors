@@ -151,6 +151,70 @@ public class MonsterController : MonoBehaviour
         }
     }
 
+    public void OnMonsterSkeleton(int createCount)
+    {
+        for (int i = 0; i < createCount; i++)
+        {
+            Monster monster = null;
+            GameObject go = null;
+            Vector3 vec = Vector3.zero;
+
+            foreach (var data in MapController.Instance.mapData.currentSpawnPoints)
+            {
+                Vector3 spawnVec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].transform.position;
+                Vector3 playerVec = PlayerController.Instance.GetPlayerVec();
+
+                if (Vector3.Distance(spawnVec, playerVec) < constant.MaxDistance && Vector3.Distance(spawnVec, playerVec) > constant.minDistance)
+                {
+                    vec = spawnVec;
+                    break;
+                }
+            }
+
+
+            go = monsterFactory.AddObject(OBJECT_TYPE.MONSTERSKELETONTYPE, vec, PlayerController.Instance.playerData.playerGo, DeleteMonsterData, constant.batHealth,constant.batDamage ,constant.batSpeed, constant.batSize);
+
+            go.TryGetComponent<Monster>(out monster);
+
+            monster.OnReset();
+
+            monsterDataManager.AddMonster(ref monster);
+
+        }
+    }
+
+    public void OnMonster(int createCount, OBJECT_TYPE type, float health, float damage, float speed, Vector3 size)
+    {
+        for (int i = 0; i < createCount; i++)
+        {
+            Monster monster = null;
+            GameObject go = null;
+            Vector3 vec = Vector3.zero;
+
+            foreach (var data in MapController.Instance.mapData.currentSpawnPoints)
+            {
+                Vector3 spawnVec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].transform.position;
+                Vector3 playerVec = PlayerController.Instance.GetPlayerVec();
+
+                if (Vector3.Distance(spawnVec, playerVec) < constant.MaxDistance && Vector3.Distance(spawnVec, playerVec) > constant.minDistance)
+                {
+                    vec = spawnVec;
+                    break;
+                }
+            }
+
+
+            go = monsterFactory.AddObject(type, vec, PlayerController.Instance.playerData.playerGo, DeleteMonsterData, health, damage, speed, size);
+
+            go.TryGetComponent<Monster>(out monster);
+
+            monster.OnReset();
+
+            monsterDataManager.AddMonster(ref monster);
+
+        }
+    }
+
     private void DeleteMonsterData(OBJECT_TYPE type, int uid, GameObject go)
     {
         bool complete = monsterDataManager.DelMonster(uid);

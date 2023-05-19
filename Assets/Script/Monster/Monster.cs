@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
     public OBJECT_TYPE myType;
 
     public float health;
+    public float damage;
     public float speed;
     public Vector3 size;
 

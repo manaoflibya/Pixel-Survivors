@@ -17,7 +17,7 @@ public class ObjectFactory
         return null;
     }
 
-    public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, System.Action<OBJECT_TYPE, int, GameObject> action, float health, float speed, Vector3 size)
+    public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, System.Action<OBJECT_TYPE, int, GameObject> action, float health, float damage, float speed, Vector3 size)
     {
         return null;
     }
@@ -50,6 +50,11 @@ public class ObjectFactory
     }
 
     public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, Vector3 dir, int hitCount, System.Action<OBJECT_TYPE, int, GameObject> action, float speed, float damage, Vector3 size)
+    {
+        return null;
+    }
+
+    public virtual GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, GameObject target, System.Action<OBJECT_TYPE, int, GameObject> monsterAction, float health, float damage, float speed, Vector3 size)
     {
         return null;
     }

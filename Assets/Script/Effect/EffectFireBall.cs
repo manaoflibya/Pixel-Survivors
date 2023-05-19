@@ -18,16 +18,15 @@ public class EffectFireBall : Effect
     private string playAnimMethodName = "StartExplosion";
     private string stopAnimMethodName = "StopExplision";
 
-    private void Start()
+    public override void OnReset()
     {
-    }
+        base.OnReset();
 
-    private void OnEnable()
-    {
         this.transform.localScale = size;
         this.transform.position = spawnPos;
 
         Invoke(playAnimMethodName, floorExplosionTime);
+
     }
 
     private void FixedUpdate()

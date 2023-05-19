@@ -6,7 +6,7 @@ public class MapChecker : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == MapController.Instance.mapData.playerTagName)
+        if (collision.tag == PlayerController.Instance.playerData.playerTagName)
         {
             MapController.Instance.CheckTrigger(this.name);
         }        
@@ -14,7 +14,7 @@ public class MapChecker : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == MapController.Instance.mapData.playerTagName && this.name == MapController.Instance.mapData.trigger_Out)
+        if (collision.tag == PlayerController.Instance.playerData.playerTagName && this.name == MapController.Instance.mapData.trigger_Out)
         {
             MapController.Instance.MapOut();
         }

@@ -41,7 +41,6 @@ public class MonsterDataManager
         {
 
             monsterData.Add(newData.monsterUID, newData);
-            Debug.Log(monsterData.Count);
         }
 
         return exist;

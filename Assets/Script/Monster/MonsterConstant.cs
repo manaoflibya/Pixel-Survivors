@@ -11,7 +11,10 @@ public class MonsterConstant : MonoBehaviour
     public float minDistance = 5f;
     // 몇마리 생성?
     [HideInInspector]
-    public int batCreateCount = 100;
+    public int batCreateCount = 100; 
+    [HideInInspector]
+    public float batDamage = 2f;
+
     [HideInInspector]
     public float batHealth = 100f;
     [HideInInspector]

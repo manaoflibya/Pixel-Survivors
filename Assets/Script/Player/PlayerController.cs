@@ -135,6 +135,12 @@ public class PlayerController : MonoSingleton<PlayerController>
         playerData.playerAnimator.SetBool(playerData.playerWalkAnimationName, isMove);
     }
 
+    public void TakeDamage(float damage)
+    {
+        playerData.Health -= damage;
+        Debug.Log("current Player Health "+ playerData.Health);
+    }
+
     public Vector3 GetPlayerVec()
     {
         return playerData.transform.position;

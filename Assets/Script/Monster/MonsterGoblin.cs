@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MonsterGoblin : Monster
 {
-    public int goblinUID;
-
     private void FixedUpdate()
     {
         if(isDead.Equals(false))
@@ -27,7 +25,7 @@ public class MonsterGoblin : Monster
         }
     }
 
-    private void FinishDead()
+    private void FinishDaedAnim()
     {
         monsterAction?.Invoke(myType,monsterUID,this.gameObject);
     }

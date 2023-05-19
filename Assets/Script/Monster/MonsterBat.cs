@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MonsterBat : Monster
 {
-    public int batUID;
 
     private void FixedUpdate()
     {
@@ -30,7 +29,7 @@ public class MonsterBat : Monster
     /// <summary>
     /// Anim Callback으로 사용
     /// </summary>
-    private void FinishDeath()
+    private void FinishDaedAnim()
     {
         //recycle필요
         //monsterAction?.Invoke(myType, batUID,this.gameObject);

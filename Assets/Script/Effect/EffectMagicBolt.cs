@@ -12,6 +12,12 @@ public class EffectMagicBolt : Effect
 
     private void Start()
     {
+    }
+
+    public override void OnReset()
+    {
+        base.OnReset();
+
         this.transform.position = spawnPos;
         this.transform.localScale = size;
 

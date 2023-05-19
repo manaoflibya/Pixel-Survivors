@@ -155,7 +155,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
         for (int i = 0; i < boombCreateCount; i++)
         {
-            GameObject go = Instantiate(monsterGoblin);
+            GameObject go = Instantiate(monsterBoomb);
             go.transform.SetParent(boombParent.transform);
             boombQueue.Enqueue(go);
         }
@@ -243,7 +243,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                 {
                     if (skeletonQueue.Count == 0)
                     {
-                        go = Instantiate(monsterGoblin);
+                        go = Instantiate(monsterSkeleton);
                         go.transform.SetParent(skeletonParent.transform);
                     }
                     else
@@ -257,7 +257,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                 {
                     if (boombQueue.Count == 0)
                     {
-                        go = Instantiate(monsterGoblin);
+                        go = Instantiate(monsterBoomb);
                         go.transform.SetParent(boombParent.transform);
                     }
                     else

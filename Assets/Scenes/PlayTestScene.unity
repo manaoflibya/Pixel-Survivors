@@ -425,6 +425,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b2a1759cef8aa40afa93d99551e38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &489995720 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1727584575518129568, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
+  m_PrefabInstance: {fileID: 1040348273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &708958939 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 708958939, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
@@ -814,7 +819,7 @@ PrefabInstance:
     - target: {fileID: 708958938, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
       propertyPath: collider2d
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 489995720}
     - target: {fileID: 708958938, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
       propertyPath: cameraTagName
       value: MainCamera
@@ -822,7 +827,7 @@ PrefabInstance:
     - target: {fileID: 708958938, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
       propertyPath: playGameCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1256476841}
     - target: {fileID: 5253022343263849461, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1081,6 +1086,11 @@ Transform:
   m_Father: {fileID: 1955328074}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1256476841 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1751652088, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
+  m_PrefabInstance: {fileID: 1040348273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1446274166
 GameObject:
   m_ObjectHideFlags: 0
