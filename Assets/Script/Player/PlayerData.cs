@@ -10,8 +10,9 @@ public class PlayerData : MonoBehaviour
 
     //Player Animation
     public string playerWalkAnimationName = "Walk";
+    public string playerDeadAnimationName = "Dead";
     // 상태를 변경할 때 빠져나가는 클래스에서 OnExit를 거쳐갔는지 확인하기 위해서 사용
-    public bool checkClassOnExix;
+    public bool checkClassOnExit;
     public string playerTagName = "Player";
 
 
@@ -22,18 +23,25 @@ public class PlayerData : MonoBehaviour
         set { allowMove = value; }
     }
 
-    private float speed = 1.5f;
+    private float speed = 3f;
     public float Speed
     {
         get { return speed; } 
         set { this.speed = value; } 
     }
 
-    private float health;
+    private float health = 100f;
     public float Health
     {
         get { return health; }
         set { this.health = value; }
+    }
+
+    private bool playerDead = false;
+    public bool PlayerDead
+    {
+        get { return playerDead; }
+        set { this.playerDead = value; }
     }
 
     public float playerSize = 0.5f;

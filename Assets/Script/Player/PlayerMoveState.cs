@@ -23,7 +23,13 @@ public class PlayerMoveState : PlayerState
 
     public override void OnUpdate()
     {
-        if(UIPresenter.Instance.playJoyStickModel.Go.activeSelf) 
+        if (PlayerController.Instance.playerData.Health <= 0)
+        {
+            PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.END);
+            return;
+        }
+
+        if (UIPresenter.Instance.playJoyStickModel.Go.activeSelf) 
         {
             Vector3 dirVec = UIPresenter.Instance.playJoyStickModel.MoveVec;
             dirVec.Normalize();
@@ -139,6 +145,7 @@ public class PlayerMoveState : PlayerState
         //        PlayerController.Instance.effectConstant.effectBatManDamage,
         //        PlayerController.Instance.effectConstant.effectBatManSize);
         //}
+
     }
 
     public override void OnExit()

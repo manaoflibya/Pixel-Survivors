@@ -42,7 +42,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private void Update()
     {
-        if(playerClassDictionary.ContainsKey(currentPlayerState) && playerData.checkClassOnExix)
+        if(playerClassDictionary.ContainsKey(currentPlayerState) && playerData.checkClassOnExit)
         {
             playerClassDictionary[currentPlayerState].OnUpdate();
         }
@@ -53,7 +53,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         //처음에는 Begin으로 State를 시작
         ChangePlayerState(PLAYERSTATE.BEGIN);
         effectConstant = new EffectConstant();  
-        playerData.checkClassOnExix = true;
+        playerData.checkClassOnExit = true;
     }
 
     public void ChangePlayerState(PLAYERSTATE nextState)
@@ -132,7 +132,10 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void PlayerAnimationMove(bool isMove)
     {
-        playerData.playerAnimator.SetBool(playerData.playerWalkAnimationName, isMove);
+        if(playerData.PlayerDead.Equals(false))
+        {
+            playerData.playerAnimator.SetBool(playerData.playerWalkAnimationName, isMove);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -144,5 +147,10 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Vector3 GetPlayerVec()
     {
         return playerData.transform.position;
+    }
+
+    public void PlayerDeadAnim()
+    {
+        playerData.playerAnimator.SetTrigger(playerData.playerDeadAnimationName);
     }
 }

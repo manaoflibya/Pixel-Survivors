@@ -11,6 +11,8 @@ public class PlayerEndState : PlayerState
 
     public override void OnEnter(PlayerData _playerData)
     {
+        PlayerController.Instance.PlayerDeadAnim();
+
     }
 
     public override void OnExit()
