@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MonsterBoomb : Monster
 {
-    private string finishDeadMethodName = "FinishDeadAnim";
-
-
     private bool isExplosion;
     private bool isOneHit;
 
