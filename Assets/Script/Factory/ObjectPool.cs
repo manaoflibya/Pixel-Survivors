@@ -46,25 +46,25 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     #region Monster
     private Queue<GameObject> batQueue = new Queue<GameObject>();
     private string batNameData = "Monster_Bat_Data";
-    private int batCreateCount = 100;
+    private int batCreateCount = 200;
     private GameObject batParent;
     private GameObject monsterBat;
 
     private Queue<GameObject> goblinQueue = new Queue<GameObject>();
     private string goblinNameData = "Monster_Goblin_Data";
-    private int goblinCreateCount = 100;
+    private int goblinCreateCount = 200;
     private GameObject goblinParent;
     private GameObject monsterGoblin;
 
     private Queue<GameObject> skeletonQueue = new Queue<GameObject>();
     private string skeletonNameData = "Monster_Skeleton_Data";
-    private int skeletonCreateCount = 100;
+    private int skeletonCreateCount = 200;
     private GameObject skeletonParent;
     private GameObject monsterSkeleton;
 
     private Queue<GameObject> boombQueue = new Queue<GameObject>();
     private string boombNameData = "Monster_Boomb_Data";
-    private int boombCreateCount = 100;
+    private int boombCreateCount = 200;
     private GameObject boombParent;
     private GameObject monsterBoomb;
     #endregion

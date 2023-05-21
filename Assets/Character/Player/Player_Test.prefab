@@ -353,8 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playGameCamera: {fileID: 1751652088}
-  collider2d: {fileID: 7779907676414285165}
-  cameraTagName: MainCaemra
+  collider2d: {fileID: 1727584575518129568}
+  cameraTagName: MainCamera
   cameraCheckGo: []
 --- !u!114 &708958939
 MonoBehaviour:
@@ -2003,6 +2003,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5100974819469941344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7818446712104398156}
+  m_Layer: 6
+  m_Name: KunaiParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7818446712104398156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100974819469941344}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5253022343263849461}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5253022342191855003
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,6 +3699,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7340593213987353755}
+  - {fileID: 7818446712104398156}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
@@ -4165,6 +4197,7 @@ GameObject:
   - component: {fileID: 7779907676414285165}
   - component: {fileID: 379854606}
   - component: {fileID: 379854607}
+  - component: {fileID: 6894606286073199450}
   m_Layer: 6
   m_Name: UnitRoot
   m_TagString: Player
@@ -4253,7 +4286,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.013087299, y: 0.4826973}
@@ -4286,11 +4319,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c97d40d1fad70546a92b6fd892af0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGo: {fileID: 7573831300888823078}
+  playerGo: {fileID: 5100974819469941344}
   scaleGo: {fileID: 9092683277515177086}
   playerAnimator: {fileID: 8086202439210286133}
   playerWalkAnimationName: Walk
-  checkClassOnExix: 0
-  speed: 3
+  playerDeadAnimationName: Dead
+  checkClassOnExit: 0
+  playerTagName: Player
   playerSize: 0.5
   playerVec: {x: 0, y: 0, z: 0}
+--- !u!114 &6894606286073199450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092683277515177086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b2a1759cef8aa40afa93d99551e38c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

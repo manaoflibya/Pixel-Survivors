@@ -11,19 +11,6 @@ public class PlayerStopState : PlayerState
 
     private PlayerData playerData;
 
-    /// <summary>
-    /// 지워야함.
-    /// </summary>
-    private float effectCoolTime = 0.5f;
-    private float currentCoolTime = 0f;
-    private int effectCreateCount = 1;
-
-    private float effectFireBallSpeed = 15f;
-    private float effectFireBallDamage = 50f;
-    private Vector3 effectFireBallSize = new Vector3(2f,2f,0f);
-    /// <summary>
-    /// </summary>
-
 
     public override void OnEnter(PlayerData _playerData)
     {
@@ -36,31 +23,6 @@ public class PlayerStopState : PlayerState
 
     public override void OnUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.MOVE);
-        }
-
-
-        currentCoolTime += Time.deltaTime;
-        if (currentCoolTime >= effectCoolTime)
-        {
-            if (PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters() == null)
-            {
-                return;
-            }
-
-
-            PlayerController.Instance.effectController.OnEffectFireBall(
-                effectCreateCount,
-                PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters().transform.position + new Vector3(3f, 10f),
-                PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters(), // 가까운 몬스터 찾아서 그 위치로 바꿔야함.
-                effectFireBallSpeed,
-                effectFireBallDamage,
-                effectFireBallSize);
-            currentCoolTime = 0f;
-        }
-
     }
 
     public override void OnExit()

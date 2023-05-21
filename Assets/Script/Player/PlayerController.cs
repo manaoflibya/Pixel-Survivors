@@ -42,6 +42,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private void Update()
     {
+        playerData.playerGo.transform.position = GetPlayerVec();
         if(playerClassDictionary.ContainsKey(currentPlayerState) && playerData.checkClassOnExit)
         {
             playerClassDictionary[currentPlayerState].OnUpdate();
@@ -118,7 +119,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void MovePlayerPosition(Vector3 moveVec)
     {
-        playerData.playerGo.transform.Translate(moveVec * Time.deltaTime * playerData.Speed);
+        GetPlayerObject().transform.Translate(moveVec * Time.deltaTime * playerData.Speed);
 
         if (moveVec.x > 0)
         {
@@ -132,21 +133,29 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void PlayerAnimationMove(bool isMove)
     {
-        if(playerData.PlayerDead.Equals(false))
-        {
-            playerData.playerAnimator.SetBool(playerData.playerWalkAnimationName, isMove);
-        }
+        playerData.playerAnimator.SetBool(playerData.playerWalkAnimationName, isMove);
     }
 
     public void TakeDamage(float damage)
     {
         playerData.Health -= damage;
+
+        if(playerData.Health < 0)
+        {
+            playerData.PlayerDead = true;
+        }
+
         Debug.Log("current Player Health "+ playerData.Health);
     }
 
     public Vector3 GetPlayerVec()
     {
         return playerData.transform.position;
+    }
+
+    public GameObject GetPlayerObject()
+    {
+        return playerData.gameObject;
     }
 
     public void PlayerDeadAnim()

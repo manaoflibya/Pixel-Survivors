@@ -440,11 +440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28d3de6396bf0a439be7afafb250e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &489995720 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1727584575518129568, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-  m_PrefabInstance: {fileID: 1040348273}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &628021032
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,18 +910,6 @@ PrefabInstance:
       propertyPath: effectController
       value: 
       objectReference: {fileID: 245942942}
-    - target: {fileID: 708958938, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: collider2d
-      value: 
-      objectReference: {fileID: 489995720}
-    - target: {fileID: 708958938, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: cameraTagName
-      value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 708958938, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: playGameCamera
-      value: 
-      objectReference: {fileID: 1256476841}
     - target: {fileID: 5253022343263849461, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1185,11 +1168,6 @@ Transform:
   m_Father: {fileID: 1955328074}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1256476841 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1751652088, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-  m_PrefabInstance: {fileID: 1040348273}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1446274166
 GameObject:
   m_ObjectHideFlags: 0

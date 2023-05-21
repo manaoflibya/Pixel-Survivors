@@ -23,7 +23,7 @@ public class PlayerMoveState : PlayerState
 
     public override void OnUpdate()
     {
-        if (PlayerController.Instance.playerData.Health <= 0)
+        if (PlayerController.Instance.playerData.PlayerDead.Equals(true))
         {
             PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.END);
             return;
@@ -52,33 +52,33 @@ public class PlayerMoveState : PlayerState
         //}
 
 
-        //PlayerController.Instance.effectConstant.currentCoolTime += Time.deltaTime;
-        //if (PlayerController.Instance.effectConstant.currentCoolTime >= PlayerController.Instance.effectConstant.effectCoolTime)
-        //{
-        //    if (PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters() != null)
-        //    {
-        //        PlayerController.Instance.effectController.OnEffectFireBall(
-        //            PlayerController.Instance.effectConstant.effectCreateCount,
-        //            PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters().transform.position + new Vector3(3f, 10f),
-        //            PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters(), // 가까운 몬스터 찾아서 그 위치로 바꿔야함.
-        //            PlayerController.Instance.effectConstant.effectFireBallSpeed,
-        //            PlayerController.Instance.effectConstant.effectFireBallDamage,
-        //            PlayerController.Instance.effectConstant.effectFireBallSize);
-        //    }
+        PlayerController.Instance.effectConstant.currentCoolTime += Time.deltaTime;
+        if (PlayerController.Instance.effectConstant.currentCoolTime >= PlayerController.Instance.effectConstant.effectCoolTime)
+        {
+            if (PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters() != null)
+            {
+                PlayerController.Instance.effectController.OnEffectFireBall(
+                    PlayerController.Instance.effectConstant.effectCreateCount,
+                    PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters().transform.position + new Vector3(3f, 10f),
+                    PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters(), // 가까운 몬스터 찾아서 그 위치로 바꿔야함.
+                    PlayerController.Instance.effectConstant.effectFireBallSpeed,
+                    PlayerController.Instance.effectConstant.effectFireBallDamage,
+                    PlayerController.Instance.effectConstant.effectFireBallSize);
+            }
 
-        //    if (PixelGameManager.Instance.monsterController.FindClosestMonster() != null)
-        //    {
-        //        PlayerController.Instance.effectController.OnEffectMagicBolt(
-        //            PlayerController.Instance.effectConstant.effectCreateCount,
-        //            PlayerController.Instance.GetPlayerVec(),
-        //            PixelGameManager.Instance.monsterController.FindClosestMonster(),
-        //            PlayerController.Instance.effectConstant.effectMagicBoltSpeed,
-        //            PlayerController.Instance.effectConstant.effectMagicBoltDamage,
-        //            PlayerController.Instance.effectConstant.effectMagicBoltSize);
-        //    }
+            if (PixelGameManager.Instance.monsterController.FindClosestMonster() != null)
+            {
+                PlayerController.Instance.effectController.OnEffectMagicBolt(
+                    PlayerController.Instance.effectConstant.effectCreateCount,
+                    PlayerController.Instance.GetPlayerVec(),
+                    PixelGameManager.Instance.monsterController.FindClosestMonster(),
+                    PlayerController.Instance.effectConstant.effectMagicBoltSpeed,
+                    PlayerController.Instance.effectConstant.effectMagicBoltDamage,
+                    PlayerController.Instance.effectConstant.effectMagicBoltSize);
+            }
 
-        //    PlayerController.Instance.effectConstant.currentCoolTime = 0f;
-        //}
+            PlayerController.Instance.effectConstant.currentCoolTime = 0f;
+        }
 
         PlayerController.Instance.effectConstant.kunaiCurrentCoolTime += Time.deltaTime;
         if (PlayerController.Instance.effectConstant.kunaiCurrentCoolTime >= PlayerController.Instance.effectConstant.kunaiCoolTime)
@@ -99,21 +99,21 @@ public class PlayerMoveState : PlayerState
 
         }
 
-        //PlayerController.Instance.effectConstant.poisonCurrentCoolTime += Time.deltaTime;
-        //if (PlayerController.Instance.effectConstant.poisonCurrentCoolTime >= PlayerController.Instance.effectConstant.poisonCoolTime)
-        //{
-        //    PlayerController.Instance.effectConstant.poisonCurrentCoolTime = 0f;
+        PlayerController.Instance.effectConstant.poisonCurrentCoolTime += Time.deltaTime;
+        if (PlayerController.Instance.effectConstant.poisonCurrentCoolTime >= PlayerController.Instance.effectConstant.poisonCoolTime)
+        {
+            PlayerController.Instance.effectConstant.poisonCurrentCoolTime = 0f;
 
-        //    PlayerController.Instance.effectController.OnEffectPoison(
-        //        PlayerController.Instance.effectConstant.poisonCreateCount,
-        //        PlayerController.Instance.GetPlayerVec(),
-        //        PlayerController.Instance.effectConstant.effectPoisondir,
-        //        PlayerController.Instance.effectConstant.effectPoisonAngle,
-        //        PlayerController.Instance.effectConstant.effectPoisonSpeed,
-        //        PlayerController.Instance.effectConstant.effectPoisonDamage,
-        //        PlayerController.Instance.effectConstant.effectPoisonDuration,
-        //        PlayerController.Instance.effectConstant.effectPoisonSize);
-        //}
+            PlayerController.Instance.effectController.OnEffectPoison(
+                PlayerController.Instance.effectConstant.poisonCreateCount,
+                PlayerController.Instance.GetPlayerVec(),
+                PlayerController.Instance.effectConstant.effectPoisondir,
+                PlayerController.Instance.effectConstant.effectPoisonAngle,
+                PlayerController.Instance.effectConstant.effectPoisonSpeed,
+                PlayerController.Instance.effectConstant.effectPoisonDamage,
+                PlayerController.Instance.effectConstant.effectPoisonDuration,
+                PlayerController.Instance.effectConstant.effectPoisonSize);
+        }
 
         PlayerController.Instance.effectConstant.bounceBallCurrentCoolTime += Time.deltaTime;
         if (PlayerController.Instance.effectConstant.bounceBallCurrentCoolTime >= PlayerController.Instance.effectConstant.bounceBallCoolTime)

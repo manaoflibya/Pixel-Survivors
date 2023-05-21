@@ -32,7 +32,7 @@ public class ItemController : MonoBehaviour
         go = itemFactory.AddObject(
             OBJECT_TYPE.ITEMEXPTYPE, 
             spawnPos, 
-            PlayerController.Instance.playerData.playerGo, 
+            PlayerController.Instance.GetPlayerObject(), 
             DeleteItemData, 
             itemConstant.moveAwaySpeed, 
             itemConstant.followSpeed, 
@@ -67,7 +67,7 @@ public class ItemController : MonoBehaviour
         go = itemFactory.AddObject(
             OBJECT_TYPE.ITEMGRAVITYTYPE,
             spawnPos,
-            PlayerController.Instance.playerData.playerGo,
+            PlayerController.Instance.GetPlayerObject(),
             DeleteItemData,
             itemConstant.moveAwaySpeed,
             itemConstant.followSpeed,
