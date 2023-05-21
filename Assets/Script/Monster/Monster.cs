@@ -8,17 +8,14 @@ using UnityEngine.UIElements;
 public class Monster : MonoBehaviour
 {
     public int monsterUID;
-    public Vector3 spawnPos = new Vector3();
+    public Vector3 spawnPos;
     public GameObject target;
 
     public OBJECT_TYPE myType;
-
     public float health;
     public float damage;
     public float speed;
     public Vector3 size;
-
-    
     public Action<OBJECT_TYPE,int, GameObject> monsterAction;
     public Action<Vector3, float> monsterDeadAction;
 
@@ -33,8 +30,15 @@ public class Monster : MonoBehaviour
     protected bool isDead = false;
 
     protected bool startTickDamage = false;
-    protected float tickDamageTime = 0f;
     protected float tickDamage = 0f;
+
+    protected WaitForSeconds takeDamageWaitSeconds;
+    protected WaitForSeconds tickAttackWaitSeconds = new WaitForSeconds(0.5f);
+
+    protected bool startTickAttack = false;
+
+    private Coroutine takeTickDamageCoroutine;
+    private Coroutine tickAttackCoroutine;
 
     public void Start()
     {
@@ -48,8 +52,9 @@ public class Monster : MonoBehaviour
 
         isDead = false;
         startTickDamage = false;
-        tickDamageTime = 0f;
+        startTickAttack = false;
         tickDamage = 0f;
+
     }
 
     public virtual void TakeDamage(float damage)
@@ -62,15 +67,14 @@ public class Monster : MonoBehaviour
     {
         startTickDamage = true;
         tickDamage = damage;
-        tickDamageTime = tickTime;
-
-        StartCoroutine(TickDamageStart());
+        takeDamageWaitSeconds = new WaitForSeconds(tickTime);
+        takeTickDamageCoroutine = StartCoroutine(TickDamageStart());
     }    
 
     public virtual void TakeTickDamageFinish()
     {
         startTickDamage = false;
-        StopCoroutine(TickDamageStart());
+        StopCoroutine(takeTickDamageCoroutine);
 
     }
 
@@ -78,7 +82,16 @@ public class Monster : MonoBehaviour
     {
         monsterAnimator.SetTrigger(animDeathTriggerName);
         isDead = true;
-        StopCoroutine(TickDamageStart());
+
+        if(takeTickDamageCoroutine != null)
+        {
+            StopCoroutine(takeTickDamageCoroutine);
+        }
+
+        if(tickAttackCoroutine != null)
+        {
+            StopCoroutine(tickAttackCoroutine);
+        }
     }
 
     protected bool GetActive()
@@ -86,12 +99,42 @@ public class Monster : MonoBehaviour
         return this.gameObject.activeSelf;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == PlayerController.Instance.playerData.playerTagName)
+        {
+            startTickAttack = true;
+            tickAttackCoroutine = StartCoroutine(AttakTickDamage());
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag == PlayerController.Instance.playerData.playerTagName)
+        {
+            startTickAttack = false;
+
+            StopCoroutine(tickAttackCoroutine);
+        }
+    }
+
     IEnumerator TickDamageStart()
     {
         while(startTickDamage)
         {
             TakeDamage(tickDamage);
-            yield return new WaitForSeconds(tickDamageTime);
+
+            yield return takeDamageWaitSeconds;
+        }
+    }
+
+    IEnumerator AttakTickDamage()
+    {
+        while (startTickAttack)
+        {
+            PlayerController.Instance.TakeDamage(damage);
+
+            yield return tickAttackWaitSeconds;
         }
     }
 }

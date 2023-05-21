@@ -22,10 +22,10 @@ public class GamePlayState : GameState
 
     public override void OnEnter()
     {
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBATTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointMiddle);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointBIG);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERSKELETONTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBATTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointMiddle);
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointBIG);
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERSKELETONTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
         
         Vector3 vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemGravity(vec);

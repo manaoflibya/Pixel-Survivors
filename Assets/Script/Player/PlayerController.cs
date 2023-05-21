@@ -138,6 +138,11 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void TakeDamage(float damage)
     {
+        if(playerData.Health <= 0)
+        {
+            return;
+        }
+
         playerData.Health -= damage;
 
         if(playerData.Health < 0)
