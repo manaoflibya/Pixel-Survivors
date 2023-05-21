@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -43,12 +45,12 @@ public class ItemController : MonoBehaviour
         itemDataManager.AddExp(ref item);
     }
 
-    public void OnItemEXP(OBJECT_TYPE myType, Vector3 spawnPos, GameObject target, float farwaySpeed, float followSpeed, float expPoint)
+    public void OnItemEXP(OBJECT_TYPE myType, Vector3 spawnPos, GameObject target, float moveAwaySpeed, float followSpeed, float expPoint)
     {
         ItemEXP item = null;
         GameObject go = null;
 
-        go = itemFactory.AddObject(myType, spawnPos, target, DeleteItemData, farwaySpeed, followSpeed, expPoint);
+        go = itemFactory.AddObject(myType, spawnPos, target, DeleteItemData, moveAwaySpeed, followSpeed, expPoint);
 
         go.TryGetComponent<ItemEXP>(out item);
 
@@ -56,6 +58,40 @@ public class ItemController : MonoBehaviour
 
         itemDataManager.AddExp(ref item);
     }
+
+    public void OnItemGravity(Vector3 spawnPos)
+    {
+        ItemGravity item = null;
+        GameObject go = null;
+
+        go = itemFactory.AddObject(
+            OBJECT_TYPE.ITEMGRAVITYTYPE,
+            spawnPos,
+            PlayerController.Instance.playerData.playerGo,
+            DeleteItemData,
+            itemConstant.moveAwaySpeed,
+            itemConstant.followSpeed,
+            UseGravityItem);
+
+        go.TryGetComponent<ItemGravity>(out item);
+
+        item.OnReset();
+
+        itemDataManager.AddGravity(ref item);
+    }
+
+    private void UseGravityItem()
+    {
+        List<ItemEXP> exps = new List<ItemEXP>();
+
+        itemDataManager.FindAllActiveEXP(ref exps);
+
+        foreach(var exp in exps)
+        {
+            exp.AllExpFollowTarget();
+        }
+    }
+    
 
     private void DeleteItemData(OBJECT_TYPE myType, int uid, GameObject go)
     {
@@ -68,7 +104,7 @@ public class ItemController : MonoBehaviour
                 break;
             case OBJECT_TYPE.ITEMBOXTYPE:
                 {
-
+                    itemDataManager.DelGravity(uid);
                 }
                 break;
             case OBJECT_TYPE.ITEMGRAVITYTYPE:

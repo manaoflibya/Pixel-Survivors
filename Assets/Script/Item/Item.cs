@@ -11,19 +11,28 @@ public class Item : MonoBehaviour
     public Vector3 spawnPos;
     public GameObject target;
     public Action<OBJECT_TYPE, int, GameObject> action;
+    public Action finishAction;
     public float moveAwaySpeed;
     public float followSpeed;
     public float point;
 
     protected Coroutine coroutine;
+    protected bool isFollowing = false;
+
+    private float distance = 1f;
+    private float closerDistance = 0.1f;
+    private float waitTime = 0.05f;
+
 
     public virtual void OnReset()
     {
         this.transform.position = spawnPos;
+        isFollowing = false;
+
     }
 
 
-    protected IEnumerator FollowTarget(float distance, float closerDistance, float waitTime, Action action = null)
+    protected IEnumerator FollowTarget(Action action = null)
     {
         Vector3 dir = this.transform.position - target.transform.position;
 

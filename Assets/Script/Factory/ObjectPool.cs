@@ -36,6 +36,13 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private GameObject expParent;
     private GameObject itemExp;
 
+    private Queue<GameObject> gravityQueue = new Queue<GameObject>();
+    private string gravityNameData = "Item_Gravity_Data";
+    private int gravityCreatCount = 20;
+    private GameObject gravityParent;
+    private GameObject itemGravity;
+
+
     #region Monster
     private Queue<GameObject> batQueue = new Queue<GameObject>();
     private string batNameData = "Monster_Bat_Data";
@@ -103,6 +110,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private void Awake()
     {
         itemExp = Resources.Load(expNameData) as GameObject;
+        itemGravity = Resources.Load(gravityNameData) as GameObject;
 
         monsterBat = Resources.Load(batNameData) as GameObject;
         monsterGoblin = Resources.Load(goblinNameData) as GameObject;
@@ -118,6 +126,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
         //////////////////
         itemExp.SetActive(false);
+        itemGravity.SetActive(false);
 
         monsterBat.SetActive(false);
         monsterGoblin.SetActive(false);
@@ -133,6 +142,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
         ////////////////// 
         expParent = CreateLocalObject(expNameData);
+        gravityParent = CreateLocalObject(gravityNameData);
 
         batParent = CreateLocalObject(batNameData);
         goblinParent = CreateLocalObject(goblinNameData);
@@ -153,6 +163,13 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             GameObject go = Instantiate(itemExp);
             go.transform.SetParent(expParent.transform);
             expQueue.Enqueue(go);
+        }
+
+        for (int i = 0; i < gravityCreatCount; i++)
+        {
+            GameObject go = Instantiate(itemGravity);
+            go.transform.SetParent(gravityParent.transform);
+            gravityQueue.Enqueue(go);
         }
 
         for (int i = 0; i < batCreateCount; i++)
@@ -244,6 +261,19 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     else
                     {
                         go = expQueue.Dequeue();
+                    }
+                }
+                break;
+            case OBJECT_TYPE.ITEMGRAVITYTYPE:
+                {
+                    if (gravityQueue.Count == 0)
+                    {
+                        go = Instantiate(itemGravity);
+                        go.transform.SetParent(gravityParent.transform);
+                    }
+                    else
+                    {
+                        go = gravityQueue.Dequeue();
                     }
                 }
                 break;
@@ -416,6 +446,11 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             case OBJECT_TYPE.ITEMEXPTYPE:
                 {
                     expQueue.Enqueue(go);
+                }
+                break;
+            case OBJECT_TYPE.ITEMGRAVITYTYPE:
+                {
+                    gravityQueue.Enqueue(go);
                 }
                 break;
             case OBJECT_TYPE.MONSTERBATTYPE:

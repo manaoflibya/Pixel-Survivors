@@ -8,6 +8,7 @@ TagManager:
   - Attack_1
   - Effect_FireBall
   - EffectBatMan
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Effect
   - Camera
   - EffectBatMan
-  - 
+  - Item
   - 
   - 
   - 

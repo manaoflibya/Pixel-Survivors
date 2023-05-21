@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
@@ -16,6 +17,21 @@ public class ItemFactory : ObjectFactory
         go.moveAwaySpeed =  moveAwaySpeed;
         go.followSpeed = followSpeed;
         go.point = value;
+
+        return go.gameObject;
+    }
+
+    public GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, GameObject target, System.Action<OBJECT_TYPE, int, GameObject> action, float moveAwaySpeed, float followSpeed, Action finishAction)
+    {
+        Item go = ObjectPool.Instance.Get<Item>(myType);
+
+        go.myType = myType;
+        go.spawnPos = spawnPos;
+        go.target = target;
+        go.action = action;
+        go.moveAwaySpeed = moveAwaySpeed;
+        go.followSpeed = followSpeed;
+        go.finishAction = finishAction;
 
         return go.gameObject;
     }

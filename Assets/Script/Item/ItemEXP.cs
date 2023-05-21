@@ -11,20 +11,15 @@ public class ItemEXP : Item
     public GameObject blueEXP;
         
 
-    private float distance = 0.9f;
-    private float closerDistance = 0.2f;
-    private float waitTime = 0.05f;
     private float redPoint = 35f;
     private float bluePoint = 20f;
     private float greenPoint = 1f;
 
-    private bool isFollowing = false;
 
 
     public override void OnReset()
     {
         base.OnReset();
-        isFollowing = false;
 
         ChangeExpColor();
     }
@@ -35,10 +30,15 @@ public class ItemEXP : Item
     {
         if (collision.tag == PlayerController.Instance.playerData.playerTagName && isFollowing.Equals(false)) 
         {
-            Debug.Log("ONTrigger");
             isFollowing = true;
-            coroutine = StartCoroutine(FollowTarget(distance, closerDistance, waitTime, FinishEXP));
+            coroutine = StartCoroutine(FollowTarget(FinishEXP));
         }
+    }
+
+    public void AllExpFollowTarget()
+    {
+        isFollowing = true;
+        coroutine = StartCoroutine(FollowTarget(FinishEXP));
     }
 
     private void FinishEXP()
