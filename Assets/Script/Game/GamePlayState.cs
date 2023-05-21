@@ -10,11 +10,12 @@ public class GamePlayState : GameState
 
     }
 
-    private int monsterBatCreateCount = 40;
+    private int monsterBatCreateCount = 1;
     //private int monsterGoblinCreateCount = 100;
 
     // class 따로 만들어야함.
     private float currentCraeteTime = 0f;
+    private float monsterExpPoint = 10f;
     private float createTime = 10f;
 
     public override void OnEnter()
@@ -22,7 +23,7 @@ public class GamePlayState : GameState
         //PixelGameManager.Instance.monsterController.OnMonsterBat(monsterBatCreateCount);
         //PixelGameManager.Instance.monsterController.OnMonsterGoblin(monsterBatCreateCount);
         //PixelGameManager.Instance.monsterController.OnMonsterSkeleton(monsterBatCreateCount);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f,1.5f ,new Vector3(1f, 1f, 1f));
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f,1.5f ,new Vector3(1f, 1f, 1f), monsterExpPoint);
     }
 
     public override void OnUpdate()
@@ -31,7 +32,7 @@ public class GamePlayState : GameState
         if(currentCraeteTime > createTime)
         {
             currentCraeteTime = 0f;
-            PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f));
+            PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
 
             // PixelGameManager.Instance.monsterController.OnMonsterBat(monsterBatCreateCount);
             //PixelGameManager.Instance.monsterController.OnMonsterGoblin(monsterBatCreateCount);

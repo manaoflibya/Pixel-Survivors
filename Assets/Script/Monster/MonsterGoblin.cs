@@ -28,6 +28,8 @@ public class MonsterGoblin : Monster
     private void FinishDaedAnim()
     {
         monsterAction?.Invoke(myType,monsterUID,this.gameObject);
+        monsterDeadAction?.Invoke(this.transform.position, expPoint);
+
     }
 }
 

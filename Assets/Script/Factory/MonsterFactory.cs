@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterFactory : ObjectFactory
 {
-    public override GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, GameObject target, System.Action<OBJECT_TYPE,int,GameObject> monsterAction , float health, float damage, float speed, Vector3 size)
+    public GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, GameObject target, System.Action<OBJECT_TYPE,int,GameObject> monsterAction , float health, float damage, float speed, Vector3 size, Action<Vector3, float> monsterDeadAction, float expPoint)
     {
         Monster go = ObjectPool.Instance.Get<Monster>(myType);
 
@@ -18,7 +19,9 @@ public class MonsterFactory : ObjectFactory
         go.size = size;
         go.myType = myType;
         go.spawnPos = spawnPos;
-        
+        go.monsterDeadAction = monsterDeadAction;
+        go.expPoint = expPoint;
+
         return go.gameObject;
     }
 

@@ -7,13 +7,18 @@ using UnityEngine.UIElements;
 public enum OBJECT_TYPE
 {
     NONE,
+    //ITEM
+    ITEMEXPTYPE,
+    ITEMHPTYPE,
+    ITEMBOXTYPE,
+    ITEMGRAVITYTYPE,
+
     //MONSTER
     MONSTERBATTYPE,
     MONSTERGOBLINTYPE,
     MONSTERSKELETONTYPE,
     MONSTERBOOMBTYPE,
-    ITEMTYPE,
-    COINTYPE,
+
     //EFFECT
     EFFECTFIREBALLTYPE,
     EFFECTMAGICBOLTTYPE,
@@ -25,9 +30,13 @@ public enum OBJECT_TYPE
 
 public class ObjectPool : MonoSingleton<ObjectPool>
 {
-    private GameObject item;
-    private GameObject coin;
+    private Queue<GameObject> expQueue = new Queue<GameObject>();
+    private string expNameData = "Item_EXP_Data";
+    private int expCreatCount = 500;
+    private GameObject expParent;
+    private GameObject itemExp;
 
+    #region Monster
     private Queue<GameObject> batQueue = new Queue<GameObject>();
     private string batNameData = "Monster_Bat_Data";
     private int batCreateCount = 100;
@@ -51,6 +60,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private int boombCreateCount = 100;
     private GameObject boombParent;
     private GameObject monsterBoomb;
+    #endregion
 
     #region Effect
     private Queue<GameObject> fireBallQueue = new Queue<GameObject>();
@@ -92,6 +102,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
     private void Awake()
     {
+        itemExp = Resources.Load(expNameData) as GameObject;
+
         monsterBat = Resources.Load(batNameData) as GameObject;
         monsterGoblin = Resources.Load(goblinNameData) as GameObject;
         monsterSkeleton = Resources.Load(skeletonNameData) as GameObject;
@@ -105,6 +117,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         batMan = Resources.Load(batManNameData) as GameObject;
 
         //////////////////
+        itemExp.SetActive(false);
 
         monsterBat.SetActive(false);
         monsterGoblin.SetActive(false);
@@ -116,9 +129,10 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         kunai.SetActive(false);
         poison.SetActive(false);
         bounceBall.SetActive(false);
-        batMan.SetActive(false);  
+        batMan.SetActive(false);
 
-        //////////////////
+        ////////////////// 
+        expParent = CreateLocalObject(expNameData);
 
         batParent = CreateLocalObject(batNameData);
         goblinParent = CreateLocalObject(goblinNameData);
@@ -131,6 +145,15 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         poisonParent = CreateLocalObject(poisonNameData);
         bounceBallParent = CreateLocalObject(bounceBallNameData);
         batManParent = CreateLocalObject(batManNameData);
+
+        /////////////////
+        
+        for(int i =  0; i < expCreatCount; i++)
+        {
+            GameObject go = Instantiate(itemExp);
+            go.transform.SetParent(expParent.transform);
+            expQueue.Enqueue(go);
+        }
 
         for (int i = 0; i < batCreateCount; i++)
         {
@@ -210,6 +233,22 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
         switch (_type)
         {
+            #region ITEM
+            case OBJECT_TYPE.ITEMEXPTYPE:
+                {
+                    if (expQueue.Count == 0)
+                    {
+                        go = Instantiate(itemExp);
+                        go.transform.SetParent(expParent.transform);
+                    }
+                    else
+                    {
+                        go = expQueue.Dequeue();
+                    }
+                }
+                break;
+            #endregion
+
             #region Monster
             case OBJECT_TYPE.MONSTERBATTYPE:
                 {
@@ -374,6 +413,11 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
         switch (type)
         {
+            case OBJECT_TYPE.ITEMEXPTYPE:
+                {
+                    expQueue.Enqueue(go);
+                }
+                break;
             case OBJECT_TYPE.MONSTERBATTYPE:
                 {
                     batQueue.Enqueue(go);
@@ -394,10 +438,6 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     boombQueue.Enqueue(go);
                 }
                 break;
-            case OBJECT_TYPE.ITEMTYPE:
-                break;
-            case OBJECT_TYPE.COINTYPE:
-                break;
             case OBJECT_TYPE.EFFECTFIREBALLTYPE:
                 {
                     fireBallQueue.Enqueue(go);
@@ -405,7 +445,6 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                 break;
             case OBJECT_TYPE.EFFECTMAGICBOLTTYPE:
                 {
-
                     magicBoltQueue.Enqueue(go);
                 }
                 break;

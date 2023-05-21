@@ -10,16 +10,15 @@ public class MonsterDataManager
 
     public MonsterDataManager() 
     {
-        InitData();
     }
     
-    private void InitData()
+    public void InitData()
     {
-        ClearBatData();
+        ClearData();
     }
 
 
-    private void ClearBatData()
+    private void ClearData()
     {
         if(monsterData != null)
         {

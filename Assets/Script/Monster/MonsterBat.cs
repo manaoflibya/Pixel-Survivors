@@ -34,5 +34,7 @@ public class MonsterBat : Monster
         //recycle« ø‰
         //monsterAction?.Invoke(myType, batUID,this.gameObject);
         monsterAction?.Invoke(myType, monsterUID,this.gameObject);
+        monsterDeadAction?.Invoke(this.transform.position, expPoint);
+
     }
 }

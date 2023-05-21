@@ -7,7 +7,7 @@ public class EffectController : MonoBehaviour
 {
    // public EffectConstant constant;
 
-    private ObjectFactory effectFactory;
+    private EffectFactory effectFactory;
     private EffectDataManager effectDataManager;
 
     private void Awake()

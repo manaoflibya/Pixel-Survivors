@@ -153,4 +153,9 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         playerData.playerAnimator.SetTrigger(playerData.playerDeadAnimationName);
     }
+
+    public void TakeEXP(float exp)
+    {
+        playerData.PlayerEXP += exp;
+    }
 }

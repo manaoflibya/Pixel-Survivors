@@ -48,5 +48,7 @@ public class MonsterBoomb : Monster
     private void FinishDeadAnim()
     {
         monsterAction?.Invoke(myType, monsterUID, this.gameObject);
+        monsterDeadAction?.Invoke(this.transform.position, expPoint);
+
     }
 }

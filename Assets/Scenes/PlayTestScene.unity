@@ -352,6 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGameState: 0
   monsterController: {fileID: 245942940}
+  itemController: {fileID: 0}
   cameraController: {fileID: 708958939}
 --- !u!4 &245942937
 Transform:
@@ -395,6 +396,7 @@ MonoBehaviour:
   MaxDistance: 8
   minDistance: 5
   batCreateCount: 100
+  batDamage: 2
   batHealth: 100
   batSpeed: 1.5
   batSize: {x: 1, y: 1, z: 1}
@@ -787,7 +789,7 @@ SpriteRenderer:
   m_Size: {x: 1.6, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &904411792
@@ -1190,7 +1192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1955328074
 Transform:
   m_ObjectHideFlags: 0

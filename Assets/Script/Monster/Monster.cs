@@ -18,7 +18,11 @@ public class Monster : MonoBehaviour
     public float speed;
     public Vector3 size;
 
+    
     public Action<OBJECT_TYPE,int, GameObject> monsterAction;
+    public Action<Vector3, float> monsterDeadAction;
+
+    public float expPoint;
 
     [SerializeField]
     protected Animator monsterAnimator;

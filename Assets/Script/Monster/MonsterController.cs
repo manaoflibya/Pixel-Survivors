@@ -13,7 +13,7 @@ public class MonsterController : MonoBehaviour
 {
     public MonsterConstant constant;
 
-    private ObjectFactory monsterFactory;
+    private MonsterFactory monsterFactory;
     private MonsterDataManager monsterDataManager;
 
 
@@ -21,10 +21,6 @@ public class MonsterController : MonoBehaviour
     {
         monsterFactory = new MonsterFactory();
         monsterDataManager = new MonsterDataManager();
-    }
-
-    private void Update()
-    {
     }
 
     public Vector3 FindClosestMonster()
@@ -183,7 +179,7 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    public void OnMonster(int createCount, OBJECT_TYPE type, float health, float damage, float speed, Vector3 size)
+    public void OnMonster(int createCount, OBJECT_TYPE type, float health, float damage, float speed, Vector3 size, float expPoint)
     {
         for (int i = 0; i < createCount; i++)
         {
@@ -204,7 +200,7 @@ public class MonsterController : MonoBehaviour
             }
 
 
-            go = monsterFactory.AddObject(type, vec, PlayerController.Instance.playerData.playerGo, DeleteMonsterData, health, damage, speed, size);
+            go = monsterFactory.AddObject(type, vec, PlayerController.Instance.playerData.playerGo, DeleteMonsterData, health, damage, speed, size, PixelGameManager.Instance.itemController.OnItemEXP,expPoint);
 
             go.TryGetComponent<Monster>(out monster);
 

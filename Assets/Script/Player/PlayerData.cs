@@ -44,6 +44,13 @@ public class PlayerData : MonoBehaviour
         set { this.playerDead = value; }
     }
 
+    private float playerEXP = 0f;
+    public float PlayerEXP
+    {
+        get { return this.playerEXP; }
+        set { this.playerEXP = value; }
+    }
+
     public float playerSize = 0.5f;
 
     public Vector3 playerVec = new Vector3 (0, 0, 0);
