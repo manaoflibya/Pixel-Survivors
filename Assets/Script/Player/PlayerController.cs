@@ -153,6 +153,23 @@ public class PlayerController : MonoSingleton<PlayerController>
         Debug.Log("current Player Health "+ playerData.Health);
     }
 
+    public void TakeHeal(float heal)
+    {
+        if(playerData.PlayerDead.Equals(true))
+        {
+            return;
+        }
+
+        playerData.Health += heal;
+        
+        if(playerData.Health > playerData.MaxHealth)
+        {
+            playerData.Health = playerData.MaxHealth;
+        }
+
+        Debug.Log("current Player Health " + playerData.Health);
+    }
+
     public Vector3 GetPlayerVec()
     {
         return playerData.transform.position;

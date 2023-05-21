@@ -36,6 +36,17 @@ public class ItemFactory : ObjectFactory
         return go.gameObject;
     }
 
+    public GameObject AddObject(OBJECT_TYPE myType, Vector3 spawnPos, System.Action<OBJECT_TYPE, int, GameObject> action)
+    {
+        Item go = ObjectPool.Instance.Get<Item>(myType);
+
+        go.myType = myType;
+        go.spawnPos = spawnPos;
+        go.action = action;
+
+        return go.gameObject;
+    }
+
     public override void RecycleObject(OBJECT_TYPE myType, GameObject go)
     {
         ObjectPool.Instance.Recycle<Item>(myType, go);

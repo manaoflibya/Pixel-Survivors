@@ -30,6 +30,12 @@ public class PlayerData : MonoBehaviour
         set { this.speed = value; } 
     }
 
+    private float maxhealth = 100f;
+    public float MaxHealth
+    {
+        get { return maxhealth; }
+    }
+
     private float health = 100f;
     public float Health
     {

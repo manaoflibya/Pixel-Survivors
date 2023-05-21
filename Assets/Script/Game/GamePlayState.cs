@@ -20,6 +20,8 @@ public class GamePlayState : GameState
     private float monsterExpPointBIG = 50f;
     private float createTime = 10f;
 
+    private float healPoint = 5f;
+
     public override void OnEnter()
     {
         PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
@@ -29,6 +31,11 @@ public class GamePlayState : GameState
         
         Vector3 vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemGravity(vec);
+        vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
+        PixelGameManager.Instance.itemController.OnItemBox(vec);
+        vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
+        PixelGameManager.Instance.itemController.OnItemHP(vec, healPoint);
+
     }
 
     public override void OnUpdate()
@@ -44,6 +51,11 @@ public class GamePlayState : GameState
 
             Vector3 vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
             PixelGameManager.Instance.itemController.OnItemGravity(vec);
+            vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
+            PixelGameManager.Instance.itemController.OnItemBox(vec);
+            vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
+            PixelGameManager.Instance.itemController.OnItemHP(vec, healPoint);
+
         }
     }
 

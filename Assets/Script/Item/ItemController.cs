@@ -45,20 +45,6 @@ public class ItemController : MonoBehaviour
         itemDataManager.AddExp(ref item);
     }
 
-    public void OnItemEXP(OBJECT_TYPE myType, Vector3 spawnPos, GameObject target, float moveAwaySpeed, float followSpeed, float expPoint)
-    {
-        ItemEXP item = null;
-        GameObject go = null;
-
-        go = itemFactory.AddObject(myType, spawnPos, target, DeleteItemData, moveAwaySpeed, followSpeed, expPoint);
-
-        go.TryGetComponent<ItemEXP>(out item);
-
-        item.OnReset();
-
-        itemDataManager.AddExp(ref item);
-    }
-
     public void OnItemGravity(Vector3 spawnPos)
     {
         ItemGravity item = null;
@@ -78,6 +64,41 @@ public class ItemController : MonoBehaviour
         item.OnReset();
 
         itemDataManager.AddGravity(ref item);
+    }
+
+    public void OnItemBox(Vector3 spawnPos)
+    {
+        ItemBox item = null;
+        GameObject go = null;
+
+        go = itemFactory.AddObject(OBJECT_TYPE.ITEMBOXTYPE, spawnPos, DeleteItemData);
+
+        go.TryGetComponent<ItemBox>(out item);
+
+        item.OnReset();
+
+        itemDataManager.AddItemBox(ref item);
+    }
+
+    public void OnItemHP(Vector3 spawnPos, float healPoint)
+    {
+        ItemHP item = null;
+        GameObject go = null;
+
+        go = itemFactory.AddObject(
+            OBJECT_TYPE.ITEMHPTYPE,
+            spawnPos,
+            PlayerController.Instance.GetPlayerObject(),
+            DeleteItemData,
+            itemConstant.moveAwaySpeed,
+            itemConstant.followSpeed,
+            healPoint);
+
+        go.TryGetComponent<ItemHP>(out item);
+
+        item.OnReset();
+
+        itemDataManager.AddItemHP(ref item);
     }
 
     private void UseGravityItem()
@@ -102,19 +123,19 @@ public class ItemController : MonoBehaviour
                     itemDataManager.DelExp(uid);
                 }
                 break;
-            case OBJECT_TYPE.ITEMBOXTYPE:
+            case OBJECT_TYPE.ITEMGRAVITYTYPE:
                 {
                     itemDataManager.DelGravity(uid);
                 }
                 break;
-            case OBJECT_TYPE.ITEMGRAVITYTYPE:
+            case OBJECT_TYPE.ITEMBOXTYPE:
                 {
-
+                    itemDataManager.DelItemBox(uid);
                 }
                 break;
             case OBJECT_TYPE.ITEMHPTYPE:
                 {
-
+                    itemDataManager.DelItemHP(uid);
                 }
                 break;
 
