@@ -150,7 +150,13 @@ public class PlayerController : MonoSingleton<PlayerController>
             playerData.PlayerDead = true;
         }
 
+        if (UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
+        {
+            UIPresenter.Instance.gamePlayUIModel.HealthBarChange(playerData.MaxHealth, playerData.Health);
+        }
+
         Debug.Log("current Player Health "+ playerData.Health);
+
     }
 
     public void TakeHeal(float heal)
@@ -165,6 +171,11 @@ public class PlayerController : MonoSingleton<PlayerController>
         if(playerData.Health > playerData.MaxHealth)
         {
             playerData.Health = playerData.MaxHealth;
+        }
+
+        if(UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
+        {
+            UIPresenter.Instance.gamePlayUIModel.HealthBarChange(playerData.MaxHealth, playerData.Health);
         }
 
         Debug.Log("current Player Health " + playerData.Health);
@@ -187,6 +198,23 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void TakeEXP(float exp)
     {
+        float residual = 0f;
+
         playerData.PlayerEXP += exp;
+
+        if(playerData.PlayerEXP >= playerData.PlayerMaxEXP)
+        {
+            Debug.Log("Player Level UP!(Please Add Method here)");
+            residual = playerData.PlayerEXP - playerData.PlayerMaxEXP;
+            playerData.PlayerEXP = 0f;
+            playerData.PlayerMaxEXP += playerData.expIncreaseValue;
+        }
+
+        playerData.PlayerEXP += residual;
+
+        if (UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
+        {
+            UIPresenter.Instance.gamePlayUIModel.ExpBarChange(playerData.PlayerMaxEXP, playerData.PlayerEXP);
+        }
     }
 }

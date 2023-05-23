@@ -50,6 +50,13 @@ public class PlayerData : MonoBehaviour
         set { this.playerDead = value; }
     }
 
+    private float playerMaxEXP = 100f;
+    public float PlayerMaxEXP
+    {
+        get { return this.playerMaxEXP; }
+        set { this.playerMaxEXP = value; }
+    }
+
     private float playerEXP = 0f;
     public float PlayerEXP
     {
@@ -58,6 +65,7 @@ public class PlayerData : MonoBehaviour
     }
 
     public float playerSize = 0.5f;
+    public float expIncreaseValue = 50f;
 
     public Vector3 playerVec = new Vector3 (0, 0, 0);
 }

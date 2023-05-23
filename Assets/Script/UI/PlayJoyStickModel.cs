@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PlayJoyStickModel : GameUIModel
 {
+    private PlayJoyStickView view = null;
+    private string joyStickName = string.Empty;
+
+
     public PlayJoyStickModel()
     {
         view = UnityEngine.Object.FindObjectOfType<PlayJoyStickView>();
@@ -20,9 +24,6 @@ public class PlayJoyStickModel : GameUIModel
             throw new System.Exception("Check JoyStick UI Model");
         }
     }
-
-    private PlayJoyStickView view = null;
-    private string joyStickName = string.Empty;
 
     public override string Name
     {
@@ -42,6 +43,10 @@ public class PlayJoyStickModel : GameUIModel
         get { return this.moveVec; }
         private set { this.moveVec = value; }  
     }
+
+    /// /////////////////////////////////
+
+
 
     public override void Show()
     {

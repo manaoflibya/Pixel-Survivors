@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Net.Sockets;
-using UnityEditor.U2D;
 using UnityEngine;
 
 public class EffectFireBall : Effect
@@ -12,11 +9,11 @@ public class EffectFireBall : Effect
     public GameObject exposionEffect;
     public GameObject trailEffect;
 
-    private float stopExplisionTime = 0.3f;
+    private float stopExplosionTime = 0.3f;
     private float floorExplosionTime = 0.8f;
 
     private string playAnimMethodName = "StartExplosion";
-    private string stopAnimMethodName = "StopExplision";
+    private string stopAnimMethodName = "StopExplosion";
 
     public override void OnReset()
     {
@@ -24,9 +21,8 @@ public class EffectFireBall : Effect
 
         this.transform.localScale = size;
         this.transform.position = spawnPos;
-
+        StopExplosion();
         Invoke(playAnimMethodName, floorExplosionTime);
-
     }
 
     private void FixedUpdate()
@@ -47,14 +43,14 @@ public class EffectFireBall : Effect
     {
         exposionEffect.SetActive(true);
         trailEffect.SetActive(false);
-        Invoke(stopAnimMethodName, stopExplisionTime);
+        Invoke(stopAnimMethodName, stopExplosionTime);
     }
 
-    private void StopExplision()
+    private void StopExplosion()
     {
-        action?.Invoke(myType, fireBallUID, this.gameObject);
-        exposionEffect.SetActive(false);
         trailEffect.SetActive(true);
+        exposionEffect.SetActive(false);
+        action?.Invoke(myType, fireBallUID, this.gameObject);
     }
 }
 

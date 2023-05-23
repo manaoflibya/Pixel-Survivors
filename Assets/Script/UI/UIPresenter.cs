@@ -8,6 +8,9 @@ public class UIPresenter : MonoSingleton<UIPresenter>
 {
     public UIPresenterData presenterData;
     public PlayJoyStickModel playJoyStickModel;
+    public GamePlayUIModel gamePlayUIModel;
+    public PlaySettingUIModel playSettingUIModel;
+
 
 
     private void Start()
@@ -17,12 +20,7 @@ public class UIPresenter : MonoSingleton<UIPresenter>
 
     private void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        if (presenterData.modelList.Count > 0)
+        if (presenterData.useModelList.Count > 0)
         {
             // 지금 JoyStick Model만 들어있음
             presenterData.useModelList.ForEach(model => { model.UpdateInfo(); });
@@ -30,17 +28,28 @@ public class UIPresenter : MonoSingleton<UIPresenter>
     }
 
 
-
     private void InitUIPresenter()
     {
         playJoyStickModel = new PlayJoyStickModel();
 
-        if(playJoyStickModel != null)
+        if (playJoyStickModel != null)
         {
             AddUIList(playJoyStickModel);
         }
 
+        gamePlayUIModel = new GamePlayUIModel();
 
+        if (gamePlayUIModel != null)
+        {
+            AddUIList(gamePlayUIModel);
+        }
+
+        playSettingUIModel = new PlaySettingUIModel();
+
+        if(playSettingUIModel != null)
+        {
+            AddUIList(playSettingUIModel);
+        }
     }
 
     /// <summary>
@@ -127,6 +136,17 @@ public class UIPresenter : MonoSingleton<UIPresenter>
         }
         presenterData.useModelList.Clear();
         
+        return true;
+    }
+
+    public bool FindUseUIModel(GameUIModel model)
+    {
+        if(!presenterData.useModelList.Contains(model))
+        {
+            Debug.Log($"Don't have {model} List Data ");
+            return false;
+        }
+
         return true;
     }
 }

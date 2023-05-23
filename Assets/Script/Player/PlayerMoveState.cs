@@ -16,9 +16,8 @@ public class PlayerMoveState : PlayerState
     public override void OnEnter(PlayerData _playerData)
     {
         playerData = _playerData;   
-        GameUIModel gameUIModel = UIPresenter.Instance.playJoyStickModel;
-        UIPresenter.Instance.UseModelClassList(gameUIModel);
-
+        UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playJoyStickModel);
+        UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.gamePlayUIModel);
     }
 
     public override void OnUpdate()
@@ -151,5 +150,6 @@ public class PlayerMoveState : PlayerState
     public override void OnExit()
     {
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);
+        UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.gamePlayUIModel);
     }
 }

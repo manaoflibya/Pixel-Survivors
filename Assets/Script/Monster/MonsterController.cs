@@ -1,13 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using Unity.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SocialPlatforms.GameCenter;
-using UnityEngine.TextCore.LowLevel;
 
 public class MonsterController : MonoBehaviour
 {
