@@ -583,26 +583,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 379854607, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: effectKunaiSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 91bacc9d39607764d9bb9fd705e4ce20, type: 3}
-    - target: {fileID: 379854607, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: effectBatManSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 35ff61f9c09eec040ac81fcc9fbfc6e0, type: 3}
-    - target: {fileID: 379854607, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: effectPoisonSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: aa6bdfacff634af4da56e82e33f2a550, type: 3}
-    - target: {fileID: 379854607, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: effectMagicBoltSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4aae302bfd1304042bae04832c0dba8e, type: 3}
-    - target: {fileID: 379854607, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
-      propertyPath: effectBounceBallSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 03891276eabf72c4390431cbc185b635, type: 3}
     - target: {fileID: 5253022343263849461, guid: ae3497bcb4556b9449ea6b314ff00d47, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
