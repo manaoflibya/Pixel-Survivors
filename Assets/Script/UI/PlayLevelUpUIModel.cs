@@ -90,6 +90,7 @@ public class PlayLevelUpUIModel : GameUIModel
         if (this.Go != null)
         {
             this.Go.SetActive(false);
+            Time.timeScale = 1f;
         }
         else
         {
@@ -111,6 +112,7 @@ public class PlayLevelUpUIModel : GameUIModel
             StartButton.onClick.AddListener(()=> ClickStartButton());
 
 
+            Time.timeScale = 0f;
             ShowActives();
         }
         else
