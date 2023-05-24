@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class GamePlayUIModel : GameUIModel
         {
             this.Go = view.gameObject;
             this.Name = view.name;
+            this.HitImage = view.hitImage;
             this.ExpBar = view.expBar;
             this.HealthBar = view.healthBar;
             this.PauseButton = view.pauseButton;    
@@ -43,6 +45,13 @@ public class GamePlayUIModel : GameUIModel
     {
         get { return this.timer; }
         set { this.timer = value; }
+    }
+
+    private Image hitImage = null;
+    public Image HitImage
+    {
+        set { this.hitImage = value; }
+        get { return this.hitImage; }
     }
 
     private Slider expBar = null;
@@ -82,6 +91,7 @@ public class GamePlayUIModel : GameUIModel
         if (this.Go != null)
         {
             this.Go.SetActive(false);
+            HitImage.gameObject.SetActive(false);
         }
         else
         {
@@ -112,6 +122,18 @@ public class GamePlayUIModel : GameUIModel
         {
             throw new System.Exception("Go is null");
         }
+    }
+
+    public float OnHitImage()
+    {
+        //HitImage.gameObject.SetActive(true);
+
+        return 0f;
+    }
+
+    public void OffHItImage()
+    {
+        //HitImage.gameObject.SetActive(false);
     }
 
     public void HealthBarChange(float maxHealth ,float value)

@@ -159,7 +159,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
         Debug.Log("current Player Health "+ playerData.Health);
-
     }
 
     public void TakeHeal(float heal)
