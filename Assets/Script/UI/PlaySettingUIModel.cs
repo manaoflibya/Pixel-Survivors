@@ -68,12 +68,6 @@ public class PlaySettingUIModel : GameUIModel
 
     public override void Init()
     {
-        HomeButton.onClick.RemoveAllListeners();
-        SoundButton.onClick.RemoveAllListeners();
-        PlayButton.onClick.RemoveAllListeners();
-
-        PlayButton.onClick.AddListener(()=> ClickPlayButton());
-
         Hide();
     }
 
@@ -82,6 +76,13 @@ public class PlaySettingUIModel : GameUIModel
         if (this.Go != null)
         {
             this.Go.SetActive(true);
+            //button에 등록된 Listeners 초기화
+            HomeButton.onClick.RemoveAllListeners();
+            SoundButton.onClick.RemoveAllListeners();
+            PlayButton.onClick.RemoveAllListeners();
+
+            PlayButton.onClick.AddListener(() => ClickPlayButton());
+            Time.timeScale = 0f;
         }
         else
         {
@@ -101,7 +102,8 @@ public class PlaySettingUIModel : GameUIModel
 
     private void ClickPlayButton()
     {
-        UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playSettingUIModel);
+        //UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playSettingUIModel);
+        UIPresenter.Instance.NotUseModelClassList(this);
         Time.timeScale = 1f;
     }
 

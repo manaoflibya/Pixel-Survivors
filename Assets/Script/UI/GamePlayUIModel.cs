@@ -18,6 +18,7 @@ public class GamePlayUIModel : GameUIModel
             this.ExpBar = view.expBar;
             this.HealthBar = view.healthBar;
             this.PauseButton = view.pauseButton;    
+            this.PlayTimeText = view.playTimeText;
         }
         else
         {
@@ -35,6 +36,13 @@ public class GamePlayUIModel : GameUIModel
     {
         protected set { this.go = value; }
         get { return this.go; }
+    }
+
+    public float Timer = 0f;
+    private float timer
+    {
+        get { return this.timer; }
+        set { this.timer = value; }
     }
 
     private Slider expBar = null;
@@ -56,6 +64,13 @@ public class GamePlayUIModel : GameUIModel
     {
         set { this.pauseButton = value; }
         get { return this.pauseButton; }
+    }
+        
+    private Text playTimeText = null;
+    public Text PlayTimeText
+    {
+        set { this.playTimeText = value; }
+        get { return this.playTimeText; }
     }
 
     //////////////
@@ -80,6 +95,9 @@ public class GamePlayUIModel : GameUIModel
         PauseButton.onClick.RemoveAllListeners();
         
         PauseButton.onClick.AddListener(()=> ClickPauseButton());
+
+        // 타이머 초기화
+        Timer = 0f;
 
         Hide();
     }
@@ -111,11 +129,28 @@ public class GamePlayUIModel : GameUIModel
     public void ClickPauseButton()
     {
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playSettingUIModel);
-        Time.timeScale = 0f;
+    }
+
+
+    public void ChangePlayTimeText()
+    {
+        int second = (int)Timer % 60;
+        string minute = ((int)Timer / 60 % 60).ToString();
+
+        if (second < 10)
+        {
+            PlayTimeText.text = string.Format("0{0}:0{1}", minute, second.ToString());
+        }
+        else
+        {
+            PlayTimeText.text = string.Format("0{0}:{1}", minute, second.ToString());
+        }
     }
 
     public override void UpdateInfo()
     {
+        Timer += Time.deltaTime;
 
+        ChangePlayTimeText();
     }
 }

@@ -86,6 +86,7 @@ MonoBehaviour:
   expBar: {fileID: 114780106173739446}
   healthBar: {fileID: 347991789439827911}
   pauseButton: {fileID: 114069504263774178}
+  playTimeText: {fileID: 4306791349829397208}
 --- !u!1 &1284266337602406
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,8 +702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -300}
-  m_SizeDelta: {x: 160, y: 70}
+  m_AnchoredPosition: {x: -14.9036, y: -300}
+  m_SizeDelta: {x: 285.0964, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8039895729356161989
 CanvasRenderer:

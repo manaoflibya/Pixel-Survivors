@@ -14,7 +14,15 @@ public class PlayerData : MonoBehaviour
     // 상태를 변경할 때 빠져나가는 클래스에서 OnExit를 거쳐갔는지 확인하기 위해서 사용
     public bool checkClassOnExit;
     public string playerTagName = "Player";
+    
+    public List<Effect> effects = new List<Effect>();
 
+    public Sprite effectFireBallSprite;
+    public Sprite effectPoisonSprite;
+    public Sprite effectMagicBoltSprite;
+    public Sprite effectKunaiSprite;
+    public Sprite effectBounceBallSprite;
+    public Sprite effectBatManSprite;
 
     private bool allowMove;
     public bool AllowMove

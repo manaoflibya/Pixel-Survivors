@@ -8,4 +8,5 @@ public class GamePlayUIView : MonoBehaviour
     public Slider expBar;
     public Slider healthBar;
     public Button pauseButton;
+    public Text playTimeText;
 }

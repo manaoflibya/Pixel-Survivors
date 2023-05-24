@@ -10,7 +10,7 @@ public class UIPresenter : MonoSingleton<UIPresenter>
     public PlayJoyStickModel playJoyStickModel;
     public GamePlayUIModel gamePlayUIModel;
     public PlaySettingUIModel playSettingUIModel;
-
+    public PlayLevelUpUIModel playLevelUpUIModel;
 
 
     private void Start()
@@ -49,6 +49,13 @@ public class UIPresenter : MonoSingleton<UIPresenter>
         if(playSettingUIModel != null)
         {
             AddUIList(playSettingUIModel);
+        }
+
+        playLevelUpUIModel = new PlayLevelUpUIModel();
+
+        if(playLevelUpUIModel != null)
+        {
+            AddUIList(playLevelUpUIModel);
         }
     }
 

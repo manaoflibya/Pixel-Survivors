@@ -18,10 +18,14 @@ public class EffectConstant
     public float effectFireBallDamage = 30f;
     public Vector3 effectFireBallSize = new Vector3(1f, 1f, 1f);
 
+    public int fireBallUpgradeCount = 0;
+
     // magicbolt
     public float effectMagicBoltSpeed = 5f;
     public float effectMagicBoltDamage = 20f;
     public Vector3 effectMagicBoltSize = new Vector3(2f, 2f, 2f);
+
+    public int magicBoltUpgradeCount = 0;
 
     // kunai
     public float kunaiCoolTime = 6f;
@@ -35,10 +39,12 @@ public class EffectConstant
     public float effectKunaiDuration = 4f;
     public Vector3 effectKunaiSize = new Vector3(2f, 2f, 2f);
 
+    public int kunaiUpgradeCount = 0;
+
     // poison
     public float poisonCoolTime = 4f;
     public float poisonCurrentCoolTime = 0f;
-    public int poisonCreateCount = 5;
+    public int poisonCreateCount = 2;
 
     public Vector3 effectPoisondir = Vector3.back;
     public float effectPoisonSpeed = 2f;
@@ -46,6 +52,8 @@ public class EffectConstant
     public float effectPoisonDamage = 10f;
     public float effectPoisonDuration = 3f;
     public Vector3 effectPoisonSize = new Vector3(1.5f, 1.5f, 1.5f);
+
+    public int poisonUpgradeCount = 0;
 
     // BounceBall
     public float bounceBallCoolTime = 0.5f;
@@ -57,6 +65,8 @@ public class EffectConstant
     public float effectBounceBallDuration = 2f;
     public Vector3 effectBounceBallSize = new Vector3(2f,2f,2f);
 
+    public int bounceBallUpgradeCount = 1;
+
     // BatMan
     public float batmanCoolTime = 1f;
     public float batManCurrentCoolTime = 0f;
@@ -65,4 +75,6 @@ public class EffectConstant
     public float effectBatManSpeed = 5f;
     public float effectBatManDamage = 30f;
     public Vector3 effectBatManSize = new Vector3(1.5f, 1.5f, 1.5f);
+
+    public int batManUpgradeCount = 0;
 }

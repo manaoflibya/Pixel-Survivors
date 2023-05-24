@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -55,6 +56,8 @@ public class PlayerController : MonoSingleton<PlayerController>
         ChangePlayerState(PLAYERSTATE.BEGIN);
         effectConstant = new EffectConstant();  
         playerData.checkClassOnExit = true;
+
+        //playerData.effects
     }
 
     public void ChangePlayerState(PLAYERSTATE nextState)
@@ -208,13 +211,68 @@ public class PlayerController : MonoSingleton<PlayerController>
             residual = playerData.PlayerEXP - playerData.PlayerMaxEXP;
             playerData.PlayerEXP = 0f;
             playerData.PlayerMaxEXP += playerData.expIncreaseValue;
+            PlayerLevelUp();
         }
 
         playerData.PlayerEXP += residual;
 
-        if (UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
+        if(UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
         {
             UIPresenter.Instance.gamePlayUIModel.ExpBarChange(playerData.PlayerMaxEXP, playerData.PlayerEXP);
+        }    
+    }
+
+    private void PlayerLevelUp()
+    {
+        Sprite effectSprite = null;
+
+        int levelupType = UnityEngine.Random.Range((int)OBJECT_TYPE.EFFECTFIREBALLTYPE, (int)OBJECT_TYPE.EFFECTBATMANTYPE);
+
+        switch((OBJECT_TYPE)levelupType)
+        {
+            case OBJECT_TYPE.EFFECTFIREBALLTYPE:
+                {
+                    effectSprite = playerData.effectFireBallSprite;
+                    effectConstant.fireBallUpgradeCount++;
+                }
+                break;
+            case OBJECT_TYPE.EFFECTMAGICBOLTTYPE:
+                {
+                    effectSprite = playerData.effectMagicBoltSprite;
+                    effectConstant.magicBoltUpgradeCount++;
+                }
+                break;
+            case OBJECT_TYPE.EFFECTKUNAITYPE:
+                {
+                    effectSprite = playerData.effectKunaiSprite;
+                    effectConstant.kunaiUpgradeCount++;
+                }
+                break;
+            case OBJECT_TYPE.EFFECTPOISONTYPE:
+                {
+                    effectSprite = playerData.effectPoisonSprite;
+                    effectConstant.poisonUpgradeCount++;
+                }
+                break;
+            case OBJECT_TYPE.EFFECTBOUNCEBALLTYPE:
+                {
+                    effectSprite = playerData.effectBounceBallSprite;
+                    effectConstant.bounceBallUpgradeCount++;    
+                }
+                break;
+            case OBJECT_TYPE.EFFECTBATMANTYPE:
+                {
+                    effectSprite = playerData.effectBatManSprite;
+                    effectConstant.batManUpgradeCount++;
+                }
+                break;
+
+        }
+
+        UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playLevelUpUIModel);
+        if(UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.playLevelUpUIModel) && effectSprite != null)
+        {
+            UIPresenter.Instance.playLevelUpUIModel.ChangePlayerEffectImage(effectSprite);
         }
     }
 }

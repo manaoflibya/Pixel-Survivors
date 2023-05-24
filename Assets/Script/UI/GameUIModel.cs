@@ -10,10 +10,11 @@ public abstract class GameUIModel
     public abstract UnityEngine.GameObject Go { get; protected set; }
     protected UnityEngine.GameObject go;
 
+    public abstract void Init();
+
     public abstract void Show();
 
     public abstract void Hide();
 
     public abstract void UpdateInfo();
-    public abstract void Init();
 }

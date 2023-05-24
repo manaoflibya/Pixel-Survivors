@@ -298,7 +298,7 @@ Camera:
   m_GameObject: {fileID: 1751652086}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -4191,12 +4191,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7340593213987353755}
+  - component: {fileID: 379854607}
+  - component: {fileID: 379854606}
   - component: {fileID: 7721319715993971531}
   - component: {fileID: 8086202439210286133}
   - component: {fileID: 2690312511626364577}
   - component: {fileID: 7779907676414285165}
-  - component: {fileID: 379854606}
-  - component: {fileID: 379854607}
   - component: {fileID: 6894606286073199450}
   m_Layer: 6
   m_Name: UnitRoot
@@ -4223,6 +4223,49 @@ Transform:
   m_Father: {fileID: 5253022343263849461}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &379854607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092683277515177086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c97d40d1fad70546a92b6fd892af0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGo: {fileID: 5100974819469941344}
+  scaleGo: {fileID: 9092683277515177086}
+  playerAnimator: {fileID: 8086202439210286133}
+  playerWalkAnimationName: Walk
+  playerDeadAnimationName: Dead
+  checkClassOnExit: 0
+  playerTagName: Player
+  effectFireBallSprite: {fileID: 21300000, guid: 8bdeda6e1130f524697f37f293f6e46a, type: 3}
+  effectPoisonSprite: {fileID: 21300000, guid: aa6bdfacff634af4da56e82e33f2a550, type: 3}
+  effectMagicBoltSprite: {fileID: 21300000, guid: 4aae302bfd1304042bae04832c0dba8e, type: 3}
+  effectKunaiSprite: {fileID: 21300000, guid: 91bacc9d39607764d9bb9fd705e4ce20, type: 3}
+  effectBounceBallSprite: {fileID: 21300000, guid: 03891276eabf72c4390431cbc185b635, type: 3}
+  effectBatManSprite: {fileID: 21300000, guid: 35ff61f9c09eec040ac81fcc9fbfc6e0, type: 3}
+  playerSize: 0.5
+  expIncreaseValue: 50
+  playerVec: {x: 0, y: 0, z: 0}
+--- !u!114 &379854606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092683277515177086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97046e6a1ee00a04ca85b694ff204d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 379854607}
+  effectController: {fileID: 6894606286073199450}
+  currentPlayerState: 0
 --- !u!210 &7721319715993971531
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -4292,42 +4335,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.013087299, y: 0.4826973}
   m_Size: {x: 0.6719484, y: 1.1544055}
   m_Direction: 0
---- !u!114 &379854606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9092683277515177086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97046e6a1ee00a04ca85b694ff204d06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerData: {fileID: 379854607}
-  effectController: {fileID: 0}
-  currentPlayerState: 0
---- !u!114 &379854607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9092683277515177086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c97d40d1fad70546a92b6fd892af0b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerGo: {fileID: 5100974819469941344}
-  scaleGo: {fileID: 9092683277515177086}
-  playerAnimator: {fileID: 8086202439210286133}
-  playerWalkAnimationName: Walk
-  playerDeadAnimationName: Dead
-  checkClassOnExit: 0
-  playerTagName: Player
-  playerSize: 0.5
-  playerVec: {x: 0, y: 0, z: 0}
 --- !u!114 &6894606286073199450
 MonoBehaviour:
   m_ObjectHideFlags: 0

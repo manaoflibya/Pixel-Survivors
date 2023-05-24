@@ -58,6 +58,7 @@ public class PlayerMoveState : PlayerState
             {
                 PlayerController.Instance.effectController.OnEffectFireBall(
                     PlayerController.Instance.effectConstant.effectCreateCount,
+                    PlayerController.Instance.effectConstant.fireBallUpgradeCount,
                     PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters().transform.position + new Vector3(3f, 10f),
                     PixelGameManager.Instance.monsterController.FindCameraVisibleMonsters(), // 가까운 몬스터 찾아서 그 위치로 바꿔야함.
                     PlayerController.Instance.effectConstant.effectFireBallSpeed,
@@ -69,6 +70,7 @@ public class PlayerMoveState : PlayerState
             {
                 PlayerController.Instance.effectController.OnEffectMagicBolt(
                     PlayerController.Instance.effectConstant.effectCreateCount,
+                    PlayerController.Instance.effectConstant.magicBoltUpgradeCount,
                     PlayerController.Instance.GetPlayerVec(),
                     PixelGameManager.Instance.monsterController.FindClosestMonster(),
                     PlayerController.Instance.effectConstant.effectMagicBoltSpeed,
@@ -86,6 +88,7 @@ public class PlayerMoveState : PlayerState
 
             PlayerController.Instance.effectController.OnEffectKunai(
                 PlayerController.Instance.effectConstant.kunaiCreateCount,
+                PlayerController.Instance.effectConstant.kunaiUpgradeCount,
                 PlayerController.Instance.GetPlayerVec(),
                 PlayerController.Instance.playerData.playerGo.transform,
                 PlayerController.Instance.effectConstant.effectKunaiAsix,
@@ -105,6 +108,7 @@ public class PlayerMoveState : PlayerState
 
             PlayerController.Instance.effectController.OnEffectPoison(
                 PlayerController.Instance.effectConstant.poisonCreateCount,
+                PlayerController.Instance.effectConstant.poisonUpgradeCount,
                 PlayerController.Instance.GetPlayerVec(),
                 PlayerController.Instance.effectConstant.effectPoisondir,
                 PlayerController.Instance.effectConstant.effectPoisonAngle,
@@ -120,6 +124,7 @@ public class PlayerMoveState : PlayerState
             PlayerController.Instance.effectConstant.bounceBallCurrentCoolTime = 0f;
             PlayerController.Instance.effectController.OnEffectBounceBall(
                 PlayerController.Instance.effectConstant.bounceCreateCount,
+                PlayerController.Instance.effectConstant.bounceBallUpgradeCount,
                 PlayerController.Instance.GetPlayerVec(),
                 PixelGameManager.Instance.monsterController.FindClosestMonster(),
                 PlayerController.Instance.effectConstant.effectBounceBallSpeed,
@@ -128,22 +133,23 @@ public class PlayerMoveState : PlayerState
                 PlayerController.Instance.effectConstant.effectBounceBallSize);
         }
 
-        //PlayerController.Instance.effectConstant.batManCurrentCoolTime += Time.deltaTime;
-        //if(PlayerController.Instance.effectConstant.batManCurrentCoolTime >= PlayerController.Instance.effectConstant.batmanCoolTime)
-        //{
-        //    PlayerController.Instance.effectConstant.batManCurrentCoolTime = 0f;
+        PlayerController.Instance.effectConstant.batManCurrentCoolTime += Time.deltaTime;
+        if (PlayerController.Instance.effectConstant.batManCurrentCoolTime >= PlayerController.Instance.effectConstant.batmanCoolTime)
+        {
+            PlayerController.Instance.effectConstant.batManCurrentCoolTime = 0f;
 
-        //    Vector3 effectBatmanDir = new Vector3(Random.Range(-180f, 180f), Random.Range(-180f, 180f), Random.Range(-180f, 180f));
+            Vector3 effectBatmanDir = new Vector3(Random.Range(-180f, 180f), Random.Range(-180f, 180f), Random.Range(-180f, 180f));
 
-        //    PlayerController.Instance.effectController.OnEffectBatMan(
-        //        PlayerController.Instance.effectConstant.batManCreateCount,
-        //        PlayerController.Instance.GetPlayerVec(),
-        //        effectBatmanDir.normalized,
-        //        PlayerController.Instance.effectConstant.batManHitCount,
-        //        PlayerController.Instance.effectConstant.effectBatManSpeed,
-        //        PlayerController.Instance.effectConstant.effectBatManDamage,
-        //        PlayerController.Instance.effectConstant.effectBatManSize);
-        //}
+            PlayerController.Instance.effectController.OnEffectBatMan(
+                PlayerController.Instance.effectConstant.batManCreateCount,
+                PlayerController.Instance.effectConstant.batManUpgradeCount,
+                PlayerController.Instance.GetPlayerVec(),
+                effectBatmanDir.normalized,
+                PlayerController.Instance.effectConstant.batManHitCount,
+                PlayerController.Instance.effectConstant.effectBatManSpeed,
+                PlayerController.Instance.effectConstant.effectBatManDamage,
+                PlayerController.Instance.effectConstant.effectBatManSize);
+        }
 
     }
 
