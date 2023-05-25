@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIPresenter : MonoSingleton<UIPresenter>  
@@ -11,9 +12,10 @@ public class UIPresenter : MonoSingleton<UIPresenter>
     public GamePlayUIModel gamePlayUIModel;
     public PlaySettingUIModel playSettingUIModel;
     public PlayLevelUpUIModel playLevelUpUIModel;
+    public PlayGameOverUIModel playGameOverUIModel;
+    public PlayGameWinUIModel playGameWinUIModel;
 
-
-    private void Start()
+    private void Awake()
     {
         InitUIPresenter();
     }
@@ -56,7 +58,21 @@ public class UIPresenter : MonoSingleton<UIPresenter>
         if(playLevelUpUIModel != null)
         {
             AddUIList(playLevelUpUIModel);
+        }        
+        
+        playGameOverUIModel = new PlayGameOverUIModel();
+        if(playGameOverUIModel != null)
+        {
+            AddUIList(playGameOverUIModel);
         }
+
+        playGameWinUIModel = new PlayGameWinUIModel();
+
+        if (playGameWinUIModel != null)
+        {
+            AddUIList(playGameWinUIModel);
+        }
+
     }
 
     /// <summary>
@@ -135,14 +151,25 @@ public class UIPresenter : MonoSingleton<UIPresenter>
         }
 
         presenterData.modelList.Clear();
+        
+        return true;
+    }
 
+    public bool RemoveAllUseUiList()
+    {
         if (presenterData.useModelList.Count == 0)
         {
             Debug.Log("Model List has nothing");
             return false;
         }
+
+        foreach(var data in presenterData.useModelList)
+        {
+            data.Hide();
+        }
+
         presenterData.useModelList.Clear();
-        
+
         return true;
     }
 

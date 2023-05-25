@@ -56,8 +56,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         ChangePlayerState(PLAYERSTATE.BEGIN);
         effectConstant = new EffectConstant();  
         playerData.checkClassOnExit = true;
-
-        //playerData.effects
     }
 
     public void ChangePlayerState(PLAYERSTATE nextState)
@@ -141,16 +139,12 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void TakeDamage(float damage)
     {
-        if(playerData.Health <= 0)
-        {
-            return;
-        }
-
         playerData.Health -= damage;
 
-        if(playerData.Health < 0)
+        if(playerData.Health <= 0)
         {
             playerData.PlayerDead = true;
+            PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMESTOPSTATE);
         }
 
         if (UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
@@ -186,6 +180,11 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Vector3 GetPlayerVec()
     {
         return playerData.transform.position;
+    }
+
+    public bool GetPlayerDead()
+    {
+        return playerData.PlayerDead;
     }
 
     public GameObject GetPlayerObject()

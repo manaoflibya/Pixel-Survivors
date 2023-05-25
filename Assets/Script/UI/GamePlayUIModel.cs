@@ -124,11 +124,9 @@ public class GamePlayUIModel : GameUIModel
         }
     }
 
-    public float OnHitImage()
+    public void OnHitImage()
     {
         //HitImage.gameObject.SetActive(true);
-
-        return 0f;
     }
 
     public void OffHItImage()
@@ -154,25 +152,12 @@ public class GamePlayUIModel : GameUIModel
     }
 
 
-    public void ChangePlayTimeText()
+    public void ChangePlayTimeText(string timeText)
     {
-        int second = (int)Timer % 60;
-        string minute = ((int)Timer / 60 % 60).ToString();
-
-        if (second < 10)
-        {
-            PlayTimeText.text = string.Format("0{0}:0{1}", minute, second.ToString());
-        }
-        else
-        {
-            PlayTimeText.text = string.Format("0{0}:{1}", minute, second.ToString());
-        }
+        PlayTimeText.text = timeText;
     }
 
     public override void UpdateInfo()
     {
-        Timer += Time.deltaTime;
-
-        ChangePlayTimeText();
     }
 }

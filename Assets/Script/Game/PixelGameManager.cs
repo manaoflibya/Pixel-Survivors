@@ -25,6 +25,8 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
     public MonsterController monsterController;
     public ItemController itemController;
     public CameraController cameraController;
+    public PlayTimeController playTimeContorller;
+
 
     private void Start()
     {

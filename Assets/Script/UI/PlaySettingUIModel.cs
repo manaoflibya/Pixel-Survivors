@@ -74,8 +74,8 @@ public class PlaySettingUIModel : GameUIModel
         PlayButton.onClick.RemoveAllListeners();
 
         PlayButton.onClick.AddListener(() => ClickPlayButton());
-        Debug.Log("SoundButton 기능 추가 ");
-        Debug.Log("HomeButton 기능 추가 ");
+        SoundButton.onClick.AddListener(() => ClickSoundButton());
+        HomeButton.onClick.AddListener(() => ClickHomeButton());
 
         Hide();
     }
@@ -95,11 +95,13 @@ public class PlaySettingUIModel : GameUIModel
 
     private void ClickSoundButton()
     {
+        Debug.Log("SoundButton 기능 추가 ");
 
     }
 
     private void ClickHomeButton()
     {
+        Debug.Log("HomeButton 기능 추가 ");
 
     }
 

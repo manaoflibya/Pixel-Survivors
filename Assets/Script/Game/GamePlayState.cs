@@ -24,11 +24,51 @@ public class GamePlayState : GameState
 
     public override void OnEnter()
     {
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBATTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointMiddle);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointBIG);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERSKELETONTYPE, 100f, 1f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
-        
+        UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playJoyStickModel);
+        UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.gamePlayUIModel);
+
+        PixelGameManager.Instance.playTimeContorller.StartGameTime();
+        SpawnMonsters();
+    }
+
+    public override void OnUpdate()
+    {
+        currentCraeteTime += Time.deltaTime;
+        if (currentCraeteTime > createTime && PlayerController.Instance.playerData.PlayerDead.Equals(false))
+        {
+            currentCraeteTime = 0f;
+            SpawnMonsters();
+
+        }
+
+        if (UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
+        {
+            UIPresenter.Instance.gamePlayUIModel.ChangePlayTimeText(PixelGameManager.Instance.playTimeContorller.GetPlayTime());
+        }
+
+        if(PixelGameManager.Instance.playTimeContorller.GetFinishPlayTime())
+        {
+            PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMESTOPSTATE);
+
+        }
+    }
+
+    public override void OnExit()
+    {
+        PixelGameManager.Instance.playTimeContorller.StopGameTime();
+
+        UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);
+        UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.gamePlayUIModel);
+    }
+
+    private void SpawnMonsters()
+    {
+
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBATTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointMiddle);
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointBIG);
+        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERSKELETONTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
+
         Vector3 vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemGravity(vec);
         vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
@@ -37,31 +77,4 @@ public class GamePlayState : GameState
         PixelGameManager.Instance.itemController.OnItemHP(vec, healPoint);
 
     }
-
-    public override void OnUpdate()
-    {
-        currentCraeteTime += Time.deltaTime;   
-        if(currentCraeteTime > createTime && PlayerController.Instance.playerData.PlayerDead.Equals(false))
-        {
-            currentCraeteTime = 0f;
-            PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
-            PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBATTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointMiddle);
-            PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointBIG);
-            PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERSKELETONTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
-
-            Vector3 vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
-            PixelGameManager.Instance.itemController.OnItemGravity(vec);
-            vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
-            PixelGameManager.Instance.itemController.OnItemBox(vec);
-            vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
-            PixelGameManager.Instance.itemController.OnItemHP(vec, healPoint);
-
-        }
-    }
-
-    public override void OnExit()
-    {
-
-    }
-    
 }

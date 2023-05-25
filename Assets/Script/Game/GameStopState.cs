@@ -11,7 +11,18 @@ public class GameStopState : GameState
 
     public override void OnEnter()
     {
-        Debug.Log(" StopState OnEnter");
+        UIPresenter.Instance.RemoveAllUseUiList();
+
+        if(PlayerController.Instance.GetPlayerDead().Equals(true))
+        {
+            UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playGameOverUIModel);
+        }
+        else
+        {
+            UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playGameWinUIModel);
+        }
+
+        PixelGameManager.Instance.playTimeContorller.StopGameTime();
     }
 
     public override void OnExit()
