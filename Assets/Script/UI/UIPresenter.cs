@@ -8,6 +8,8 @@ using UnityEngine;
 public class UIPresenter : MonoSingleton<UIPresenter>  
 {
     public UIPresenterData presenterData;
+    public HomeMenuUIModel homeMenuUIModel;
+    public LoadUIModel loadUIModel;
     public PlayJoyStickModel playJoyStickModel;
     public GamePlayUIModel gamePlayUIModel;
     public PlaySettingUIModel playSettingUIModel;
@@ -32,6 +34,21 @@ public class UIPresenter : MonoSingleton<UIPresenter>
 
     private void InitUIPresenter()
     {
+        DontDestroyOnLoad(this);
+
+        homeMenuUIModel = new HomeMenuUIModel();
+
+        if(homeMenuUIModel != null)
+        {
+            AddUIList(homeMenuUIModel);
+        }
+
+        loadUIModel = new LoadUIModel();
+        if(loadUIModel != null)
+        {
+            AddUIList(loadUIModel);
+        }
+
         playJoyStickModel = new PlayJoyStickModel();
 
         if (playJoyStickModel != null)

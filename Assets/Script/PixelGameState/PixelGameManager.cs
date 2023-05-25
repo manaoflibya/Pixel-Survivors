@@ -10,7 +10,7 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
     {
         NONE,
         GAMESPLASHSTATE,
-        GAMEMUNUSTATE,
+        GAMEMENUSTATE,
         GAMELOADSTATE,
         GAMEPLAYSTATE,
         GAMESTOPSTATE,
@@ -20,13 +20,18 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
 
     public PIXELGAMESTATE currentGameState = PIXELGAMESTATE.NONE;
     private Dictionary<PIXELGAMESTATE, GameState> gameStateDictionary = new Dictionary<PIXELGAMESTATE, GameState>();
-   // private GameState gameState;
 
     public MonsterController monsterController;
     public ItemController itemController;
-    public CameraController cameraController;
     public PlayTimeController playTimeContorller;
+    public SceneContoller sceneController;
 
+    public CameraController cameraController;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     private void Start()
     {
@@ -35,7 +40,22 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
 
     private void PixelGameManagerInit()
     {
-        ChangePixelGameState(PIXELGAMESTATE.GAMEPLAYSTATE); // ¹Ù²ã¾ßÇÔ
+        ChangePixelGameState(PIXELGAMESTATE.GAMEMENUSTATE); 
+    }
+
+    public void GameQuit()
+    {
+        Application.Quit();
+    }
+
+    public void InitCamraController()
+    {
+        cameraController = FindObjectOfType<CameraController>();
+    }
+
+    public void ClearCameraController()
+    {
+        cameraController = null;
     }
 
     private void Update()
@@ -66,14 +86,21 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
 
                 }
                 break;
-            case PIXELGAMESTATE.GAMEMUNUSTATE:
+            case PIXELGAMESTATE.GAMEMENUSTATE:
                 {
+                    if (!gameStateDictionary.ContainsKey(currentGameState))
+                    {
+                        gameStateDictionary.Add(currentGameState, new GameMenuState());
+                    }
 
                 }
                 break;
             case PIXELGAMESTATE.GAMELOADSTATE:
                 {
-
+                    if (!gameStateDictionary.ContainsKey(currentGameState))
+                    {
+                        gameStateDictionary.Add(currentGameState, new GameLoadState());
+                    }
                 }
                 break;
             case PIXELGAMESTATE.GAMEPLAYSTATE:

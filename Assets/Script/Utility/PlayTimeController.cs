@@ -18,15 +18,14 @@ public class PlayTimeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(playTimeData.isPlaying.Equals(true) && playTimeData.currentTime < constant.maxTime)
+        if(playTimeData.isPlaying.Equals(true))
         {
             playTimeData.currentTime += Time.fixedDeltaTime;
-        }
-        else
-        {
-            StopGameTime();
-            playTimeData.isFinishPlayTime = true;  
-            playTimeData.currentTime = constant.maxTime;
+
+            if(playTimeData.currentTime > constant.maxTime)
+            {
+                StopGameTime();
+            }
         }
     }
 
@@ -46,6 +45,9 @@ public class PlayTimeController : MonoBehaviour
     public void StopGameTime()
     {
         playTimeData.isPlaying = false;
+        playTimeData.isFinishPlayTime = true;
+        playTimeData.currentTime = constant.maxTime;
+
     }
 
     public string GetPlayTime()

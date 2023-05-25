@@ -27,6 +27,7 @@ public class GamePlayState : GameState
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playJoyStickModel);
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.gamePlayUIModel);
 
+        PixelGameManager.Instance.InitCamraController();
         PixelGameManager.Instance.playTimeContorller.StartGameTime();
         SpawnMonsters();
     }
@@ -55,10 +56,12 @@ public class GamePlayState : GameState
 
     public override void OnExit()
     {
+
         PixelGameManager.Instance.playTimeContorller.StopGameTime();
 
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.gamePlayUIModel);
+        PixelGameManager.Instance.ClearCameraController();
     }
 
     private void SpawnMonsters()

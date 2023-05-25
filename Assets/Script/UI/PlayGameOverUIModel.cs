@@ -24,9 +24,6 @@ public class PlayGameOverUIModel : GameUIModel
         }
     }
 
-
-
-
     public override string Name
     {
         protected set { this.name = value; }
