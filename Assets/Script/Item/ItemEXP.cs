@@ -24,8 +24,6 @@ public class ItemEXP : Item
         ChangeExpColor();
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == PlayerController.Instance.playerData.playerTagName && isFollowing.Equals(false)) 
@@ -68,5 +66,10 @@ public class ItemEXP : Item
             blueEXP.SetActive(false);
             greenEXP.SetActive(true);
         }
+    }
+
+    public void ClearAllEXP()
+    {
+        action?.Invoke(myType, expUID, this.gameObject);
     }
 }

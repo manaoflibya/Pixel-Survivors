@@ -28,4 +28,10 @@ public class ItemGravity : Item
         finishAction?.Invoke();
         action?.Invoke(myType,gravityUID,this.gameObject);
     }
+
+    public void ClearAllGravity()
+    {
+        finishAction?.Invoke();
+        action?.Invoke(myType, gravityUID, this.gameObject);
+    }
 }

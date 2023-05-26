@@ -22,6 +22,5 @@ public class GameMenuState : GameState
 
     public override void OnExit()
     {
-        UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.homeMenuUIModel);
     }
 }

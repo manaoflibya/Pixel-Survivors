@@ -27,4 +27,9 @@ public class ItemHP : Item
         PlayerController.Instance.TakeHeal(point);
         action?.Invoke(myType, itemHPUID, this.gameObject);
     }
+
+    public void ClearAllHP()
+    {
+        action?.Invoke(myType, itemHPUID, this.gameObject);
+    }
 }

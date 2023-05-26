@@ -6,24 +6,8 @@ public class MapController : MonoSingleton<MapController>
 {
     public MapData mapData;
 
-    private void Start()
-    {
-        InitMapController();
-    }
 
-    private void Update()
-    {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    MoveMap_Right();
-        //}
-        //else if(Input.GetMouseButtonDown(1))
-        //{
-        //    MoveMap_Left();
-        //}
-    }
-
-    private void InitMapController()
+    public void InitMapController()
     {
         mapData.isFirstLeft = true;
         mapData.currentCenterTrigger.SetActive(false);
@@ -42,7 +26,6 @@ public class MapController : MonoSingleton<MapController>
         }
         else if(name == mapData.trigger_Center)
         {
-            Debug.Log(name + " Center");
             ChangeCurrentMap();
         }
     }

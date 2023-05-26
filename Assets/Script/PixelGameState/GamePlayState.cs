@@ -28,8 +28,14 @@ public class GamePlayState : GameState
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.gamePlayUIModel);
 
         PixelGameManager.Instance.InitCamraController();
-        PixelGameManager.Instance.playTimeContorller.StartGameTime();
+        PixelGameManager.Instance.InitMapController();
+        PlayerController.Instance.InitPlayerController();
+        PixelGameManager.Instance.playTimeContorller.InitPlayerTimeController();
+
+        PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.MOVE);
         SpawnMonsters();
+
+
     }
 
     public override void OnUpdate()
@@ -61,7 +67,11 @@ public class GamePlayState : GameState
 
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.gamePlayUIModel);
-        PixelGameManager.Instance.ClearCameraController();
+
+        PixelGameManager.Instance.monsterController.DeleteAllMonsters();
+        PixelGameManager.Instance.itemController.DeleteAllItems();
+
+        //PixelGameManager.Instance.ClearCameraController();
     }
 
     private void SpawnMonsters()

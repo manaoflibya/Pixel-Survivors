@@ -113,6 +113,41 @@ public class ItemController : MonoBehaviour
         }
     }
     
+    public void DeleteAllItems()
+    {
+        List<ItemEXP> itemExp = new List<ItemEXP>();
+        List<ItemBox> itemBoxes = new List<ItemBox>();
+        List<ItemHP> itemsHP = new List<ItemHP>();  
+        List<ItemGravity> itemGravity = new List<ItemGravity>();
+
+        itemDataManager.FindAllActiveEXP(ref itemExp);
+
+        foreach(var exp in itemExp)
+        {
+            exp.ClearAllEXP();
+        }
+
+        itemDataManager.FindAllActiveBox(ref itemBoxes);
+
+        foreach(var box in itemBoxes)
+        {
+            box.ClearAllBox();
+        }
+
+        itemDataManager.FindAllActiveHP(ref itemsHP);
+
+        foreach( var hp in itemsHP)
+        {
+            hp.ClearAllHP(); 
+        }
+
+        itemDataManager.FindAllActiveGravity(ref itemGravity);
+
+        foreach(var gravity in itemGravity)
+        { 
+            gravity.ClearAllGravity(); 
+        }
+    }
 
     private void DeleteItemData(OBJECT_TYPE myType, int uid, GameObject go)
     {

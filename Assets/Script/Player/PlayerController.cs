@@ -34,28 +34,38 @@ public class PlayerController : MonoSingleton<PlayerController>
     private PLAYERSTATE currentPlayerState = PLAYERSTATE.NONE;  
 
     private Dictionary<PLAYERSTATE, PlayerState> playerClassDictionary = new Dictionary<PLAYERSTATE, PlayerState>();
-    
 
-    private void Start()
-    {
-        InitPlayerController();
-    }
+    private bool isControllerInit = false;
+    //private void Start()
+    //{
+    //    InitPlayerController();
+    //}
 
     private void Update()
     {
+        if(isControllerInit.Equals(false))
+        {
+            return;
+        }
+
         playerData.playerGo.transform.position = GetPlayerVec();
+        
         if(playerClassDictionary.ContainsKey(currentPlayerState) && playerData.checkClassOnExit)
         {
             playerClassDictionary[currentPlayerState].OnUpdate();
         }
     }
 
-    private void InitPlayerController()
+    public void InitPlayerController()
     {
         //처음에는 Begin으로 State를 시작
         ChangePlayerState(PLAYERSTATE.BEGIN);
-        effectConstant = new EffectConstant();  
+        effectConstant = new EffectConstant();
+        playerData.Health = playerData.MaxHealth;
         playerData.checkClassOnExit = true;
+        isControllerInit = true;
+
+        Debug.Log("PlayerHealth is " + playerData.Health);
     }
 
     public void ChangePlayerState(PLAYERSTATE nextState)
@@ -199,6 +209,11 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void TakeEXP(float exp)
     {
+        if(playerData.PlayerDead.Equals(true))
+        {
+            return;
+        }
+        
         float residual = 0f;
 
         playerData.PlayerEXP += exp;
@@ -220,7 +235,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         }    
     }
 
-    private void PlayerLevelUp()
+    public void PlayerLevelUp()
     {
         Sprite effectSprite = null;
 

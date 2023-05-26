@@ -79,7 +79,7 @@ public class PlayGameWinUIModel : GameUIModel
 
     private void ClickHomeButton()
     {
-        Debug.Log("Need Method ClickHomeButton");
+        PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMELOADSTATE);
     }
 
     public override void UpdateInfo()

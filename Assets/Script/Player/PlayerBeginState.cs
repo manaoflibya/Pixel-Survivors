@@ -19,14 +19,9 @@ public class PlayerBeginState : PlayerState
 
     public override void OnUpdate()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.MOVE);
-        }
     }
 
     public override void OnExit()
     {
-        //PlayerController.Instance.SetAllowMove(true);
     }
 }

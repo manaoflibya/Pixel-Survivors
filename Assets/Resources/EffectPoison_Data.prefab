@@ -164,6 +164,7 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: 0, z: 0}
   parent: {fileID: 0}
+  hitCount: 0
   poisonBall: {fileID: 1966068535791334855}
   poisonBubble: {fileID: 7752416838382333661}
   capsuleCollider: {fileID: 9096066639893852369}

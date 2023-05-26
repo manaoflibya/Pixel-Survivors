@@ -85,7 +85,6 @@ public class GamePlayUIModel : GameUIModel
     //////////////
 
 
-
     public override void Hide()
     {
         if (this.Go != null)

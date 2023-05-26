@@ -51,6 +51,7 @@ public class EffectBatMan : Effect
             dir = reflectVector.normalized;
 
             this.transform.rotation = Quaternion.LookRotation(Vector3.forward, dir.normalized);
+            currentHitCount++;
         }
 
         if(collision.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
@@ -59,7 +60,7 @@ public class EffectBatMan : Effect
         }
     }
 
-    private void StopBatMan()
+    public void StopBatMan()
     {
         action?.Invoke(myType, batManUID,this.gameObject);
     }

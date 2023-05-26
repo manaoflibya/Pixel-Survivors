@@ -26,12 +26,8 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
     public PlayTimeController playTimeContorller;
     public SceneContoller sceneController;
 
+    public MapController mapController;
     public CameraController cameraController;
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     private void Start()
     {
@@ -51,11 +47,31 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
     public void InitCamraController()
     {
         cameraController = FindObjectOfType<CameraController>();
+        
+        if(cameraController != null)
+        {
+            cameraController.InitCameraController();
+        }
+    }
+
+    public void InitMapController()
+    {
+        mapController = FindObjectOfType<MapController>();  
+
+        if(mapController != null)
+        {
+            mapController.InitMapController();
+        }
     }
 
     public void ClearCameraController()
     {
         cameraController = null;
+    }
+
+    public void ClearMapController()
+    {
+        mapController = null;
     }
 
     private void Update()

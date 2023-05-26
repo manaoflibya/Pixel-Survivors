@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,19 +23,18 @@ public class SceneContoller : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
-    public void ChangeHomeScene()
+    public void ChangeHomeScene(Action finishAction)
     {
-        //SceneManager.LoadScene();
-        Coroutine coroutine = StartCoroutine(LoadSceneProcess(constant.homeSceneName));
+        Coroutine coroutine = StartCoroutine(LoadSceneProcess(constant.homeSceneName, finishAction));
         constant.currentSceneName = constant.homeSceneName;
     }
 
-    public void ChangeGamePlayScene()
+    public void ChangeGamePlayScene(Action finishAction)
     {
-        Coroutine coroutine = StartCoroutine(LoadSceneProcess(constant.gameplaySceneName));
+        Coroutine coroutine = StartCoroutine(LoadSceneProcess(constant.gameplaySceneName, finishAction));
     }
 
-    IEnumerator LoadSceneProcess(string nextSceneName)
+    IEnumerator LoadSceneProcess(string nextSceneName, Action action)
     {
         yield return new WaitForSeconds(constant.loadingTime);
 
@@ -43,8 +43,8 @@ public class SceneContoller : MonoBehaviour
 
         yield return new WaitForSeconds(constant.loadingTime);
 
+        action?.Invoke();
         constant.currentSceneName = nextSceneName;
-
     }
 
     // Ã¼Å©¿ë

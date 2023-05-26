@@ -113,7 +113,6 @@ public class HomeMenuUIModel : GameUIModel
     private void ClickPlayButton()
     {
         PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMELOADSTATE);
-        Debug.Log("Need Method ClickHomeButton");
     }
 
     private void ClickSettingButton()
@@ -125,7 +124,6 @@ public class HomeMenuUIModel : GameUIModel
     {
         PixelGameManager.Instance.GameQuit();
 #if UNITY_EDITOR
-        //EditorApplication.Exit(0);
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }

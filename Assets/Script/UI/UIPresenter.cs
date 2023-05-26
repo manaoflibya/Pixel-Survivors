@@ -17,7 +17,8 @@ public class UIPresenter : MonoSingleton<UIPresenter>
     public PlayGameOverUIModel playGameOverUIModel;
     public PlayGameWinUIModel playGameWinUIModel;
 
-    private void Awake()
+
+    private void Start()
     {
         InitUIPresenter();
     }
@@ -34,7 +35,7 @@ public class UIPresenter : MonoSingleton<UIPresenter>
 
     private void InitUIPresenter()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         homeMenuUIModel = new HomeMenuUIModel();
 

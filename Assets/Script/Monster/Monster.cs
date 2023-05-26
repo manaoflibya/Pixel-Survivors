@@ -135,4 +135,9 @@ public class Monster : MonoBehaviour
             yield return tickAttackWaitSeconds;
         }
     }
+
+    public void AllDead()
+    {
+        monsterAction?.Invoke(myType,monsterUID,this.gameObject);
+    }
 }

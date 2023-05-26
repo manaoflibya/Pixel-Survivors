@@ -19,9 +19,11 @@ public class EffectFireBall : Effect
     {
         base.OnReset();
 
-        this.transform.localScale = size;
         this.transform.position = spawnPos;
-        StopExplosion();
+
+        trailEffect.SetActive(true);
+        exposionEffect.SetActive(false);
+
         Invoke(playAnimMethodName, floorExplosionTime);
     }
 

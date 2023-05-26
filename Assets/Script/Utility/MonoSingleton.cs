@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -22,6 +23,9 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
                 }
                 GameObject gO = new GameObject(typeof(T).Name, typeof(T));
                 _mInstance = gO.GetComponent<T>();
+                gO.name = typeof(T).ToString() + "(SingleTon)";
+
+                Destroy(gO);
             }
 
             return _mInstance;
@@ -44,6 +48,24 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             mInstance = value;
         }
     }
+
+    private void Awake()
+    {
+        OnAwake();
+    }
+
+    protected virtual void OnAwake()
+    {
+        if (_mInstance != null && _mInstance != this)
+        {
+            //DestroyImmediate(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this);
+        }
+    }
+
     public virtual void Init()
     {
         mInstance = null;

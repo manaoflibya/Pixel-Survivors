@@ -23,12 +23,17 @@ public class GameStopState : GameState
         }
 
         PixelGameManager.Instance.playTimeContorller.StopGameTime();
+
     }
+
     public override void OnUpdate()
     {
+
     }
 
     public override void OnExit()
     {
+        PixelGameManager.Instance.monsterController.DeleteAllMonsters();
+        PixelGameManager.Instance.itemController.DeleteAllItems();
     }
 }

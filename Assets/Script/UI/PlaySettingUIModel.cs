@@ -101,8 +101,9 @@ public class PlaySettingUIModel : GameUIModel
 
     private void ClickHomeButton()
     {
-        Debug.Log("HomeButton 기능 추가 ");
+        Time.timeScale = 1f;
 
+        PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMELOADSTATE);
     }
 
     private void ClickPlayButton()

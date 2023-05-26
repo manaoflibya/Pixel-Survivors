@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class EffectController : MonoBehaviour
@@ -23,6 +24,9 @@ public class EffectController : MonoBehaviour
     public void OnEffectFireBall(int createCount,int upgradeCount,Vector3 spawnPos, GameObject target, float speed, float damage,Vector3 size)
     {
         Vector3 newSize = new Vector3((float)(size.x + (upgradeCount * 0.1)), (float)(size.y + (upgradeCount * 0.1)), (float)(size.z + (upgradeCount * 0.1)));
+
+        Debug.Log(createCount + " " + upgradeCount + " " + spawnPos + " " + target + " " + speed + " " + damage);
+        createCount += upgradeCount;
 
         for (int i = 0; i < createCount; i++)
         {
@@ -135,8 +139,6 @@ public class EffectController : MonoBehaviour
             effectDataManager.AddEffectBatMan(ref effectBatMan);
         }
     }
-
-
 
     private void DelEffect(OBJECT_TYPE type, int uid, GameObject go)
     {

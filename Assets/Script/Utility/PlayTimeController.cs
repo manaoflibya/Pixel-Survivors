@@ -12,8 +12,6 @@ public class PlayTimeController : MonoBehaviour
     {
         playTimeData = new PlayTimeData();
         constant = new PlayTimeConstant();
-        
-        Init();
     }
 
     private void FixedUpdate()
@@ -29,12 +27,14 @@ public class PlayTimeController : MonoBehaviour
         }
     }
 
-    private void Init()
+    public void InitPlayerTimeController()
     {
         playTimeData.maxTime = constant.maxTime;
         playTimeData.currentTime = constant.initCurrentTime;
         playTimeData.isPlaying = false;
         playTimeData.isFinishPlayTime = false;
+
+        StartGameTime();
     }
 
     public void StartGameTime()
@@ -80,7 +80,7 @@ public class PlayTimeConstant
     public PlayTimeConstant() { }
 
     // PlayTime은 5분을 기준으로함.
-    public float maxTime = 300f;
+    public float maxTime = 100f;
     public float initCurrentTime = 0f;
     public int secondOver = 10; 
 }

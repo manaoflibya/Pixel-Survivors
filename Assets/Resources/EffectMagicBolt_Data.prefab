@@ -126,6 +126,12 @@ MonoBehaviour:
   target: {fileID: 0}
   damage: 0
   speed: 0
+  duration: 0
+  angle: 0
+  size: {x: 0, y: 0, z: 0}
+  axis: {x: 0, y: 0, z: 0}
+  parent: {fileID: 0}
+  hitCount: 0
   magicBoltUID: 0
 --- !u!70 &8630745401758588933
 CapsuleCollider2D:

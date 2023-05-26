@@ -6,6 +6,10 @@ public class CameraController : MonoBehaviour
 {
     public CameraData cameraData;
 
+    public void InitCameraController()
+    {
+
+    }
 
     public List<Monster> GetObjectVisibleInCamera(List<Monster> objects)
     {

@@ -98,14 +98,14 @@ public class ItemDataManager
         }
     }
 
-    public List<ItemEXP> FindAllActiveEXP(ref List<ItemEXP> activeExp)
+    public List<ItemEXP> FindAllActiveEXP(ref List<ItemEXP> active)
     {
         foreach(var item in expData)
         {
-            activeExp.Add(item.Value);
+            active.Add(item.Value);
         }
 
-        return activeExp;
+        return active;
     }
     #endregion
 
@@ -160,6 +160,16 @@ public class ItemDataManager
             return null;
         }
     }
+
+    public List<ItemGravity> FindAllActiveGravity(ref List<ItemGravity> active)
+    {
+        foreach (var item in gravityData)
+        {
+            active.Add(item.Value);
+        }
+
+        return active;
+    }
     #endregion
 
     #region ItemBox
@@ -212,6 +222,16 @@ public class ItemDataManager
         {
             return null;
         }
+    }
+
+    public List<ItemBox> FindAllActiveBox(ref List<ItemBox> active)
+    {
+        foreach (var item in itemBoxData)
+        {
+            active.Add(item.Value);
+        }
+
+        return active;
     }
     #endregion
 
@@ -266,5 +286,17 @@ public class ItemDataManager
             return null;
         }
     }
+
+
+    public List<ItemHP> FindAllActiveHP(ref List<ItemHP> active)
+    {
+        foreach (var item in itemHPData)
+        {
+            active.Add(item.Value);
+        }
+
+        return active;
+    }
     #endregion
+
 }

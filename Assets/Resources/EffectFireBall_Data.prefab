@@ -219,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 6535863255931761810, guid: d309cf0577c747b49aad2e09dec539c5, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5efc4fcb48a0e4944ba54df1e4a1fdde, type: 2}
+      objectReference: {fileID: 9100000, guid: 43ef9e02f4b4b9b458dffc689b193f14, type: 2}
     - target: {fileID: 6535863255931761811, guid: d309cf0577c747b49aad2e09dec539c5, type: 3}
       propertyPath: m_Name
       value: EffectFireBallExplision_Data

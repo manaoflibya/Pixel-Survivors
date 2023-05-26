@@ -15,11 +15,14 @@ public class ItemBox : Item
     {
         if (collision.tag == PlayerController.Instance.playerData.playerTagName && isFollowing.Equals(false))
         {
-            ///// UI 생성해야함.
-            ///
             Debug.Log("<color=cyan> Getting Box (Please Create Box Item UI </color>");
-
+            PlayerController.Instance.PlayerLevelUp();
             action?.Invoke(myType, itemBoxUID, this.gameObject);
         }
+    }
+
+    public void ClearAllBox()
+    {
+        action?.Invoke(myType, itemBoxUID, this.gameObject);
     }
 }

@@ -16,6 +16,10 @@ public class MonsterController : MonoBehaviour
         monsterDataManager = new MonsterDataManager();
     }
 
+    public void InitMonsterController()
+    {
+    }
+
     public Vector3 FindClosestMonster()
     {
         Vector3 monsterDir = Vector3.right;
@@ -107,6 +111,18 @@ public class MonsterController : MonoBehaviour
 
             monsterDataManager.AddMonster(ref monster);
 
+        }
+    }
+
+    public void DeleteAllMonsters()
+    {
+        List<Monster> monsters = new List<Monster>();
+        
+        monsterDataManager.FindAllActiveMonsters(ref monsters);
+
+        foreach (Monster monster in monsters)
+        {
+            monster.AllDead();
         }
     }
 
