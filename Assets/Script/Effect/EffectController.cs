@@ -25,7 +25,6 @@ public class EffectController : MonoBehaviour
     {
         Vector3 newSize = new Vector3((float)(size.x + (upgradeCount * 0.1)), (float)(size.y + (upgradeCount * 0.1)), (float)(size.z + (upgradeCount * 0.1)));
 
-        Debug.Log(createCount + " " + upgradeCount + " " + spawnPos + " " + target + " " + speed + " " + damage);
         createCount += upgradeCount;
 
         for (int i = 0; i < createCount; i++)
