@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7960652440637472716
 Transform:
   m_ObjectHideFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   size: {x: 0, y: 0, z: 0}
+  expPoint: 0
   monsterAnimator: {fileID: 0}
 --- !u!70 &8021522077510266253
 CapsuleCollider2D:

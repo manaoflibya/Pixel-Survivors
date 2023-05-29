@@ -15,13 +15,14 @@ GameObject:
   - component: {fileID: -504281084390564798}
   - component: {fileID: 1110796534723801528}
   - component: {fileID: 6640800493870082713}
+  - component: {fileID: 3666824311336411597}
   m_Layer: 7
   m_Name: Monster_Goblin_Data
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &412420
 Transform:
   m_ObjectHideFlags: 0
@@ -142,10 +143,11 @@ MonoBehaviour:
   target: {fileID: 0}
   myType: 0
   health: 0
+  damage: 0
   speed: 0
   size: {x: 0, y: 0, z: 0}
+  expPoint: 0
   monsterAnimator: {fileID: 0}
-  goblinUID: 0
 --- !u!70 &1110796534723801528
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -160,7 +162,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.03, y: 0.47}
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.57, y: 0.76}
   m_Direction: 0
 --- !u!50 &6640800493870082713
 Rigidbody2D:
@@ -183,3 +185,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &3666824311336411597
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118834}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02, y: 0.47}
+  m_Size: {x: 0.79, y: 1.03}
+  m_Direction: 0

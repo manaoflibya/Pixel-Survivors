@@ -57,7 +57,7 @@ public class Monster : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-
+        PixelGameManager.Instance.floatingUIController.OnFloatingDamageUI(this.gameObject.transform.position, (int)damage);
     }
 
 
@@ -97,18 +97,18 @@ public class Monster : MonoBehaviour
         return this.gameObject.activeSelf;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.collider.tag == PlayerController.Instance.playerData.playerTagName)
+        if(collision.tag == PlayerController.Instance.playerData.playerTagName)
         {
             startTickAttack = true;
             tickAttackCoroutine = StartCoroutine(AttakTickDamage());
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.collider.tag == PlayerController.Instance.playerData.playerTagName)
+        if (collision.tag == PlayerController.Instance.playerData.playerTagName)
         {
             startTickAttack = false;
 

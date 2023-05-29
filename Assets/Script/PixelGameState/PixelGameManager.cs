@@ -25,6 +25,7 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
     public ItemController itemController;
     public PlayTimeController playTimeContorller;
     public SceneContoller sceneController;
+    public FloatingUIController floatingUIController;
 
     public MapController mapController;
     public CameraController cameraController;

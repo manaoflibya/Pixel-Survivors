@@ -273,6 +273,7 @@ MonoBehaviour:
   itemController: {fileID: 245942943}
   playTimeContorller: {fileID: 245942945}
   sceneController: {fileID: 0}
+  mapController: {fileID: 0}
   cameraController: {fileID: 708958939}
 --- !u!4 &245942937
 Transform:

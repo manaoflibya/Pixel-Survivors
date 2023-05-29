@@ -157,6 +157,9 @@ public class PlayerController : MonoSingleton<PlayerController>
             PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMESTOPSTATE);
         }
 
+        //PixelGameManager.Instance.floatingUIController.OnFloatingDamageUI(GetPlayerVec(), (int)damage);
+        //PixelGameManager.Instance.floatingUIController.OnFloatingDamageUI(GetPlayerObject().transform.position, (int)damage);
+
         if (UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
         {
             UIPresenter.Instance.gamePlayUIModel.HealthBarChange(playerData.MaxHealth, playerData.Health);
@@ -173,8 +176,10 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
         playerData.Health += heal;
-        
-        if(playerData.Health > playerData.MaxHealth)
+
+        PixelGameManager.Instance.floatingUIController.OnFloatingHealthUI(GetPlayerVec(), (int)heal);
+
+        if (playerData.Health > playerData.MaxHealth)
         {
             playerData.Health = playerData.MaxHealth;
         }

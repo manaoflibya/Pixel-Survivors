@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,11 +27,15 @@ public enum OBJECT_TYPE
     EFFECTPOISONTYPE,
     EFFECTBOUNCEBALLTYPE,
     EFFECTBATMANTYPE,
+    
+    //FLOATING
+    FLOATINGDAMAGETYPE,
+
 }
 
 public class ObjectPool : MonoSingleton<ObjectPool>
 {
-    #region
+    #region Item
     private Queue<GameObject> expQueue = new Queue<GameObject>();
     private string expNameData = "Item_EXP_Data";
     private int expCreatCount = 500;
@@ -118,7 +123,15 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private GameObject batManParent;
     private string batManNameData = "EffectBatMan_Data";
     private int batManCreateCount = 10;
-#endregion
+    #endregion
+
+    #region FloatingUI
+    private Queue<GameObject> floatingDamageQueue = new Queue<GameObject>();
+    private string floatingDamageName = "FloatingDamageUI_Data";
+    private int floatingDamageCount = 700;
+    private GameObject floatingDamageParent;
+    private GameObject floatingDamage;
+    #endregion
 
     private void Awake()
     {
@@ -139,6 +152,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         bounceBall = Resources.Load(bounceBallNameData) as GameObject;
         batMan = Resources.Load(batManNameData) as GameObject;
 
+        floatingDamage = Resources.Load(floatingDamageName) as GameObject;
+
         //////////////////
         itemExp.SetActive(false);
         itemGravity.SetActive(false);
@@ -157,6 +172,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         bounceBall.SetActive(false);
         batMan.SetActive(false);
 
+        floatingDamage.SetActive(false);
+
         ////////////////// 
         expParent = CreateLocalObject(expNameData);
         gravityParent = CreateLocalObject(gravityNameData);
@@ -174,6 +191,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         poisonParent = CreateLocalObject(poisonNameData);
         bounceBallParent = CreateLocalObject(bounceBallNameData);
         batManParent = CreateLocalObject(batManNameData);
+
+        floatingDamageParent = CreateLocalObject(batManNameData);
 
         /////////////////
         
@@ -273,6 +292,13 @@ public class ObjectPool : MonoSingleton<ObjectPool>
             GameObject go = Instantiate(batMan);
             go.transform.SetParent(batManParent.transform);
             batManQueue.Enqueue(go);
+        }
+
+        for (int i = 0; i < floatingDamageCount; i++)
+        {
+            GameObject go = Instantiate(floatingDamage);
+            go.transform.SetParent(floatingDamageParent.transform);
+            floatingDamageQueue.Enqueue(go);
         }
     }
 
@@ -475,6 +501,23 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     }
                 }
                 break;
+            #endregion
+
+            #region FloatingUI
+            case OBJECT_TYPE.FLOATINGDAMAGETYPE:
+                {
+                    if (floatingDamageQueue.Count == 0)
+                    {
+                        go = Instantiate(floatingDamage);
+                        go.transform.SetParent(floatingDamageParent.transform);
+                    }
+                    else
+                    {
+                        go = floatingDamageQueue.Dequeue();
+                    }
+                }
+                break;
+
                 #endregion
         }
 
@@ -574,6 +617,11 @@ public class ObjectPool : MonoSingleton<ObjectPool>
                     batManQueue.Enqueue(go);
                 }
                 break;
+            case OBJECT_TYPE.FLOATINGDAMAGETYPE:
+                {
+                    floatingDamageQueue.Enqueue(go);
+                }
+                break;
         }
     }
 
@@ -582,7 +630,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     /// </summary>
     /// <param name="localName"></param>
     /// <returns></returns>
-    public GameObject CreateLocalObject(string localName)
+    private GameObject CreateLocalObject(string localName)
     {
         GameObject go = new GameObject(localName);
         go.transform.SetParent(this.transform);
