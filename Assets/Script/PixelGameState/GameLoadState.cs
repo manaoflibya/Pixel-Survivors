@@ -19,15 +19,6 @@ public class GameLoadState : GameState
     {
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.loadUIModel);
 
-        if(SceneContoller.constant.currentSceneName == SceneContoller.constant.homeSceneName)
-        {
-            //PixelGameManager.Instance.sceneController.ChangeGamePlayScene();
-        }
-        else if(SceneContoller.constant.currentSceneName == SceneContoller.constant.gameplaySceneName)
-        {
-            //PixelGameManager.Instance.sceneController.ChangeHomeScene();
-        }
-
         isLoaded = false;
         currentLoadTime = 0f;
     }
@@ -66,9 +57,6 @@ public class GameLoadState : GameState
 
     public override void OnExit()
     {
-        //UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.homeMenuUIModel);
-
-       // UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.loadUIModel);
        UIPresenter.Instance.RemoveAllUseUiList();
     }
 }

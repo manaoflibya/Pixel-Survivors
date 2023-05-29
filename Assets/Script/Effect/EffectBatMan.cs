@@ -54,7 +54,7 @@ public class EffectBatMan : Effect
             currentHitCount++;
         }
 
-        if(collision.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
+        if(collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
             collision.gameObject.GetComponent<Monster>().TakeDamage(damage);
         }

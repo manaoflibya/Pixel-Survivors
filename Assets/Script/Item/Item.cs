@@ -28,7 +28,6 @@ public class Item : MonoBehaviour
     {
         this.transform.position = spawnPos;
         isFollowing = false;
-
     }
 
 

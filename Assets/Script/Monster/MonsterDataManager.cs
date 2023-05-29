@@ -10,13 +10,14 @@ public class MonsterDataManager
 
     public MonsterDataManager() 
     {
+
     }
+
     
     public void InitData()
     {
         ClearData();
     }
-
 
     private void ClearData()
     {

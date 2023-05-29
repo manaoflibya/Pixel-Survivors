@@ -16,7 +16,6 @@ public class PlayerStopState : PlayerState
     {
         playerData = _playerData;
 
-            
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playJoyStickModel);
         PlayerController.Instance.PlayerAnimationMove(false);
     }

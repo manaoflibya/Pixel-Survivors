@@ -10,17 +10,6 @@ public class GamePlayState : GameState
 
     }
 
-    private int monsterBatCreateCount = 5;
-    //private int monsterGoblinCreateCount = 100;
-
-    // class 따로 만들어야함.
-    private float currentCraeteTime = 0f;
-    private float monsterExpPoint = 10f;
-    private float monsterExpPointMiddle = 30f;
-    private float monsterExpPointBIG = 50f;
-    private float createTime = 10f;
-
-    private float healPoint = 5f;
 
     public override void OnEnter()
     {
@@ -34,16 +23,14 @@ public class GamePlayState : GameState
 
         PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.MOVE);
         SpawnMonsters();
-
-
     }
 
     public override void OnUpdate()
     {
-        currentCraeteTime += Time.deltaTime;
-        if (currentCraeteTime > createTime && PlayerController.Instance.playerData.PlayerDead.Equals(false))
+        PixelGameManager.Instance.monsterController.GetMonsterConstant().currentCraeteTime += Time.deltaTime;
+        if (PixelGameManager.Instance.monsterController.GetMonsterConstant().currentCraeteTime > PixelGameManager.Instance.monsterController.GetMonsterConstant().createTime && PlayerController.Instance.playerData.PlayerDead.Equals(false))
         {
-            currentCraeteTime = 0f;
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().currentCraeteTime = 0f;
             SpawnMonsters();
 
         }
@@ -62,7 +49,6 @@ public class GamePlayState : GameState
 
     public override void OnExit()
     {
-
         PixelGameManager.Instance.playTimeContorller.StopGameTime();
 
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);
@@ -77,17 +63,48 @@ public class GamePlayState : GameState
     private void SpawnMonsters()
     {
 
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBATTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointMiddle);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERBOOMBTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPointBIG);
-        PixelGameManager.Instance.monsterController.OnMonster(monsterBatCreateCount, OBJECT_TYPE.MONSTERSKELETONTYPE, 100f, 10f, 1.5f, new Vector3(1f, 1f, 1f), monsterExpPoint);
+        PixelGameManager.Instance.monsterController.OnMonster(
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBatCreateCount,
+            OBJECT_TYPE.MONSTERBATTYPE,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBatMaxHealth,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBatDamage,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBatSpeed,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBatSize,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterExpPoint);
+
+        PixelGameManager.Instance.monsterController.OnMonster(
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterSkeletonCreateCount,
+            OBJECT_TYPE.MONSTERSKELETONTYPE,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterSkeletonMaxHealth,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterSkeletonDamage,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterSkeletonSpeed,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterSkeletonSize,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterExpPointMiddle); ;
+
+        PixelGameManager.Instance.monsterController.OnMonster(
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterGoblinCreateCount,
+            OBJECT_TYPE.MONSTERGOBLINTYPE,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().mosnterGoblinMaxHealth,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterGoblinDamage,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterGoblinSpeed,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterGoblinSize,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterExpPointBIG);
+
+        PixelGameManager.Instance.monsterController.OnMonster(
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBoomberCreateCount, 
+            OBJECT_TYPE.MONSTERBOOMBTYPE,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBoomberMaxHealth,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBoomberDamage,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBoomberSpeed,
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBoomberSize, 
+            PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterExpPoint);
 
         Vector3 vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemGravity(vec);
         vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemBox(vec);
         vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
-        PixelGameManager.Instance.itemController.OnItemHP(vec, healPoint);
+        PixelGameManager.Instance.itemController.OnItemHP(vec, PixelGameManager.Instance.monsterController.GetMonsterConstant().healPoint);
 
     }
 }

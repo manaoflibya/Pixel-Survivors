@@ -45,6 +45,7 @@ public class UIPresenter : MonoSingleton<UIPresenter>
         }
 
         loadUIModel = new LoadUIModel();
+
         if(loadUIModel != null)
         {
             AddUIList(loadUIModel);
@@ -79,6 +80,7 @@ public class UIPresenter : MonoSingleton<UIPresenter>
         }        
         
         playGameOverUIModel = new PlayGameOverUIModel();
+
         if(playGameOverUIModel != null)
         {
             AddUIList(playGameOverUIModel);

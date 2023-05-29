@@ -10,9 +10,6 @@ public class EffectMagicBolt : Effect
     private float stopMethodTime = 2f;
     private string stopMethodName = "StopMagicBolt";
 
-    private void Start()
-    {
-    }
 
     public override void OnReset()
     {
@@ -31,7 +28,7 @@ public class EffectMagicBolt : Effect
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
+        if(collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
             collision.GetComponent<Monster>().TakeDamage(damage);
         }

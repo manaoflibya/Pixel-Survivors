@@ -1338,7 +1338,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1988887011}
   - component: {fileID: 1988887010}
-  - component: {fileID: 1988887009}
   - component: {fileID: 1988887008}
   - component: {fileID: 1988887007}
   - component: {fileID: 1988887006}
@@ -1399,27 +1398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28d3de6396bf0a439be7afafb250e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1988887009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988887004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eb08107e40245148ba2d7df761a9dda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxDistance: 8
-  minDistance: 5
-  batCreateCount: 100
-  batDamage: 2
-  batHealth: 100
-  batSpeed: 1.5
-  batSize: {x: 1, y: 1, z: 1}
-  monsterMinDistance: -7.9228163e+28
-  monsterTagName: Monster
 --- !u!114 &1988887010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,7 +1410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3ecc9e12f01af45a148b9a848d9bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constant: {fileID: 1988887009}
 --- !u!4 &1988887011
 Transform:
   m_ObjectHideFlags: 0

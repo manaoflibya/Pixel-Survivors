@@ -8,7 +8,6 @@ public class FloatingUI : MonoBehaviour
 {
     public OBJECT_TYPE myType;
     public Vector3 spawnPos = new Vector3();
-    //Color 도 추가해야함.
     public Color myColor = Color.red;
     public int floatingUID = 0;
     public int myValue = 0;

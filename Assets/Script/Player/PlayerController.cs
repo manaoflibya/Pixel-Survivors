@@ -28,7 +28,6 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public PlayerData playerData;
     public EffectController effectController;
-    public EffectConstant effectConstant;
 
     [SerializeField]
     private PLAYERSTATE currentPlayerState = PLAYERSTATE.NONE;  
@@ -36,10 +35,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     private Dictionary<PLAYERSTATE, PlayerState> playerClassDictionary = new Dictionary<PLAYERSTATE, PlayerState>();
 
     private bool isControllerInit = false;
-    //private void Start()
-    //{
-    //    InitPlayerController();
-    //}
+
 
     private void Update()
     {
@@ -60,7 +56,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         //처음에는 Begin으로 State를 시작
         ChangePlayerState(PLAYERSTATE.BEGIN);
-        effectConstant = new EffectConstant();
+
         playerData.Health = playerData.MaxHealth;
         playerData.checkClassOnExit = true;
         isControllerInit = true;
@@ -157,9 +153,6 @@ public class PlayerController : MonoSingleton<PlayerController>
             PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMESTOPSTATE);
         }
 
-        //PixelGameManager.Instance.floatingUIController.OnFloatingDamageUI(GetPlayerVec(), (int)damage);
-        //PixelGameManager.Instance.floatingUIController.OnFloatingDamageUI(GetPlayerObject().transform.position, (int)damage);
-
         if (UIPresenter.Instance.FindUseUIModel(UIPresenter.Instance.gamePlayUIModel))
         {
             UIPresenter.Instance.gamePlayUIModel.HealthBarChange(playerData.MaxHealth, playerData.Health);
@@ -251,40 +244,39 @@ public class PlayerController : MonoSingleton<PlayerController>
             case OBJECT_TYPE.EFFECTFIREBALLTYPE:
                 {
                     effectSprite = playerData.effectFireBallSprite;
-                    effectConstant.fireBallUpgradeCount++;
+                    effectController.GetEffectConstant().fireBallUpgradeCount++;
                 }
                 break;
             case OBJECT_TYPE.EFFECTMAGICBOLTTYPE:
                 {
                     effectSprite = playerData.effectMagicBoltSprite;
-                    effectConstant.magicBoltUpgradeCount++;
+                    effectController.GetEffectConstant().magicBoltUpgradeCount++;
                 }
                 break;
             case OBJECT_TYPE.EFFECTKUNAITYPE:
                 {
                     effectSprite = playerData.effectKunaiSprite;
-                    effectConstant.kunaiUpgradeCount++;
+                    effectController.GetEffectConstant().kunaiUpgradeCount++;
                 }
                 break;
             case OBJECT_TYPE.EFFECTPOISONTYPE:
                 {
                     effectSprite = playerData.effectPoisonSprite;
-                    effectConstant.poisonUpgradeCount++;
+                    effectController.GetEffectConstant().poisonUpgradeCount++;
                 }
                 break;
             case OBJECT_TYPE.EFFECTBOUNCEBALLTYPE:
                 {
                     effectSprite = playerData.effectBounceBallSprite;
-                    effectConstant.bounceBallUpgradeCount++;    
+                    effectController.GetEffectConstant().bounceBallUpgradeCount++;    
                 }
                 break;
             case OBJECT_TYPE.EFFECTBATMANTYPE:
                 {
                     effectSprite = playerData.effectBatManSprite;
-                    effectConstant.batManUpgradeCount++;
+                    effectController.GetEffectConstant().batManUpgradeCount++;
                 }
                 break;
-
         }
 
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playLevelUpUIModel);

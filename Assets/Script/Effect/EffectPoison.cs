@@ -48,7 +48,7 @@ public class EffectPoison : Effect
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
+        if (collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
             collision.GetComponent<Monster>().TakeTickDamageStart(damage,bubbleTickTime);
         }
@@ -56,7 +56,7 @@ public class EffectPoison : Effect
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
+        if (collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
             collision.GetComponent<Monster>().TakeTickDamageFinish();
         }

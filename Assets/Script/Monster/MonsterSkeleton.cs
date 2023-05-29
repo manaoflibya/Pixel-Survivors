@@ -28,6 +28,5 @@ public class MonsterSkeleton : Monster
     {
         monsterAction?.Invoke(myType, monsterUID, this.gameObject);
         monsterDeadAction?.Invoke(this.transform.position, expPoint);
-
     }
 }

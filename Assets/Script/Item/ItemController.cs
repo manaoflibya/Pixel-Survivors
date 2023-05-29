@@ -12,16 +12,12 @@ public class ItemController : MonoBehaviour
     private ItemFactory itemFactory;
     private ItemDataManager itemDataManager;
 
+
     private void Awake()
     {
         itemConstant = new ItemConstant();
         itemFactory = new ItemFactory();
         itemDataManager = new ItemDataManager();
-    }
-
-    public void OnItemEXP()
-    {
-
     }
 
     public void OnItemEXP(Vector3 spawnPos, float expPoint)

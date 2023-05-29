@@ -21,24 +21,8 @@ public class Effect : MonoBehaviour
     public Transform parent;
     public int hitCount;
 
-    protected void Show()
-    {
-
-    }
-
-    protected void Hide()
-    {
-
-    }
-
     public virtual void OnReset()
     {
         this.transform.localScale = size;   
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Debug.Log("<color=green>collision.collider.tag</color>" + collision.tag);
-
     }
 }

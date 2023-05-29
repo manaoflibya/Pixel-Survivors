@@ -52,7 +52,6 @@ public class Monster : MonoBehaviour
         startTickDamage = false;
         startTickAttack = false;
         tickDamage = 0f;
-
     }
 
     public virtual void TakeDamage(float damage)

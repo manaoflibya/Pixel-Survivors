@@ -10,5 +10,5 @@ public class ItemConstant
     }
 
     public float moveAwaySpeed = 1f;
-    public float followSpeed = 7f;
+    public float followSpeed = 10f;
 }

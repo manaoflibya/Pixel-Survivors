@@ -26,7 +26,7 @@ public class EffectBounceBall : Effect
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
+        if (collision.collider.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
             Vector3 incomingVector = dir;
             incomingVector.Normalize();

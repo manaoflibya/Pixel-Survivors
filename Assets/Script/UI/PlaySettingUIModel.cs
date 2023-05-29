@@ -108,7 +108,6 @@ public class PlaySettingUIModel : GameUIModel
 
     private void ClickPlayButton()
     {
-        //UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playSettingUIModel);
         UIPresenter.Instance.NotUseModelClassList(this);
         Time.timeScale = 1f;
     }

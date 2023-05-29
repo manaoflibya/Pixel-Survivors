@@ -11,9 +11,6 @@ public class EffectKunai : Effect
 
     private string stopMethod = "StopKunaiEffect";
 
-    private void Start()
-    {
-    }
 
     public override void OnReset()
     {
@@ -33,7 +30,7 @@ public class EffectKunai : Effect
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == PixelGameManager.Instance.monsterController.constant.monsterTagName)
+        if (collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
             collision.GetComponent<Monster>().TakeDamage(damage);
         }

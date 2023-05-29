@@ -133,6 +133,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     private GameObject floatingDamage;
     #endregion
 
+    private WaitForSeconds waitSecond = new WaitForSeconds(0.5f);
+
     private void Awake()
     {
         itemExp = Resources.Load(expNameData) as GameObject;
@@ -195,111 +197,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         floatingDamageParent = CreateLocalObject(batManNameData);
 
         /////////////////
-        
-        for(int i =  0; i < expCreatCount; i++)
-        {
-            GameObject go = Instantiate(itemExp);
-            go.transform.SetParent(expParent.transform);
-            expQueue.Enqueue(go);
-        }
 
-        for (int i = 0; i < gravityCreatCount; i++)
-        {
-            GameObject go = Instantiate(itemGravity);
-            go.transform.SetParent(gravityParent.transform);
-            gravityQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < itemBoxCreatCount; i++)
-        {
-            GameObject go = Instantiate(itemBox);
-            go.transform.SetParent(itemBoxParent.transform);
-            itemBoxQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < itemHPCreatCount; i++)
-        {
-            GameObject go = Instantiate(itemHP);
-            go.transform.SetParent(itemHPParent.transform);
-            itemHPQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < batCreateCount; i++)
-        {
-            GameObject go = Instantiate(monsterBat);
-            go.transform.SetParent(batParent.transform);
-            batQueue.Enqueue(go);
-        }       
-        
-        for (int i = 0; i < goblinCreateCount; i++)
-        {
-            GameObject go = Instantiate(monsterGoblin);
-            go.transform.SetParent(goblinParent.transform);
-            goblinQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < skeletonCreateCount; i++)
-        {
-            GameObject go = Instantiate(monsterSkeleton);
-            go.transform.SetParent(skeletonParent.transform);
-            skeletonQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < boombCreateCount; i++)
-        {
-            GameObject go = Instantiate(monsterBoomb);
-            go.transform.SetParent(boombParent.transform);
-            boombQueue.Enqueue(go);
-        }
-
-        for (int i = 0;i < fireBallCreateCount; i++)
-        {
-            GameObject go = Instantiate(effectFireBall);
-            go.transform.SetParent(fireBallParent.transform);
-            fireBallQueue.Enqueue(go);
-        }
-
-        for(int i = 0; i < magicBoltCreateCount; i++)
-        {
-            GameObject go = Instantiate(magicBolt);
-            go.transform.SetParent(magicBoltParent.transform);
-            magicBoltQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < kunaiCreateCount; i++)
-        {
-            GameObject go = Instantiate(kunai);
-            go.transform.SetParent(kunaiParent.transform);
-            kunaiQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < poisonCreateCount; i++)
-        {
-            GameObject go = Instantiate(poison);
-            go.transform.SetParent(poisonParent.transform);
-            poisonQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < bounceBallCreateCount; i++)
-        {
-            GameObject go = Instantiate(bounceBall);
-            go.transform.SetParent(bounceBallParent.transform);
-            bounceBallQueue.Enqueue(go);
-        }        
-        
-        for (int i = 0; i < batManCreateCount; i++)
-        {
-            GameObject go = Instantiate(batMan);
-            go.transform.SetParent(batManParent.transform);
-            batManQueue.Enqueue(go);
-        }
-
-        for (int i = 0; i < floatingDamageCount; i++)
-        {
-            GameObject go = Instantiate(floatingDamage);
-            go.transform.SetParent(floatingDamageParent.transform);
-            floatingDamageQueue.Enqueue(go);
-        }
+        StartCoroutine(InstantiateObject());
     }
 
     public T Get<T>(OBJECT_TYPE _type)
@@ -527,6 +426,8 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         return data;
     }
 
+
+
     /// <summary>
     /// 다 사용한 오브젝트를 해당 QueueData에 다시 넣기위해 사용하는 함수.
     /// </summary>
@@ -637,4 +538,144 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
         return go;
     }
+
+    private IEnumerator InstantiateObject()
+    {
+        for (int i = 0; i < expCreatCount; i++)
+        {
+            GameObject go = Instantiate(itemExp);
+            go.transform.SetParent(expParent.transform);
+            expQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < gravityCreatCount; i++)
+        {
+            GameObject go = Instantiate(itemGravity);
+            go.transform.SetParent(gravityParent.transform);
+            gravityQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < itemBoxCreatCount; i++)
+        {
+            GameObject go = Instantiate(itemBox);
+            go.transform.SetParent(itemBoxParent.transform);
+            itemBoxQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < itemHPCreatCount; i++)
+        {
+            GameObject go = Instantiate(itemHP);
+            go.transform.SetParent(itemHPParent.transform);
+            itemHPQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < batCreateCount; i++)
+        {
+            GameObject go = Instantiate(monsterBat);
+            go.transform.SetParent(batParent.transform);
+            batQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < goblinCreateCount; i++)
+        {
+            GameObject go = Instantiate(monsterGoblin);
+            go.transform.SetParent(goblinParent.transform);
+            goblinQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < skeletonCreateCount; i++)
+        {
+            GameObject go = Instantiate(monsterSkeleton);
+            go.transform.SetParent(skeletonParent.transform);
+            skeletonQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < boombCreateCount; i++)
+        {
+            GameObject go = Instantiate(monsterBoomb);
+            go.transform.SetParent(boombParent.transform);
+            boombQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < fireBallCreateCount; i++)
+        {
+            GameObject go = Instantiate(effectFireBall);
+            go.transform.SetParent(fireBallParent.transform);
+            fireBallQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < magicBoltCreateCount; i++)
+        {
+            GameObject go = Instantiate(magicBolt);
+            go.transform.SetParent(magicBoltParent.transform);
+            magicBoltQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < kunaiCreateCount; i++)
+        {
+            GameObject go = Instantiate(kunai);
+            go.transform.SetParent(kunaiParent.transform);
+            kunaiQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < poisonCreateCount; i++)
+        {
+            GameObject go = Instantiate(poison);
+            go.transform.SetParent(poisonParent.transform);
+            poisonQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+
+        for (int i = 0; i < bounceBallCreateCount; i++)
+        {
+            GameObject go = Instantiate(bounceBall);
+            go.transform.SetParent(bounceBallParent.transform);
+            bounceBallQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < batManCreateCount; i++)
+        {
+            GameObject go = Instantiate(batMan);
+            go.transform.SetParent(batManParent.transform);
+            batManQueue.Enqueue(go);
+        }
+
+        yield return waitSecond;
+
+        for (int i = 0; i < floatingDamageCount; i++)
+        {
+            GameObject go = Instantiate(floatingDamage);
+            go.transform.SetParent(floatingDamageParent.transform);
+            floatingDamageQueue.Enqueue(go);
+        }
+
+        yield break;
+    }
+
 }

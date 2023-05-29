@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    public MonsterConstant constant;
-
+    private MonsterConstant monsterConstant;
     private MonsterFactory monsterFactory;
     private MonsterDataManager monsterDataManager;
 
 
     private void Awake()
     {
+        monsterConstant = new MonsterConstant();
         monsterFactory = new MonsterFactory();
         monsterDataManager = new MonsterDataManager();
-    }
-
-    public void InitMonsterController()
-    {
     }
 
     public Vector3 FindClosestMonster()
@@ -95,7 +91,7 @@ public class MonsterController : MonoBehaviour
                 Vector3 spawnVec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].transform.position;
                 Vector3 playerVec = PlayerController.Instance.GetPlayerVec();
 
-                if (Vector3.Distance(spawnVec, playerVec) < constant.MaxDistance && Vector3.Distance(spawnVec, playerVec) > constant.minDistance)
+                if (Vector3.Distance(spawnVec, playerVec) < monsterConstant.MaxDistance && Vector3.Distance(spawnVec, playerVec) > monsterConstant.minDistance)
                 {
                     vec = spawnVec;
                     break;
@@ -112,6 +108,11 @@ public class MonsterController : MonoBehaviour
             monsterDataManager.AddMonster(ref monster);
 
         }
+    }
+
+    public MonsterConstant GetMonsterConstant()
+    {
+        return monsterConstant;
     }
 
     public void DeleteAllMonsters()

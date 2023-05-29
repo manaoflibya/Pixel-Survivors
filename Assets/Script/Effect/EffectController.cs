@@ -6,20 +6,17 @@ using UnityEngine;
 
 public class EffectController : MonoBehaviour
 {
-   // public EffectConstant constant;
-
     private EffectFactory effectFactory;
     private EffectDataManager effectDataManager;
     private EffectConstant effectConstant;
 
+
     private void Awake()
     {
         effectFactory = new EffectFactory();
+        effectConstant = new EffectConstant();
         effectDataManager = new EffectDataManager();
-
     }
-
-    //Gameobject Monster Target을 배열로 받아서 타겟만큼 FireBall떨어뜨려야함.
 
     public void OnEffectFireBall(int createCount,int upgradeCount,Vector3 spawnPos, GameObject target, float speed, float damage,Vector3 size)
     {
@@ -137,6 +134,11 @@ public class EffectController : MonoBehaviour
 
             effectDataManager.AddEffectBatMan(ref effectBatMan);
         }
+    }
+
+    public EffectConstant GetEffectConstant()
+    {
+        return effectConstant;
     }
 
     private void DelEffect(OBJECT_TYPE type, int uid, GameObject go)
