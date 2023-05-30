@@ -35,8 +35,6 @@ public class UIPresenter : MonoSingleton<UIPresenter>
 
     private void InitUIPresenter()
     {
-        //DontDestroyOnLoad(this);
-
         homeMenuUIModel = new HomeMenuUIModel();
 
         if(homeMenuUIModel != null)

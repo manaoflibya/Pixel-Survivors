@@ -12,6 +12,7 @@ public class GameMenuState : GameState
 
     public override void OnEnter()
     {
+        SoundManager.Instance.BGMPlay(SoundManager.Instance.soundData.homeSoundClip);
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.homeMenuUIModel);
     }
 
@@ -22,5 +23,6 @@ public class GameMenuState : GameState
 
     public override void OnExit()
     {
+        SoundManager.Instance.BGMPlayStop();
     }
 }

@@ -11,6 +11,7 @@ public class PlayerData : MonoBehaviour
     //Player Animation
     public string playerWalkAnimationName = "Walk";
     public string playerDeadAnimationName = "Dead";
+    public string playerWinAnimationName = "Win";
     // 상태를 변경할 때 빠져나가는 클래스에서 OnExit를 거쳐갔는지 확인하기 위해서 사용
     public bool checkClassOnExit;
     public string playerTagName = "Player";

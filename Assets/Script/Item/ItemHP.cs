@@ -27,6 +27,8 @@ public class ItemHP : Item
 
     private void FinishItemHP()
     {
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.healSoundClip, this.transform.position);
+
         StopCoroutine(coroutine);
         PlayerController.Instance.TakeHeal(point);
         action?.Invoke(myType, itemHPUID, this.gameObject);

@@ -96,12 +96,14 @@ public class PlaySettingUIModel : GameUIModel
     private void ClickSoundButton()
     {
         Debug.Log("SoundButton 기능 추가 ");
-
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
     }
 
     private void ClickHomeButton()
     {
         Time.timeScale = 1f;
+
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
 
         PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMELOADSTATE);
     }
@@ -110,6 +112,8 @@ public class PlaySettingUIModel : GameUIModel
     {
         UIPresenter.Instance.NotUseModelClassList(this);
         Time.timeScale = 1f;
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
+
     }
 
 

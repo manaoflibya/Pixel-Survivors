@@ -80,6 +80,8 @@ public class PlayGameOverUIModel : GameUIModel
 
     private void ClickHomeButton()
     {
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
+
         PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMELOADSTATE);
     }
 

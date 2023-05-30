@@ -101,7 +101,11 @@ public class Monster : MonoBehaviour
         if(collision.tag == PlayerController.Instance.playerData.playerTagName)
         {
             startTickAttack = true;
-            tickAttackCoroutine = StartCoroutine(AttakTickDamage());
+
+            if(this.gameObject.activeSelf.Equals(true))
+            {
+                tickAttackCoroutine = StartCoroutine(AttakTickDamage());
+            }
         }
     }
 

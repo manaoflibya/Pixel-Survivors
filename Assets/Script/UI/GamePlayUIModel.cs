@@ -147,6 +147,7 @@ public class GamePlayUIModel : GameUIModel
 
     public void ClickPauseButton()
     {
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playSettingUIModel);
     }
 

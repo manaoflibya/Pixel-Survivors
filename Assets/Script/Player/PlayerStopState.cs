@@ -16,8 +16,7 @@ public class PlayerStopState : PlayerState
     {
         playerData = _playerData;
 
-        UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playJoyStickModel);
-        PlayerController.Instance.PlayerAnimationMove(false);
+        PlayerController.Instance.PlayerWinAnim();
     }
 
     public override void OnUpdate()
@@ -26,6 +25,5 @@ public class PlayerStopState : PlayerState
 
     public override void OnExit()
     {
-        UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);
     }
 }

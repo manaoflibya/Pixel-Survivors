@@ -32,6 +32,8 @@ public class EffectKunai : Effect
     {
         if (collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
+            SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.kunaiSoundClip, this.transform.position,0.3f);
+
             collision.GetComponent<Monster>().TakeDamage(damage);
         }
     }

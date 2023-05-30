@@ -22,25 +22,28 @@ public class EffectController : MonoBehaviour
     {
         Vector3 newSize = new Vector3((float)(size.x + (upgradeCount * 0.1)), (float)(size.y + (upgradeCount * 0.1)), (float)(size.z + (upgradeCount * 0.1)));
 
-        createCount += upgradeCount;
+        //createCount += upgradeCount;
 
-        for (int i = 0; i < createCount; i++)
-        {
-            EffectFireBall fireBall = null;
-            GameObject go = null;
+        EffectFireBall fireBall = null;
+        GameObject go = null;
 
-            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTFIREBALLTYPE,spawnPos, target, DelEffect, speed,damage, newSize);
+        go = effectFactory.AddObject(OBJECT_TYPE.EFFECTFIREBALLTYPE, spawnPos, target, DelEffect, speed, damage, newSize);
 
-            go.TryGetComponent<EffectFireBall>(out fireBall);
+        go.TryGetComponent<EffectFireBall>(out fireBall);
 
-            fireBall.OnReset();
+        fireBall.OnReset();
 
-            effectDataManager.AddEffectFireBall(ref fireBall);
-        }
+        effectDataManager.AddEffectFireBall(ref fireBall);
+
+        //for (int i = 0; i < createCount; i++)
+        //{
+        //}
     }
 
     public void OnEffectMagicBolt(int createCount,int upgradeCount, Vector3 spawnPos, Vector3 dir, float speed, float damage, Vector3 size)
     {
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.magicBoltSoundClip, spawnPos);
+
         createCount += upgradeCount;
 
         for(int i = 0;i < createCount;i++)
@@ -99,7 +102,9 @@ public class EffectController : MonoBehaviour
 
     public void OnEffectBounceBall(int createCount,int upgradeCount, Vector3 spawnPos, Vector3 dir, float speed, float damage, float duration, Vector3 size)
     {
-        for(int i = 0; i < createCount;i++)
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.bounceBallStartSoundClip, spawnPos);
+
+        for (int i = 0; i < createCount;i++)
         {
             EffectBounceBall effectBounceBall = null;
             GameObject go = null;
@@ -118,6 +123,8 @@ public class EffectController : MonoBehaviour
 
     public void OnEffectBatMan(int createCount,int upgradeCount, Vector3 spawnPos, Vector3 dir, int hitCount, float speed, float damage, Vector3 size)
     {
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.batmanSoundClip, spawnPos);
+
         createCount += upgradeCount;
 
         for (int i = 0; i < createCount; i++)

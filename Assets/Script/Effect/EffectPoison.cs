@@ -64,6 +64,8 @@ public class EffectPoison : Effect
 
     private void FinishMoveTime()
     {
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.magicBoltSoundClip, this.transform.position);
+
         poisonBall.SetActive(false);
         poisonBubble.SetActive(true);
         capsuleCollider.enabled = true;

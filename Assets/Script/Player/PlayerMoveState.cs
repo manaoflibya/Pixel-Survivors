@@ -19,12 +19,6 @@ public class PlayerMoveState : PlayerState
 
     public override void OnUpdate()
     {
-        if (PlayerController.Instance.playerData.PlayerDead.Equals(true))
-        {
-            PlayerController.Instance.ChangePlayerState(PlayerController.PLAYERSTATE.END);
-            return;
-        }
-
         if (UIPresenter.Instance.playJoyStickModel.Go.activeSelf) 
         {
             Vector3 dirVec = UIPresenter.Instance.playJoyStickModel.MoveVec;

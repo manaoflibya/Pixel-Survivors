@@ -203,6 +203,11 @@ public class PlayerController : MonoSingleton<PlayerController>
         playerData.playerAnimator.SetTrigger(playerData.playerDeadAnimationName);
     }
 
+    public void PlayerWinAnim()
+    {
+        playerData.playerAnimator.SetTrigger(playerData.playerWinAnimationName);
+    }
+
     public void TakeEXP(float exp)
     {
         if(playerData.PlayerDead.Equals(true))
@@ -216,11 +221,11 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if(playerData.PlayerEXP >= playerData.PlayerMaxEXP)
         {
-            Debug.Log("Player Level UP!(Please Add Method here)");
             residual = playerData.PlayerEXP - playerData.PlayerMaxEXP;
             playerData.PlayerEXP = 0f;
             playerData.PlayerMaxEXP += playerData.expIncreaseValue;
             PlayerLevelUp();
+            SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.levelupSoundClip, GetPlayerVec());
         }
 
         playerData.PlayerEXP += residual;

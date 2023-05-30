@@ -47,6 +47,8 @@ public class MonsterBoomb : Monster
 
     private void FinishDeadAnim()
     {
+        //SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.boomberExploSoundClip, this.transform.position);
+
         monsterAction?.Invoke(myType, monsterUID, this.gameObject);
         monsterDeadAction?.Invoke(this.transform.position, expPoint);
     }

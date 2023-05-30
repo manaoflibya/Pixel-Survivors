@@ -854,6 +854,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114398322757601970, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
+      propertyPath: joystickName
+      value: Pixel_Joystick
+      objectReference: {fileID: 0}
     - target: {fileID: 224359097860930428, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1080,7 +1084,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750907955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3420181, y: -6.4229717, z: 11.223347}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1127,7 +1131,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.223
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1221,6 +1225,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6f8235d6878db4e89e47fe7789ab54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 1750907966}
+  homeSoundClip: {fileID: 8300000, guid: dbfc1f93feb24374f978aec506b4322a, type: 3}
+  gamePlaySoundClip: {fileID: 8300000, guid: 1d20444fff2cc5644bdee3f5619a0f9c, type: 3}
+  gameWinSoundClip: {fileID: 8300000, guid: b683af08c9de73c40ab272c4ad51ada7, type: 3}
+  gameLoseSoundClip: {fileID: 8300000, guid: a66ad6be258036b42a10ba8a32c0d07a, type: 3}
+  uiButtonClickSoundClip: {fileID: 8300000, guid: 2a4312fc63ec89d40858cd323416b89a, type: 3}
+  playButtonClickSoundClip: {fileID: 8300000, guid: 67b67fbe64ece61419c36be8114a5c7e, type: 3}
+  boomberExploSoundClip: {fileID: 8300000, guid: 0b9cf1da8437d424996153e3393c66d2, type: 3}
+  batmanSoundClip: {fileID: 8300000, guid: a05e294b8fc9c9a4cab821aa10b1dc67, type: 3}
+  bounceBallHitSoundClip: {fileID: 8300000, guid: 7a101d54db986584bb9dfaa132e35a45, type: 3}
+  bounceBallStartSoundClip: {fileID: 8300000, guid: 28634716062e9524696530cda5db0182, type: 3}
+  fireBallSoundClip: {fileID: 8300000, guid: 4a824339075bdc0499b879c8058fb3cc, type: 3}
+  kunaiSoundClip: {fileID: 8300000, guid: 7baba5044f96d4848becd6ad0a0e71aa, type: 3}
+  magicBoltSoundClip: {fileID: 8300000, guid: 6e1b5478b33e4dc4389a47afcdb41cf0, type: 3}
+  poisonBottleSoundClip: {fileID: 8300000, guid: fcfabbe93a978c746bf784748e17ef52, type: 3}
+  poisonSizzleSoundClip: {fileID: 8300000, guid: 4474e1f7b745c1548b5609cbeb32e40b, type: 3}
+  expSoundClip: {fileID: 8300000, guid: 22ed8a0c3f35a6040b011344a88b3857, type: 3}
+  healSoundClip: {fileID: 8300000, guid: b0548c742a4cd4c4c89d83485187e6a8, type: 3}
+  levelupSoundClip: {fileID: 8300000, guid: 8ce1c1c93477ac6418741bec52d91669, type: 3}
 --- !u!1001 &1762390301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1371,79 +1394,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6239838725993634336, guid: b0e9bad933d336844b53a290b36f57f6, type: 3}
   m_PrefabInstance: {fileID: 1038681360}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1964011777
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9999619
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.008726557
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945634974785744431, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968553701612437080, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_Name
-      value: HomeScenePlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968553701612437080, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: eb808b63dd6a6fa499076b69f8c09028, type: 3}
 --- !u!1 &1988887004
 GameObject:
   m_ObjectHideFlags: 0

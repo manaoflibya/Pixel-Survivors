@@ -45,6 +45,8 @@ public class ItemEXP : Item
 
     private void FinishEXP()
     {
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.expSoundClip, this.transform.position);
+
         PlayerController.Instance.TakeEXP(point);
         StopCoroutine(coroutine);
         action?.Invoke(myType, expUID, this.gameObject);

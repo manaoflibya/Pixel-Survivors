@@ -15,6 +15,8 @@ public class EffectFireBall : Effect
     private string playAnimMethodName = "StartExplosion";
     private string stopAnimMethodName = "StopExplosion";
 
+    private bool isExplo = false;
+
     public override void OnReset()
     {
         base.OnReset();
@@ -24,6 +26,8 @@ public class EffectFireBall : Effect
         trailEffect.SetActive(true);
         exposionEffect.SetActive(false);
 
+        isExplo = false;
+        
         Invoke(playAnimMethodName, floorExplosionTime);
     }
 
@@ -34,9 +38,13 @@ public class EffectFireBall : Effect
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
+        if (collision.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName && isExplo.Equals(false))
         {
+            SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.fireBallSoundClip, this.transform.position, 0.5f);
+
             collision.GetComponent<Monster>().TakeDamage(damage);
+
+            isExplo = true;
             StartExplosion();
         }
     }

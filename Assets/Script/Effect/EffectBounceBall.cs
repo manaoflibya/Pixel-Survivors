@@ -28,6 +28,8 @@ public class EffectBounceBall : Effect
     {
         if (collision.collider.tag == PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterTagName)
         {
+            SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.bounceBallHitSoundClip, this.transform.position);
+
             Vector3 incomingVector = dir;
             incomingVector.Normalize();
 

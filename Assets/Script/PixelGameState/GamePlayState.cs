@@ -13,6 +13,7 @@ public class GamePlayState : GameState
 
     public override void OnEnter()
     {
+        SoundManager.Instance.BGMPlay(SoundManager.Instance.soundData.gamePlaySoundClip);
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.playJoyStickModel);
         UIPresenter.Instance.UseModelClassList(UIPresenter.Instance.gamePlayUIModel);
 
@@ -49,6 +50,8 @@ public class GamePlayState : GameState
 
     public override void OnExit()
     {
+        SoundManager.Instance.BGMPlayStop();
+
         PixelGameManager.Instance.playTimeContorller.StopGameTime();
 
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);

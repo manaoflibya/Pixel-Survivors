@@ -17,7 +17,7 @@ public class PlayJoyStickModel : GameUIModel
         {
             this.Go = view.gameObject;
             this.Name = view.name;
-            this.joyStickName = "PixelPlayerJoyStick";
+            this.joyStickName = "Pixel_Joystick";
         }
         else
         {
@@ -50,6 +50,8 @@ public class PlayJoyStickModel : GameUIModel
 
     public override void Show()
     {
+        UltimateJoystick.EnableJoystick("Pixel_Joystick");
+
         if (this.go != null)
         {
             this.go.SetActive(true);
@@ -62,7 +64,9 @@ public class PlayJoyStickModel : GameUIModel
 
     public override void Hide()
     {
-        if(this.go != null) 
+        UltimateJoystick.DisableJoystick("Pixel_Joystick");
+
+        if (this.go != null) 
         {
             this.go.SetActive(false);
         }
