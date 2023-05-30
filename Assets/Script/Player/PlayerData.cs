@@ -15,8 +15,6 @@ public class PlayerData : MonoBehaviour
     public bool checkClassOnExit;
     public string playerTagName = "Player";
     
-    public List<Effect> effects = new List<Effect>();
-
     public Sprite effectFireBallSprite;
     public Sprite effectPoisonSprite;
     public Sprite effectMagicBoltSprite;

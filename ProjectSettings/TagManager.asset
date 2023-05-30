@@ -9,6 +9,7 @@ TagManager:
   - Effect_FireBall
   - EffectBatMan
   - Item
+  - Map
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - EffectBatMan
   - Item
   - FloatingUI
-  - 
-  - 
+  - Map
+  - PlayerMoveCol
   - 
   - 
   - 

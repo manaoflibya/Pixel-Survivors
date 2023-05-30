@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class MapChecker : MonoBehaviour
 {
+    public Map myParentMap;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == PlayerController.Instance.playerData.playerTagName)
         {
-            MapController.Instance.CheckTrigger(this.name);
+            MapController.Instance.CheckTrigger(myParentMap);
         }        
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == PlayerController.Instance.playerData.playerTagName && this.name == MapController.Instance.mapData.trigger_Out)
-        {
-            MapController.Instance.MapOut();
-        }
     }
 }

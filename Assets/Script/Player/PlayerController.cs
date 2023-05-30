@@ -157,8 +157,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             UIPresenter.Instance.gamePlayUIModel.HealthBarChange(playerData.MaxHealth, playerData.Health);
         }
-
-        Debug.Log("current Player Health "+ playerData.Health);
     }
 
     public void TakeHeal(float heal)

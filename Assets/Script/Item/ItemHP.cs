@@ -17,7 +17,11 @@ public class ItemHP : Item
         if (collision.tag == PlayerController.Instance.playerData.playerTagName && isFollowing.Equals(false))
         {
             isFollowing = true;
-            coroutine = StartCoroutine(FollowTarget(FinishItemHP));
+
+            if (this.gameObject.activeSelf.Equals(true))
+            {
+                coroutine = StartCoroutine(FollowTarget(FinishItemHP));
+            }
         }
     }
 

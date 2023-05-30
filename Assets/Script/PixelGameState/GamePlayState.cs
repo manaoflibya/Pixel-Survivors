@@ -99,11 +99,11 @@ public class GamePlayState : GameState
             PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBoomberSize, 
             PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterExpPoint);
 
-        Vector3 vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
+        Vector3 vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemGravity(vec);
-        vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
+        vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemBox(vec);
-        vec = MapController.Instance.mapData.currentSpawnPoints[Random.Range(0, MapController.Instance.mapData.currentSpawnPoints.Length - 1)].position;
+        vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].position;
         PixelGameManager.Instance.itemController.OnItemHP(vec, PixelGameManager.Instance.monsterController.GetMonsterConstant().healPoint);
 
     }

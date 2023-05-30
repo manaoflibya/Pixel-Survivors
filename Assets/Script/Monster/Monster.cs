@@ -111,7 +111,10 @@ public class Monster : MonoBehaviour
         {
             startTickAttack = false;
 
-            StopCoroutine(tickAttackCoroutine);
+            if(tickAttackCoroutine != null)
+            {
+                StopCoroutine(tickAttackCoroutine);
+            }
         }
     }
 
@@ -137,6 +140,11 @@ public class Monster : MonoBehaviour
 
     public void AllDead()
     {
+        if(tickAttackCoroutine != null)
+        {
+            StopCoroutine(tickAttackCoroutine);
+        }
+
         monsterAction?.Invoke(myType,monsterUID,this.gameObject);
     }
 }

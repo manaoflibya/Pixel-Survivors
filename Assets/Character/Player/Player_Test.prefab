@@ -2701,7 +2701,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6931147824188885724}
   - component: {fileID: 1149205714503183810}
-  m_Layer: 6
+  - component: {fileID: 3645642122053632581}
+  m_Layer: 14
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2817,6 +2818,22 @@ MonoBehaviour:
   - Assets/Resources/SPUM/SPUM_Sprites/Packages/Heroes/6_Weapons/Shield_Sorcerer.png
   _backListString:
   - Assets/Resources/SPUM/SPUM_Sprites/Packages/Heroes/7_Back/Back_Sorceress.png
+--- !u!70 &3645642122053632581
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559594000508278871}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.45}
+  m_Size: {x: 0.47, y: 1}
+  m_Direction: 0
 --- !u!1 &5579970773893531750
 GameObject:
   m_ObjectHideFlags: 0

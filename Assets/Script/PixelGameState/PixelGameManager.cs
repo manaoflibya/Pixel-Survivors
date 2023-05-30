@@ -109,7 +109,6 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
                     {
                         gameStateDictionary.Add(currentGameState, new GameMenuState());
                     }
-
                 }
                 break;
             case PIXELGAMESTATE.GAMELOADSTATE:

@@ -29,7 +29,11 @@ public class ItemEXP : Item
         if (collision.tag == PlayerController.Instance.playerData.playerTagName && isFollowing.Equals(false)) 
         {
             isFollowing = true;
-            coroutine = StartCoroutine(FollowTarget(FinishEXP));
+
+            if(this.gameObject.activeSelf.Equals(true))
+            {
+                coroutine = StartCoroutine(FollowTarget(FinishEXP));
+            }
         }
     }
 

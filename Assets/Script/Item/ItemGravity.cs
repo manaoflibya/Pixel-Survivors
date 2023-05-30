@@ -18,7 +18,11 @@ public class ItemGravity : Item
         if (collision.tag == PlayerController.Instance.playerData.playerTagName && isFollowing.Equals(false))
         {
             isFollowing = true;
-            coroutine = StartCoroutine(FollowTarget(FinishGravity));
+
+            if (this.gameObject.activeSelf.Equals(true))
+            {
+                coroutine = StartCoroutine(FollowTarget(FinishGravity));
+            }
         }
     }
    

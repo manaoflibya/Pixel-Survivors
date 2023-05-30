@@ -4,32 +4,17 @@ using UnityEngine;
 
 public class MapData : MonoBehaviour
 {
-    public Transform[] currentSpawnPoints;
-    public Transform[] spareSpawnPoints;
+    public Map[] maps;
 
-    public GameObject currentMap;
-    public GameObject[] currentTriggers;
-    public GameObject currentCenterTrigger;
+    public Vector3 initLeftPos;
+    public Vector3 initCenterPos;
+    public Vector3 initRightPos;
 
-    public GameObject spareMap;
-    public GameObject[] spareTriggers;
-    public GameObject spareCenterTrigger;
 
     [HideInInspector]
-    public string map_1 = "Map_1";
+    public string center = "Center";
     [HideInInspector]
-    public string map_2 = "Map_2";
-
+    public string left = "Left";
     [HideInInspector]
-    public string trigger_Right = "Trigger_Right";
-    [HideInInspector]
-    public string trigger_Left = "Trigger_Left";
-    [HideInInspector]
-    public string trigger_Out = "Trigger_Out";
-
-    [HideInInspector]
-    public string trigger_Center = "Trigger_Center";
-
-    [HideInInspector]
-    public bool isFirstLeft = true;
+    public string right = "Right";
 }
