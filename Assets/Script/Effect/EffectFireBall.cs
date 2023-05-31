@@ -7,6 +7,7 @@ public class EffectFireBall : Effect
     public int fireBallUID;
 
     public GameObject exposionEffect;
+    public GameObject fireBallImage;
     public GameObject trailEffect;
 
     private float stopExplosionTime = 0.3f;
@@ -23,11 +24,11 @@ public class EffectFireBall : Effect
 
         this.transform.position = spawnPos;
 
-        trailEffect.SetActive(true);
+        fireBallImage.SetActive(true);
         exposionEffect.SetActive(false);
 
         isExplo = false;
-        
+
         Invoke(playAnimMethodName, floorExplosionTime);
     }
 
@@ -51,14 +52,15 @@ public class EffectFireBall : Effect
 
     private void StartExplosion()
     {
+        fireBallImage.SetActive(false);
+
         exposionEffect.SetActive(true);
-        trailEffect.SetActive(false);
         Invoke(stopAnimMethodName, stopExplosionTime);
     }
 
     private void StopExplosion()
     {
-        trailEffect.SetActive(true);
+        fireBallImage.SetActive(false);
         exposionEffect.SetActive(false);
         action?.Invoke(myType, fireBallUID, this.gameObject);
     }

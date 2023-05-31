@@ -22,8 +22,6 @@ public class EffectController : MonoBehaviour
     {
         Vector3 newSize = new Vector3((float)(size.x + (upgradeCount * 0.1)), (float)(size.y + (upgradeCount * 0.1)), (float)(size.z + (upgradeCount * 0.1)));
 
-        //createCount += upgradeCount;
-
         EffectFireBall fireBall = null;
         GameObject go = null;
 
@@ -35,9 +33,6 @@ public class EffectController : MonoBehaviour
 
         effectDataManager.AddEffectFireBall(ref fireBall);
 
-        //for (int i = 0; i < createCount; i++)
-        //{
-        //}
     }
 
     public void OnEffectMagicBolt(int createCount,int upgradeCount, Vector3 spawnPos, Vector3 dir, float speed, float damage, Vector3 size)

@@ -62,10 +62,13 @@ public class Monster : MonoBehaviour
 
     public virtual void TakeTickDamageStart(float damage,float tickTime)
     {
-        startTickDamage = true;
-        tickDamage = damage;
-        takeDamageWaitSeconds = new WaitForSeconds(tickTime);
-        takeTickDamageCoroutine = StartCoroutine(TickDamageStart());
+        if(this.gameObject.activeSelf.Equals(true))
+        {
+            startTickDamage = true;
+            tickDamage = damage;
+            takeDamageWaitSeconds = new WaitForSeconds(tickTime);
+            takeTickDamageCoroutine = StartCoroutine(TickDamageStart());
+        }
     }    
 
     public virtual void TakeTickDamageFinish()

@@ -16,7 +16,7 @@ public class EffectConstant
     // fireBall
     public float effectFireBallSpeed = 15f;
     public float effectFireBallDamage = 30f;
-    public Vector3 effectFireBallSize = new Vector3(1f, 1f, 1f);
+    public Vector3 effectFireBallSize = new Vector3(0.5f, 0.5f, 0.5f);
 
     public int fireBallUpgradeCount = 0;
 
