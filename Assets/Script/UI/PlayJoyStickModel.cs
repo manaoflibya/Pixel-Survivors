@@ -64,7 +64,6 @@ public class PlayJoyStickModel : GameUIModel
 
     public override void Hide()
     {
-        UltimateJoystick.DisableJoystick("Pixel_Joystick");
 
         if (this.go != null) 
         {
@@ -82,6 +81,10 @@ public class PlayJoyStickModel : GameUIModel
         Hide();
     }
 
+    public void DisableJoyStick()
+    {
+        UltimateJoystick.DisableJoystick("Pixel_Joystick");
+    }
 
     public override void UpdateInfo()
     {

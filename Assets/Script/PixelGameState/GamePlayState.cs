@@ -53,7 +53,7 @@ public class GamePlayState : GameState
         SoundManager.Instance.BGMPlayStop();
 
         PixelGameManager.Instance.playTimeContorller.StopGameTime();
-
+        UIPresenter.Instance.playJoyStickModel.DisableJoyStick();
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.playJoyStickModel);
         UIPresenter.Instance.NotUseModelClassList(UIPresenter.Instance.gamePlayUIModel);
 
@@ -102,11 +102,11 @@ public class GamePlayState : GameState
             PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterBoomberSize, 
             PixelGameManager.Instance.monsterController.GetMonsterConstant().monsterExpPoint);
 
-        Vector3 vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].position;
+        Vector3 vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length)].position;
         PixelGameManager.Instance.itemController.OnItemGravity(vec);
-        vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].position;
+        vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length)].position;
         PixelGameManager.Instance.itemController.OnItemBox(vec);
-        vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].position;
+        vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length)].position;
         PixelGameManager.Instance.itemController.OnItemHP(vec, PixelGameManager.Instance.monsterController.GetMonsterConstant().healPoint);
 
     }

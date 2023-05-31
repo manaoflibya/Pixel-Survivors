@@ -302,10 +302,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayLevelUpUI
       objectReference: {fileID: 0}
-    - target: {fileID: 6161918153191530384, guid: a269791e8f972084f96e95899a2825ab, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6239838725993634336, guid: a269791e8f972084f96e95899a2825ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -389,10 +385,6 @@ PrefabInstance:
     - target: {fileID: 6239838725993634336, guid: a269791e8f972084f96e95899a2825ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240319289359855114, guid: a269791e8f972084f96e95899a2825ab, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -188.40002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a269791e8f972084f96e95899a2825ab, type: 3}
@@ -858,6 +850,10 @@ PrefabInstance:
       propertyPath: joystickName
       value: Pixel_Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 114398322757601970, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
+      propertyPath: customActivationRange
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224359097860930428, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -949,6 +945,14 @@ PrefabInstance:
     - target: {fileID: 224549901600871832, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
       propertyPath: m_SizeDelta.y
       value: 465.5892
+      objectReference: {fileID: 0}
+    - target: {fileID: 224549901600871832, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224549901600871832, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe2395c311b043349ba21569ddccaf71, type: 3}
@@ -1256,10 +1260,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePlayUI
       objectReference: {fileID: 0}
-    - target: {fileID: 1125366350031334, guid: 78f0a597361676749b4061187862e1a8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224420645055745056, guid: 78f0a597361676749b4061187862e1a8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1368,24 +1368,8 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4019899703212369184, guid: 78f0a597361676749b4061187862e1a8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8593537057014551874, guid: 78f0a597361676749b4061187862e1a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9135799030632247759, guid: 78f0a597361676749b4061187862e1a8, type: 3}
-      propertyPath: m_Color.a
-      value: 0.15686275
-      objectReference: {fileID: 0}
-    - target: {fileID: 9135799030632247759, guid: 78f0a597361676749b4061187862e1a8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9186851448306056779, guid: 78f0a597361676749b4061187862e1a8, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1448,7 +1432,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988887004}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b61ae858fc0300428b1e894e9c0c8ce, type: 3}
   m_Name: 

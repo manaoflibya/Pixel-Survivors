@@ -88,7 +88,7 @@ public class MonsterController : MonoBehaviour
 
             foreach (var data in MapController.Instance.GetcurrentSpawnPoints())
             {
-                Vector3 spawnVec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].transform.position;
+                Vector3 spawnVec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length)].transform.position;
                 Vector3 playerVec = PlayerController.Instance.GetPlayerVec();
 
                 if (Vector3.Distance(spawnVec, playerVec) < monsterConstant.MaxDistance && Vector3.Distance(spawnVec, playerVec) > monsterConstant.minDistance)
@@ -100,7 +100,7 @@ public class MonsterController : MonoBehaviour
 
             if(vec == Vector3.zero)
             {
-                vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length - 1)].transform.position;
+                vec = MapController.Instance.GetcurrentSpawnPoints()[Random.Range(0, MapController.Instance.GetcurrentSpawnPoints().Length)].transform.position;
             }
 
             go = monsterFactory.AddObject(type, vec, PlayerController.Instance.GetPlayerObject(), DeleteMonsterData, health, damage, speed, size, PixelGameManager.Instance.itemController.OnItemEXP,expPoint);

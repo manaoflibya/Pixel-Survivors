@@ -61,6 +61,10 @@ public class PlayerController : MonoSingleton<PlayerController>
         playerData.checkClassOnExit = true;
         isControllerInit = true;
 
+        UIPresenter.Instance.gamePlayUIModel.HealthBarChange(playerData.MaxHealth, playerData.Health);
+        UIPresenter.Instance.gamePlayUIModel.ExpBarChange(playerData.PlayerMaxEXP, playerData.PlayerEXP);
+
+
         Debug.Log("PlayerHealth is " + playerData.Health);
     }
 
@@ -240,7 +244,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         Sprite effectSprite = null;
 
-        int levelupType = UnityEngine.Random.Range((int)OBJECT_TYPE.EFFECTFIREBALLTYPE, (int)OBJECT_TYPE.EFFECTBATMANTYPE);
+        int levelupType = UnityEngine.Random.Range((int)OBJECT_TYPE.EFFECTFIREBALLTYPE, (int)OBJECT_TYPE.EFFECTBATMANTYPE + 1);
 
         switch((OBJECT_TYPE)levelupType)
         {

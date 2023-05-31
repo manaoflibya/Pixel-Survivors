@@ -11,7 +11,7 @@ public class EffectFireBall : Effect
     public GameObject trailEffect;
 
     private float stopExplosionTime = 0.3f;
-    private float floorExplosionTime = 0.8f;
+    private float floorExplosionTime = 1f;
 
     private string playAnimMethodName = "StartExplosion";
     private string stopAnimMethodName = "StopExplosion";
@@ -34,7 +34,10 @@ public class EffectFireBall : Effect
 
     private void FixedUpdate()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position , Time.deltaTime * speed);
+        if(isExplo.Equals(false)) 
+        {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position , Time.deltaTime * speed);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

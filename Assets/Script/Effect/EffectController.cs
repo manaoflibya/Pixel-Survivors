@@ -120,22 +120,17 @@ public class EffectController : MonoBehaviour
     {
         SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.batmanSoundClip, spawnPos);
 
-        createCount += upgradeCount;
+        EffectBatMan effectBatMan = null;
+        GameObject go = null;
 
-        for (int i = 0; i < createCount; i++)
-        {
-            EffectBatMan effectBatMan= null;
-            GameObject go = null;
+        Vector3 newVec = new Vector3((float)(dir.x + (upgradeCount * 0.1)), (float)(dir.y + (upgradeCount * 0.1)), (float)(dir.z + (upgradeCount * 0.1)));
 
-            Vector3 newVec = new Vector3((float)(dir.x + (i * 0.1)), (float)(dir.y + (i * 0.1)), (float)(dir.z + (i * 0.1)));
+        go = effectFactory.AddObject(OBJECT_TYPE.EFFECTBATMANTYPE, spawnPos, newVec, hitCount, DelEffect, speed, damage, size);
+        go.TryGetComponent(out effectBatMan);
 
-            go = effectFactory.AddObject(OBJECT_TYPE.EFFECTBATMANTYPE, spawnPos, newVec, hitCount, DelEffect, speed, damage, size);
-            go.TryGetComponent(out effectBatMan);
+        effectBatMan.OnReset();
 
-            effectBatMan.OnReset();
-
-            effectDataManager.AddEffectBatMan(ref effectBatMan);
-        }
+        effectDataManager.AddEffectBatMan(ref effectBatMan);
     }
 
     public EffectConstant GetEffectConstant()
