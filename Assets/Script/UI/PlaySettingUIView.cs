@@ -9,4 +9,7 @@ public class PlaySettingUIView : MonoBehaviour
     public Button playButton;
     public Button soundButton;
     public Button homeButton;
+
+    public GameObject soundOn;
+    public GameObject soundOff;
 }

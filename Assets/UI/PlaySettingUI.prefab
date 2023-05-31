@@ -1077,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6240617193142470768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1510,6 +1510,8 @@ MonoBehaviour:
   playButton: {fileID: 6058436549626810752}
   soundButton: {fileID: 6058410593953646098}
   homeButton: {fileID: 6370622540149960456}
+  soundOn: {fileID: 6160954427728917986}
+  soundOff: {fileID: 6161581542002153426}
 --- !u!1 &6162004827492590482
 GameObject:
   m_ObjectHideFlags: 0

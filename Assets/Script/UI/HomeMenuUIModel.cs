@@ -112,7 +112,7 @@ public class HomeMenuUIModel : GameUIModel
 
     private void ClickPlayButton()
     {
-        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.playButtonClickSoundClip, Go.transform.position);
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.playButtonClickSoundClip, Vector3.zero);
 
         PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMELOADSTATE);
     }
@@ -120,7 +120,7 @@ public class HomeMenuUIModel : GameUIModel
     private void ClickSettingButton()
     {
         Debug.Log("Need Method ClickSettingButton");
-        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Vector3.zero);
 
     }
 
@@ -134,7 +134,7 @@ public class HomeMenuUIModel : GameUIModel
 
     private void ClickGoldButton()
     {
-        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Vector3.zero);
 
         Debug.Log("Need Method ClickGoldButton");
     }

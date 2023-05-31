@@ -127,10 +127,10 @@ public class ObjectPool : MonoSingleton<ObjectPool>
 
     #region FloatingUI
     private Queue<GameObject> floatingDamageQueue = new Queue<GameObject>();
-    private string floatingDamageName = "FloatingDamageUI_Data";
-    private int floatingDamageCount = 700;
-    private GameObject floatingDamageParent;
     private GameObject floatingDamage;
+    private GameObject floatingDamageParent;
+    private string floatingDamageNameData = "FloatingDamageUI_Data";
+    private int floatingDamageCount = 700;
     #endregion
 
     private WaitForSeconds waitSecond = new WaitForSeconds(0.5f);
@@ -154,7 +154,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         bounceBall = Resources.Load(bounceBallNameData) as GameObject;
         batMan = Resources.Load(batManNameData) as GameObject;
 
-        floatingDamage = Resources.Load(floatingDamageName) as GameObject;
+        floatingDamage = Resources.Load(floatingDamageNameData) as GameObject;
 
         //////////////////
         itemExp.SetActive(false);
@@ -194,7 +194,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         bounceBallParent = CreateLocalObject(bounceBallNameData);
         batManParent = CreateLocalObject(batManNameData);
 
-        floatingDamageParent = CreateLocalObject(batManNameData);
+        floatingDamageParent = CreateLocalObject(floatingDamageNameData);
 
         /////////////////
 

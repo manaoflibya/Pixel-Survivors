@@ -6,6 +6,8 @@ public class SoundData : MonoBehaviour
 {
     public AudioSource audioSource;
 
+    public bool isSoundOn = true;
+
     [Space]
     [Header("Game")]
     public AudioClip homeSoundClip;

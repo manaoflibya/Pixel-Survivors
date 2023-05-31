@@ -75,6 +75,7 @@ public class PixelGameManager : MonoSingleton<PixelGameManager>
         mapController = null;
     }
 
+    
     private void Update()
     {
         if(gameStateDictionary.ContainsKey(currentGameState))

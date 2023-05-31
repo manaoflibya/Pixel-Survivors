@@ -9,6 +9,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private void Start()
     {
+        soundData.isSoundOn = true; 
         soundData.audioSource.loop = true;
         soundData.audioSource.playOnAwake = false;
     }
@@ -27,6 +28,20 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
     }
 
+    public void SoundONOFF(bool isOn)
+    {
+        soundData.isSoundOn = isOn;
+
+        if (isOn.Equals(true))
+        {
+            soundData.audioSource.volume = 0.2f;
+        }
+        else
+        {
+            soundData.audioSource.volume = 0f;
+        }
+    }
+
     public void ChangeAudioSouceLoop(bool isLoop)
     {
         soundData.audioSource.loop = isLoop;
@@ -34,11 +49,17 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void EffectPlay(AudioClip auido, Vector3 pos, float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(auido, pos, volume);
+        if (soundData.isSoundOn.Equals(true))
+        {
+            AudioSource.PlayClipAtPoint(auido, pos, volume);
+        }
     }
 
     public void SoundPlayOneShot(AudioClip audio)
     {
-        soundData.audioSource.PlayOneShot(audio);
+        if(soundData.isSoundOn.Equals(true))
+        {
+            soundData.audioSource.PlayOneShot(audio);
+        }
     }
 }

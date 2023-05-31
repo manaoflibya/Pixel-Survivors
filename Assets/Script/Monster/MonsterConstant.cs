@@ -47,7 +47,7 @@ public class MonsterConstant
     public float currentCraeteTime = 0f;
     public float createTime = 4f;
 
-    public float healPoint = 10f;
+    public float healPoint = 20f;
 
     public float monsterExpPoint = 10f;
     public float monsterExpPointMiddle = 30f;

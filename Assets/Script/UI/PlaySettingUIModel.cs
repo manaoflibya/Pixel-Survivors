@@ -18,6 +18,8 @@ public class PlaySettingUIModel : GameUIModel
             this.PlayButton = view.playButton;
             this.SoundButton = view.soundButton;
             this.HomeButton = view.homeButton;
+            this.SoundOn = view.soundOn;
+            this.SoundOff = view.soundOff;
         }
     }
 
@@ -54,6 +56,22 @@ public class PlaySettingUIModel : GameUIModel
         get { return this.homeButton; }
     }
 
+    private GameObject soundOn = null;
+    public GameObject SoundOn
+    {
+        get { return this.soundOn; }
+        set { this.soundOn = value; }
+    }
+
+    private GameObject soundOff = null;
+
+    public GameObject SoundOff
+    {
+        get { return this.soundOff; }
+        set { this.soundOff = value; }
+    }
+
+
     public override void Hide()
     {
         if (this.Go != null)
@@ -77,6 +95,8 @@ public class PlaySettingUIModel : GameUIModel
         SoundButton.onClick.AddListener(() => ClickSoundButton());
         HomeButton.onClick.AddListener(() => ClickHomeButton());
 
+        IsSoundOn(true);
+
         Hide();
     }
 
@@ -86,6 +106,8 @@ public class PlaySettingUIModel : GameUIModel
         {
             this.Go.SetActive(true);
             Time.timeScale = 0f;
+
+            IsSoundOn(SoundManager.Instance.soundData.isSoundOn);
         }
         else
         {
@@ -95,15 +117,16 @@ public class PlaySettingUIModel : GameUIModel
 
     private void ClickSoundButton()
     {
-        Debug.Log("SoundButton 기능 추가 ");
-        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
+        IsSoundOn(!SoundManager.Instance.soundData.isSoundOn);
+        SoundManager.Instance.SoundONOFF(!SoundManager.Instance.soundData.isSoundOn);
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Camera.main.transform.position);
     }
 
     private void ClickHomeButton()
     {
         Time.timeScale = 1f;
 
-        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Camera.main.transform.position);
 
         PixelGameManager.Instance.ChangePixelGameState(PixelGameManager.PIXELGAMESTATE.GAMELOADSTATE);
     }
@@ -112,10 +135,22 @@ public class PlaySettingUIModel : GameUIModel
     {
         UIPresenter.Instance.NotUseModelClassList(this);
         Time.timeScale = 1f;
-        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Go.transform.position);
-
+        SoundManager.Instance.EffectPlay(SoundManager.Instance.soundData.uiButtonClickSoundClip, Camera.main.transform.position);
     }
 
+    private void IsSoundOn(bool isOn)
+    {
+        if(isOn.Equals(true))
+        {
+            SoundOn.SetActive(true);
+            SoundOff.SetActive(false);
+        }
+        else
+        {
+            SoundOn.SetActive(false);
+            SoundOff.SetActive(true);
+        }
+    }
 
     public override void UpdateInfo()
     {
